@@ -1,0 +1,142 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "MIBE SQL Corner",
+    "section": "",
+    "text": "Welcome to the MIBE SQL Corner! This page is dedicated to all the key concepts, notes, and resources you need for mastering SQL in the Coding and Data Management course. Whether you’re just starting or refining your skills, you’ll find everything you need to excel in SQL here. Let’s dive in and sharpen those coding skills!\nYou will also use this website to query databases. It features interactive fields, where you can type and edit your SQL queries.\n\n\n\n  \n  \n    © 2025. All Rights Reserved.\n  \n  \n\n  \n  \n    Enabled by Dr. Marcin Bartosiak"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "1-single-entity.html#the-relational-model",
+    "href": "1-single-entity.html#the-relational-model",
+    "title": "1. Introduction to SQL. Single entity",
+    "section": "",
+    "text": "The relational model is a way of organizing data into tables (called relations).\nThe Relational Model represents data and their relationships through a collection of tables. Each table also known as a relation consists of rows and columns. Every column has a unique name and corresponds to a specific attribute, while each row contains a set of related data values representing a real-world entity or relationship.\nThe relational model represents how data is stored in Relational Databases. A relational database consists of a collection of tables each of which is assigned a unique name.\n\n\n\nRelational Model\n\n\nRelation or table: * Matrix of intersecting tuples and attributes + Tuples: Rows + Attributes: Columns"
+  },
+  {
+    "objectID": "1-single-entity.html#single-entity",
+    "href": "1-single-entity.html#single-entity",
+    "title": "1. Introduction to SQL. Single entity",
+    "section": "",
+    "text": "An entity is some thing in the environment. It can be a physical entity (e.g., student) or an abstraction (e.g., marriage). You can think of an entity as a class of objects (or phenomena). An instance is a particular occurrence of an entity.\n\n\n\n\n\nNo worries! It will get easier with the examples below 😅\n\n\n\nEntity: “Car” is an entity because it represents a general category of objects that share common characteristics, such as having wheels, an engine, and the ability to transport people.\n\nInstance: A specific car, like a red 2015 Volkswagen Beetle with license plate ABC123, is an instance of the “Car” entity. It is a particular example with unique attributes.\n\n\n\n\n\n\n\n\n\n\nEntity: “Tree” is an entity because it represents a general type of object that has roots, a trunk, and leaves.\n\nInstance: A specific tree in a forest, such as the 50-year-old oak tree standing near the river in Amazon Rainforest, is an instance of the “Tree” entity. It is a unique example of the general concept.\n\n\n\n\n\n\n\n\n\nFirst, we need to draw an entity.\nRemember, an entity is:\n\nSome thing in the environment\nA physical entity (e.g., student) or an abstraction (e.g., marriage)\nAn entity is a class (or entity set)\nAn instance is a particular occurrence of an entity\n\nAn entity is represented by a rectangle in modelling notation\n\n\n\n\n\n\n\nAn entity\n\n\nSecond, let’s think about attributes.\nAn attribute is a discrete data element that describes an entity.\n\nAttributes must be conceptually unique\n\nHomonym: Same name is used to label different attributes\nSynonym: Different names are used to describe the same attribute\n\n\nAttribute names must be unique within a data model\nAttribute names should be meaningful\n\n\n\n\n\n\n\nAttributes\n\n\nThere is one more step before we have our model ready. We need to add identifiers.\nEvery instance of an entity must be uniquely identified.\nAn identifier can be an attribute or collection of attributes.\nAn identifier can be created if there is no obvious attribute (surrogate).\nA leading asterisk denotes an identifier in our entity.\n\n\n\n\n\n\n\nIdentifier (*)\n\n\nThat’s it! You’ve created your first database model. It’s a simple one—just a single table. But soon, we’ll be designing much more complex databases, all built on these few basic steps."
+  },
+  {
+    "objectID": "1-single-entity.html#exercise",
+    "href": "1-single-entity.html#exercise",
+    "title": "1. Introduction to SQL. Single entity",
+    "section": "",
+    "text": "Create a data model for recording details of the herd of cows that you manage"
+  },
+  {
+    "objectID": "1-single-entity.html#querying-a-table",
+    "href": "1-single-entity.html#querying-a-table",
+    "title": "1. Introduction to SQL. Single entity",
+    "section": "Querying a Table",
+    "text": "Querying a Table\nIn SQL, the simplest way to retrieve data is by using SELECT * FROM tableName;. This command asks the database to return everything in the table. Think of it as saying, “Hey, server, show me (SELECT) all the data (*) in this table (FROM)!”\nOf course, tableName is just a placeholder. We will have to replace it with the real name. In our case, the table is called brand.\nTry it yourself with our brand table:\n\nSELECT * FROM tableName;\n\nHave you noticed the small detail at the end of line? Every query has to end with ;. It tells the server that your query ends here. Everything after this sign is a new code. This will be important when we run more than one query at a time."
+  },
+  {
+    "objectID": "1-single-entity.html#projection-choosing-columns",
+    "href": "1-single-entity.html#projection-choosing-columns",
+    "title": "1. Introduction to SQL. Single entity",
+    "section": "Projection: Choosing Columns",
+    "text": "Projection: Choosing Columns\nSometimes, you don’t need all the data—just specific columns.\n\n\n\n\n\nYou can request only what you need by listing column names:\n\nSELECT brandName, brandChain FROM brand; \n\nThis is like asking, “Tell me just the brand name and chain, please.”"
+  },
+  {
+    "objectID": "1-single-entity.html#restriction-choosing-rows",
+    "href": "1-single-entity.html#restriction-choosing-rows",
+    "title": "1. Introduction to SQL. Single entity",
+    "section": "Restriction: Choosing Rows",
+    "text": "Restriction: Choosing Rows\nIf you only want certain rows, use WHERE to filter results.\n\n\n\n\n\nTry yourself and report all brands owned by Hilton Worldwide.\n\nSELECT * FROM brand \n  WHERE brandChain = 'Hilton Worldwide';\n\nThis is like telling the server, “Only show me brands owned by Hilton.”\nYou can choose any other lodging chain instead of ‘Hilton Worldwide’. For example, try with ‘Accor’ and see how the results change.\nImportant Hilton or Accor are values, not attributes. Unlike column names or table name, you always have to wrap text values with quotation marks ('...' or \"...\").\nFollowing the same logic, you can exclude a value from the results. You have to replace = with != or &lt;&gt; (they both mean the same thing).\nTry yourself and report all brands but Hilton Worldwide. Edit the query to try it with &lt;&gt; too.\n\nSELECT * FROM brand \n  WHERE brandChain != 'Hilton Worldwide';"
+  },
+  {
+    "objectID": "1-single-entity.html#projection-and-restriction-together",
+    "href": "1-single-entity.html#projection-and-restriction-together",
+    "title": "1. Introduction to SQL. Single entity",
+    "section": "Projection and Restriction Together",
+    "text": "Projection and Restriction Together\nCombining both techniques, you can select specific columns and filter rows. List the brand name and segment of all brands owned by Hilton Worldwide:\n\nSELECT brandName, brandSegment FROM brand \n  WHERE brandChain = 'Hilton Worldwide';\n\nNow you’re asking, “Show me just the names and segments of Hilton brands.”"
+  },
+  {
+    "objectID": "1-single-entity.html#primary-key-retrieval",
+    "href": "1-single-entity.html#primary-key-retrieval",
+    "title": "1. Introduction to SQL. Single entity",
+    "section": "Primary Key Retrieval",
+    "text": "Primary Key Retrieval\nA primary key uniquely identifies a row. If you query by it, you get at most one result:\n\nSELECT * FROM brand \n  WHERE brandID = 10;\n\nThis is like saying, “Give me all details about the brand with ID 10.”\nImportant Notice that numerical values do not have to be wrapped with quotation marks."
+  },
+  {
+    "objectID": "1-single-entity.html#queries-without-primary-key",
+    "href": "1-single-entity.html#queries-without-primary-key",
+    "title": "1. Introduction to SQL. Single entity",
+    "section": "Queries Without Primary Key",
+    "text": "Queries Without Primary Key\nWithout a primary key, multiple rows can be returned:\n\nSELECT * FROM brand \n  WHERE brandChain = 'Accor';"
+  },
+  {
+    "objectID": "1-single-entity.html#the-in-operator",
+    "href": "1-single-entity.html#the-in-operator",
+    "title": "1. Introduction to SQL. Single entity",
+    "section": "The IN Operator",
+    "text": "The IN Operator\nIf you want to filter by multiple values, IN operator will come handy:\n\nSELECT * FROM brand \n  WHERE brandSegment IN ('Luxury', 'Economy');\n\nThis is the equivalent of saying, “Give me brands that are either Luxury or Economy.”\nYou could get the same results by using WHERE with OR:\n\nSELECT * FROM brand \n    WHERE brandSegment = 'Luxury'\n        OR brandSegment = 'Economy';\n\nDo you see how much more efficient it is with IN?"
+  },
+  {
+    "objectID": "1-single-entity.html#the-not-in-operator",
+    "href": "1-single-entity.html#the-not-in-operator",
+    "title": "1. Introduction to SQL. Single entity",
+    "section": "The NOT IN Operator",
+    "text": "The NOT IN Operator\nTo exclude more than one value, use NOT IN:\n\nSELECT * FROM brand \n  WHERE brandName NOT IN ('Sofitel', 'Thalassa', 'Curio', 'Conrad');\n\nThis means, “Show me everything except these brands.”"
+  },
+  {
+    "objectID": "1-single-entity.html#ordering-columns",
+    "href": "1-single-entity.html#ordering-columns",
+    "title": "1. Introduction to SQL. Single entity",
+    "section": "Ordering Columns",
+    "text": "Ordering Columns\nThe order of selected columns in your query defines how results appear. This just structures the results the way you prefer.\nCompare these two queries\n\nSELECT brandName, brandSegment FROM brand WHERE brandChain = 'Accor';\n\n\nSELECT brandSegment, brandName FROM brand WHERE brandChain = 'Accor';"
+  },
+  {
+    "objectID": "1-single-entity.html#ordering-rows",
+    "href": "1-single-entity.html#ordering-rows",
+    "title": "1. Introduction to SQL. Single entity",
+    "section": "Ordering Rows",
+    "text": "Ordering Rows\nIf you need to sort the results, you can use ORDER BY.\n\n\n\n\n\nList all brands with rooms smaller than 350 square feet with largest first:\n\nSELECT * FROM brand WHERE brandMinSqFt &lt; 350 ORDER BY brandMinSqFt DESC;\n\nThis means, “Show me brands with rooms under 350 sqft, biggest first, and if sizes match, sort alphabetically.”\nDESC means descending order (biggest first). You need ascending order (smallest first), you can replace it with ASC or simply remove it (ascending order is default in SQL).\nHave you noticed that there are many brands with the same value? We can order results by two columns. If the results in the first column are identical, the second column will be used to sort them. Let’s add brandName to our ORDER BY clause.\nList all brands with rooms smaller than 350 square feet with largest first. Where areas are identical, list brands in alphabetical order.\n\nSELECT * FROM brand WHERE brandMinSqFt &lt; 350 ORDER BY brandMinSqFt DESC, brandName;\n\nNotice that our results are ordered by brandMinSqFt in descending order (DESC), and alphabetically by brandName (you can add ASC after brandName to get the same results).\nLast one more thing. Notice that we use &lt; in this query. WHERE condition can take all the comparison operators: =, !=, &lt;, &gt;, &lt;=, and &gt;=."
+  },
+  {
+    "objectID": "1-single-entity.html#calculated-fields",
+    "href": "1-single-entity.html#calculated-fields",
+    "title": "1. Introduction to SQL. Single entity",
+    "section": "Calculated Fields",
+    "text": "Calculated Fields\nSQL allows calculations directly in queries. Let’s say we want to convert square feet to square meters in the results (m² = f² / 10.764).\n\nSELECT brandName, brandMinSqFt / 10.764 FROM brand;"
+  },
+  {
+    "objectID": "1-single-entity.html#renaming-output-fields",
+    "href": "1-single-entity.html#renaming-output-fields",
+    "title": "1. Introduction to SQL. Single entity",
+    "section": "Renaming Output Fields",
+    "text": "Renaming Output Fields\nThe column name for our calculated field in the results above doesn’t look nice. To make results clearer, use AS to rename calculated fields (or any other column in your query).\nGet minimum room area in square meters for each brand. Rename the output\n\nSELECT brandName, brandMinSqFt / 10.764 AS brandSqMt FROM brand;\n\nNow the result column will be labeled brandSqMt instead of an anonymous calculation. This new name is called alias.\n\nThat’s it for now! 🎉\nEven if it seems like just a little, learning this is already a great achievement!\n\n\n\n\n\n\nRemember, SQL is like having a conversation in English with the database:\n\n“Show me everything” → SELECT * FROM table;\n\n“Give me only what I need” → SELECT column FROM table;\n\n“Filter the results” → WHERE = condition\n\n“Sort them” → ORDER BY column\n\nWith these basics, you’re already on your way to mastering SQL!\n\n\n\n\n\n\n\n\n\nImages and GIFs Disclaimer: Some of the images and GIFs used on this website are not owned by me. They are used for educational and illustrative purposes only. All rights belong to their respective owners. If you believe any content violates copyright, please contact me for prompt removal.\n\n\n\n\n\n\n  \n  \n    © 2025. All Rights Reserved.\n  \n  \n\n  \n  \n    Enabled by Dr. Marcin Bartosiak"
+  },
+  {
+    "objectID": "1-single-entity.html",
+    "href": "1-single-entity.html",
+    "title": "1. Introduction to SQL. Single entity",
+    "section": "",
+    "text": "Database Model is the logical representation of the structure of the data.\n\n\n\nDatabase Model Example\n\n\nIn general, there are two types of database models:\n\nConceptual Data Model\n\nThe logical representation of the structure of the data (conceptual metadata)\nUsing a specific modelling notation (e.g., ER diagramming, crow-foot notation, UML)\n\n\n\n\n\n\n\n\n\n\nHand-drawn crowfoot model\n\n\n\n\n\n\n\nER diagram\n\n\n\n\n\n\nFigure 1\n\n\n\n\nImplementable Data Model\n\nProduced in specialized software\nReady to launch on a server\nConceptual design\nData dictionary\n\n\n\n\n\nImplementable Model\n\n\nModelling is Designing\nA database must model the real world\n\nTo model means:\n\nTo represent faithfully\nGiven the database design objectives\nWithin scope and under given constraints\n\n\nObjective: Storing and retrieving data about the real world\nData modelling is a design technique for capturing data reality\n\n\nThe relational model is a way of organizing data into tables (called relations).\nThe Relational Model represents data and their relationships through a collection of tables. Each table also known as a relation consists of rows and columns. Every column has a unique name and corresponds to a specific attribute, while each row contains a set of related data values representing a real-world entity or relationship.\nThe relational model represents how data is stored in Relational Databases. A relational database consists of a collection of tables each of which is assigned a unique name.\n\n\n\nRelational Model\n\n\nRelation or table: * Matrix of intersecting tuples and attributes + Tuples: Rows + Attributes: Columns\n\n\n\nAn entity is some thing in the environment. It can be a physical entity (e.g., student) or an abstraction (e.g., marriage). You can think of an entity as a class of objects (or phenomena). An instance is a particular occurrence of an entity.\n\n\n\n\n\nNo worries! It will get easier with the examples below 😅\n\n\n\nEntity: “Car” is an entity because it represents a general category of objects that share common characteristics, such as having wheels, an engine, and the ability to transport people.\n\nInstance: A specific car, like a red 2015 Volkswagen Beetle with license plate ABC123, is an instance of the “Car” entity. It is a particular example with unique attributes.\n\n\n\n\n\n\n\n\n\n\nEntity: “Tree” is an entity because it represents a general type of object that has roots, a trunk, and leaves.\n\nInstance: A specific tree in a forest, such as the 50-year-old oak tree standing near the river in Amazon Rainforest, is an instance of the “Tree” entity. It is a unique example of the general concept.\n\n\n\n\n\n\n\n\n\nFirst, we need to draw an entity.\nRemember, an entity is:\n\nSome thing in the environment\nA physical entity (e.g., student) or an abstraction (e.g., marriage)\nAn entity is a class (or entity set)\nAn instance is a particular occurrence of an entity\n\nAn entity is represented by a rectangle in modelling notation\n\n\n\n\n\n\n\nAn entity\n\n\nSecond, let’s think about attributes.\nAn attribute is a discrete data element that describes an entity.\n\nAttributes must be conceptually unique\n\nHomonym: Same name is used to label different attributes\nSynonym: Different names are used to describe the same attribute\n\n\nAttribute names must be unique within a data model\nAttribute names should be meaningful\n\n\n\n\n\n\n\nAttributes\n\n\nThere is one more step before we have our model ready. We need to add identifiers.\nEvery instance of an entity must be uniquely identified.\nAn identifier can be an attribute or collection of attributes.\nAn identifier can be created if there is no obvious attribute (surrogate).\nA leading asterisk denotes an identifier in our entity.\n\n\n\n\n\n\n\nIdentifier (*)\n\n\nThat’s it! You’ve created your first database model. It’s a simple one—just a single table. But soon, we’ll be designing much more complex databases, all built on these few basic steps.\n\n\n\n\nCreate a data model for recording details of the herd of cows that you manage"
+  },
+  {
+    "objectID": "Homework1.html",
+    "href": "Homework1.html",
+    "title": "Homework 1",
+    "section": "",
+    "text": "The following queries use the classicmodels schema available to you on the class server. All queries use the products table.\n\n\n\n\n\n\n\nPrepare a list of products sorted by product name in descending order.\n\n\n\n\nList the product names and their quantity available from high to low?\n\n\n\nReport the MSRP for the products in “Vintage Cars” category?\n\n\n\nReport the product(s) with the buy price of 48.81\n\n\n\nReport those products with the price greater than 70\n\n\n\nWhich products have product scale ratio 1:10 and 1:72?\n\n\n\nList the product names except the ones in the Planes and Ships category\n\n\n\nReport the names of products excluding Motorcycles and Classic Cars\n\n\n\nReport the products having MSRP greater than 110\n\n\n\nList the product vendors in ascending alphabetical order"
+  },
+  {
+    "objectID": "Homework1.html#sql---homework-1",
+    "href": "Homework1.html#sql---homework-1",
+    "title": "Homework 1",
+    "section": "",
+    "text": "The following queries use the classicmodels schema available to you on the class server. All queries use the products table.\n\n\n\n\n\n\n\nPrepare a list of products sorted by product name in descending order.\n\n\n\n\nList the product names and their quantity available from high to low?\n\n\n\nReport the MSRP for the products in “Vintage Cars” category?\n\n\n\nReport the product(s) with the buy price of 48.81\n\n\n\nReport those products with the price greater than 70\n\n\n\nWhich products have product scale ratio 1:10 and 1:72?\n\n\n\nList the product names except the ones in the Planes and Ships category\n\n\n\nReport the names of products excluding Motorcycles and Classic Cars\n\n\n\nReport the products having MSRP greater than 110\n\n\n\nList the product vendors in ascending alphabetical order"
+  }
+]

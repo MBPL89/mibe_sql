@@ -1,0 +1,85 @@
+---
+title: "Homework 1"
+author: "Dr. Bartosiak"
+format: live-html
+filters:
+  - interactive-sql
+databases:
+  - name: cm
+    path: "https://raw.githubusercontent.com/MBPL89/dbs/refs/heads/main/products.sql"
+---
+
+# Coding and Database Managment
+
+## SQL - Homework 1
+
+::::: {layout="[ 60, 20 ]"}
+::: {#first-column}
+The following queries use the **classicmodels** schema available to you on the class server. All queries use the **products** table.
+:::
+
+::: {#second-column}
+![](images/productsmodel.png){.lightbox width="150"}
+:::
+:::::
+
+
+1.  Prepare a list of products sorted by product name in descending order.\
+
+    ``` {.sql .interactive .cm}
+
+    ```
+
+2.  List the product names and their quantity available from high to low?
+
+    ``` {.sql .interactive .cm}
+  
+    ```
+
+3.  Report the MSRP for the products in “Vintage Cars” category?
+
+    ``` {.sql .interactive .cm}
+    
+    ```
+
+4.  Report the product(s) with the buy price of 48.81
+
+    ``` {.sql .interactive .cm}
+    
+    ```
+
+5.  Report those products with the price greater than 70
+
+    ``` {.sql .interactive .cm}
+    
+    ```
+
+6.  Which products have product scale ratio 1:10 and 1:72?
+
+    ``` {.sql .interactive .cm}
+    
+    ```
+
+7.  List the product names except the ones in the Planes and Ships category
+
+    ``` {.sql .interactive .cm}
+    
+    ```
+
+8.  Report the names of products excluding Motorcycles and Classic Cars
+
+    ``` {.sql .interactive .cm}
+    
+    ```
+
+9.  Report the products having MSRP greater than 110
+
+    ``` {.sql .interactive .cm}
+    
+    ```
+
+10. List the product vendors in ascending alphabetical order
+
+    ``` {.sql .interactive .cm}
+    
+    ```

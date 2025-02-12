@@ -1,0 +1,44 @@
+<!-- Footer Section -->
+<div style="
+  width: 100vw;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f9f9f9;
+  font-size: 12px;
+  border-top: 1px solid #ddd;
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px 20px;
+">
+  <!-- Left-aligned -->
+  <div style="text-align: left; font-size: 16px;">
+    © 2025. All Rights Reserved.
+  </div>
+  
+
+  <!-- Right-aligned -->
+  <div style="text-align: right; font-size: 16px;">
+    Enabled by Dr. Marcin Bartosiak</a>
+  </div>
+</div>
+
+<!-- Mobile Responsiveness -->
+<style>
+  @media screen and (max-width: 768px) {
+    div[style*="width: 100vw"] {
+      flex-direction: column;
+      height: auto;
+      padding: 10px 15px;
+    }
+    
+    div[style*="width: 100vw"] > div {
+      text-align: center;
+      margin-bottom: 5px;
+    }
+  }
+</style>
