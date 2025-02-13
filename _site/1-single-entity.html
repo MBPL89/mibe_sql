@@ -328,7 +328,19 @@ Figure&nbsp;1
 <li>An entity is a class (or entity set)</li>
 <li>An instance is a particular occurrence of an entity</li>
 </ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><strong>An entity is represented by a rectangle in modelling notation</strong></p>
+</div>
+</div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <div class="quarto-figure quarto-figure-center">
@@ -348,8 +360,20 @@ Figure&nbsp;1
 <li>Synonym: Different names are used to describe the same attribute</li>
 </ul></li>
 </ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><strong>Attribute names must be unique within a data model</strong></p>
 <p><em>Attribute names should be meaningful</em></p>
+</div>
+</div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <div class="quarto-figure quarto-figure-center">
@@ -364,7 +388,19 @@ Figure&nbsp;1
 <p>Every instance of an entity must be uniquely identified.</p>
 <p><strong>An identifier can be an attribute or collection of attributes</strong>.</p>
 <p>An identifier can be created if there is no obvious attribute (surrogate).</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><strong>A leading asterisk denotes an identifier</strong> in our entity.</p>
+</div>
+</div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <div class="quarto-figure quarto-figure-center">
@@ -410,7 +446,19 @@ Figure&nbsp;1
 <div class="interactive-sql">
 <div class="sourceCode" id="cb1"><pre class="sourceCode sql interactive hr1 code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> tableName;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><strong><em>Have you noticed the small detail at the end of line?</em></strong> Every query has to end with <code>;</code>. It tells the server that your query ends here. Everything after this sign is a new code. This will be important when we run more than one query at a time.</p>
+</div>
+</div>
 </section>
 <section id="projection-choosing-columns" class="level2">
 <h2 class="anchored" data-anchor-id="projection-choosing-columns">Projection: Choosing Columns</h2>
@@ -441,8 +489,32 @@ Figure&nbsp;1
 </div>
 <p>This is like telling the server, “Only show me brands owned by Hilton.”</p>
 <p>You can choose any other lodging chain instead of ‘Hilton Worldwide’. For example, try with ‘Accor’ and see how the results change.</p>
-<p><strong>Important</strong> Hilton or Accor are <em>values</em>, not <em>attributes</em>. Unlike column names or table name, you always have to wrap text values with quotation marks (<code>'...'</code> or <code>"..."</code>).</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Hilton or Accor are <em>values</em>, not <em>attributes</em>. Unlike column names or table name, you always have to wrap text values with quotation marks (<code>'...'</code> or <code>"..."</code>).</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Following the same logic, you can exclude a value from the results. You have to replace <code>=</code> with <code>!=</code> or <code>&lt;&gt;</code> (they both mean the same thing).</p>
+</div>
+</div>
 <p><em>Try yourself and report all brands but Hilton Worldwide. Edit the query to try it with <code>&lt;&gt;</code> too.</em></p>
 <div class="interactive-sql">
 <div class="sourceCode" id="cb4"><pre class="sourceCode sql interactive hr1 code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> brand </span>
@@ -525,14 +597,62 @@ Figure&nbsp;1
 <div class="sourceCode" id="cb13"><pre class="sourceCode sql interactive hr1 code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> brand <span class="kw">WHERE</span> brandMinSqFt <span class="op">&lt;</span> <span class="dv">350</span> <span class="kw">ORDER</span> <span class="kw">BY</span> brandMinSqFt <span class="kw">DESC</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This means, “Show me brands with rooms under 350 sqft, biggest first, and if sizes match, sort alphabetically.”</p>
-<p><code>DESC</code> means descending order (biggest first). You need ascending order (smallest first), you can replace it with <code>ASC</code> or simply remove it (ascending order is default in SQL).</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>DESC</code> means descending order (biggest first). If you need ascending order (smallest first), you can replace it with <code>ASC</code> or simply remove it (ascending order is default in SQL).</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Have you noticed that there are many brands with the same value? We can order results by two columns. If the results in the first column are identical, the second column will be used to sort them. Let’s add <code>brandName</code> to our <code>ORDER BY</code> clause.</p>
+</div>
+</div>
 <p><em>List all brands with rooms smaller than 350 square feet with largest first. Where areas are identical, list brands in alphabetical order.</em></p>
 <div class="interactive-sql">
 <div class="sourceCode" id="cb14"><pre class="sourceCode sql interactive hr1 code-with-copy"><code class="sourceCode sql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> brand <span class="kw">WHERE</span> brandMinSqFt <span class="op">&lt;</span> <span class="dv">350</span> <span class="kw">ORDER</span> <span class="kw">BY</span> brandMinSqFt <span class="kw">DESC</span>, brandName;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Notice that our results are ordered by <code>brandMinSqFt</code> in descending order (<code>DESC</code>), and alphabetically by brandName (you can add <code>ASC</code> after brandName to get the same results).</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Last one more thing. Notice that we use <code>&lt;</code> in this query. <code>WHERE</code> condition can take all the comparison operators: <code>=</code>, <code>!=</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, and <code>&gt;=</code>.</p>
+</div>
+</div>
 </section>
 <section id="calculated-fields" class="level2">
 <h2 class="anchored" data-anchor-id="calculated-fields">Calculated Fields</h2>
@@ -1091,7 +1211,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","descPosition":"bottom","openEffect":"zoom","loop":false});
+<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","descPosition":"bottom","loop":false,"closeEffect":"zoom","selector":".lightbox"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
