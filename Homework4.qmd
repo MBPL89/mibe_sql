@@ -1,0 +1,82 @@
+---
+title: "Homework4"
+draft: true
+author: "Dr. Bartosiak"
+format: live-html
+filters:
+  - interactive-sql
+databases:
+  - name: cm
+    path: "https://raw.githubusercontent.com/MBPL89/dbs/refs/heads/main/cm2.sql"
+---
+
+# Coding and Database Managment
+
+## SQL - Homework 4
+
+The following queries use the **classicmodels** schema. 
+
+![Source: https://www.richardtwatson.com/](images/classic_models.png){.lightbox width="550"}
+
+
+1. Report product number, product name of products sold by order date. Order results by date (descending) and product code (ascending). Use both the USING and ON syntax for the join. Observe their different behavior.
+
+    ``` {.sql .interactive .cm}
+
+    ```
+
+2. List all the order number and status for all the orders containing the 1940 Ford Pickup Truck.
+
+    ``` {.sql .interactive .cm}
+  
+    ```
+
+3. List the names of customers and the corresponding order numbers for those orders from that customer that have a total value greater than $25,000? Total value is obtained by adding the price times quantity sold of all products in the order. 
+
+    ``` {.sql .interactive .cm}
+    
+    ```
+
+4. Are there any products that appear on all orders? If so, list their product code and the total number of orders they appear in. Rename the columns as 'Total Orders'.
+
+    ``` {.sql .interactive .cm}
+    
+    ```
+
+5. Report those orders containing products sold at a discount (i.e., sold at a price less than the product's MSRP). For these orders report the order number, the product code of the items sold at discount and both the price and the MSRP.
+
+    ``` {.sql .interactive .cm}
+    
+    ```
+
+6. Repeat the above query but only return the order number for the orders containing products sold at a discount. 
+
+    ``` {.sql .interactive .cm}
+    
+    ```
+
+7. Report those products that have been sold with a markup of 100% or more (i.e., the priceEach is at least twice the buyPrice) on at least one sale. Provide the product code, the price at which it sold, the buy price and the MSRP. Be sure not to duplicate output unnecessarily.
+
+    ``` {.sql .interactive .cm}
+    
+    ```
+
+8. What is the total quantity on hand for products listed in orders with staus: 'On Hold'? Rename the quantity ordered as 'Total Ordered' and the quantity in stock as 'Total on Hand'. Use the ON syntax for the JOIN.
+
+    ``` {.sql .interactive .cm}
+    
+    ```
+
+9. Report product code, name and MSRP for all products that have not sold any units.
+
+    ``` {.sql .interactive .cm}
+    
+    ```
+
+    
+
+```{=html}
+<div>
+  {{< include footer.html >}}
+</div>
+```

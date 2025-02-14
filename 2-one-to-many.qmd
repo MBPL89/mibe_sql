@@ -7,11 +7,19 @@ filters:
   - interactive-sql
 databases:
   - name: hr2
-    path: "https://raw.githubusercontent.com/MBPL89/dbs/refs/heads/main/htlreviews1.sql"
+    path: "https://raw.githubusercontent.com/MBPL89/dbs/refs/heads/main/htlreviews2.sql"
 ---
 
 ## Test
 
 ``` {.sql .interactive .hr2}
-SELECT * FROM tableName;
+SELECT * FROM brand;
+```
+
+
+
+```{=html}
+<div>
+  {{< include footer.html >}}
+</div>
 ```

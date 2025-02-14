@@ -159,6 +159,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
     </ul>
   </li>
+  <li class="nav-item">
+    <span class="nav-link">
+<span class="menu-text">Homework solutions</span>
+    </span>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -209,7 +214,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-layout-panel" data-layout="[ 60, 20 ]">
 <div class="quarto-layout-row">
 <div id="first-column" class="quarto-layout-cell" style="flex-basis: 75.0%;justify-content: flex-start;">
-<p>The following queries use the <strong>classicmodels</strong> schema available to you on the class server. All queries use the <strong>products</strong> table.</p>
+<p>The following queries use the <strong>classicmodels</strong> schema. All queries use the <strong>products</strong> table.</p>
 </div>
 <div id="second-column" class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
 <p><a href="images/productsmodel.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/productsmodel.png" class="img-fluid" width="150"></a></p>
@@ -217,8 +222,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <ol type="1">
-<li><p>Prepare a list of products sorted by product name in descending order.<br>
-</p>
+<li><p>Prepare a list of products sorted by product name in descending order.</p>
 <div class="interactive-sql">
 <div class="sourceCode" id="cb1"><pre class="sourceCode sql interactive cm code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
@@ -230,11 +234,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="interactive-sql">
 <div class="sourceCode" id="cb3"><pre class="sourceCode sql interactive cm code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
-<li><p>Report the product(s) with the buy price of 48.81</p>
+<li><p>Report the product(s) with the buy price of 48.81.</p>
 <div class="interactive-sql">
 <div class="sourceCode" id="cb4"><pre class="sourceCode sql interactive cm code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
-<li><p>Report those products with the price greater than 70</p>
+<li><p>Report those products with the price greater than 70.</p>
 <div class="interactive-sql">
 <div class="sourceCode" id="cb5"><pre class="sourceCode sql interactive cm code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
@@ -242,23 +246,70 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="interactive-sql">
 <div class="sourceCode" id="cb6"><pre class="sourceCode sql interactive cm code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
-<li><p>List the product names except the ones in the Planes and Ships category</p>
+<li><p>List the product names except the ones in the Planes and Ships category.</p>
 <div class="interactive-sql">
 <div class="sourceCode" id="cb7"><pre class="sourceCode sql interactive cm code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
-<li><p>Report the names of products excluding Motorcycles and Classic Cars</p>
+<li><p>Report the names of products excluding Motorcycles and Classic Cars.</p>
 <div class="interactive-sql">
 <div class="sourceCode" id="cb8"><pre class="sourceCode sql interactive cm code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
-<li><p>Report the products having MSRP greater than 110</p>
+<li><p>Report the products having MSRP greater than 110.</p>
 <div class="interactive-sql">
 <div class="sourceCode" id="cb9"><pre class="sourceCode sql interactive cm code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
-<li><p>List the product vendors in ascending alphabetical order</p>
+<li><p>List the product vendors in ascending alphabetical order.</p>
 <div class="interactive-sql">
 <div class="sourceCode" id="cb10"><pre class="sourceCode sql interactive cm code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
 </ol>
+<div>
+<!-- Footer Section -->
+<div style="
+  width: 100vw;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f9f9f9;
+  font-size: 12px;
+  border-top: 1px solid #ddd;
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px 20px;
+">
+  <!-- Left-aligned -->
+  <div style="text-align: left; font-size: 16px;">
+    © 2025. All Rights Reserved.
+  </div>
+  
+
+  <!-- Right-aligned -->
+  <div style="text-align: right; font-size: 16px;">
+    Enabled by Dr. Marcin Bartosiak
+  </div>
+</div>
+
+<!-- Mobile Responsiveness -->
+<style>
+  @media screen and (max-width: 768px) {
+    div[style*="width: 100vw"] {
+      flex-direction: column;
+      height: auto;
+      padding: 10px 15px;
+    }
+    
+    div[style*="width: 100vw"] > div {
+      text-align: center;
+      margin-bottom: 5px;
+    }
+  }
+</style>
+
+</div>
 
 
 <script type="ojs-module-contents">
@@ -713,7 +764,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","loop":false,"selector":".lightbox","closeEffect":"zoom","openEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","openEffect":"zoom","descPosition":"bottom","loop":false});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

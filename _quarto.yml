@@ -14,10 +14,10 @@ website:
       - text: "Class materials"
         menu:
         - 1-single-entity.qmd
-        - 2-one-to-many.qmd
       - text: "Homeworks"
         menu:
         - Homework1.qmd
+      - text: "Homework solutions"
 
 format:
   html:

@@ -1,5 +1,6 @@
 ---
-title: "Homework 1"
+title: "Homework 1 solution"
+draft: true
 author: "Dr. Bartosiak"
 format: live-html
 filters:
@@ -11,7 +12,7 @@ databases:
 
 # Coding and Database Managment
 
-## SQL - Homework 1
+## SQL - Homework 1 - solution
 
 ::::: {layout="[ 60, 20 ]"}
 ::: {#first-column}
@@ -27,62 +28,80 @@ The following queries use the **classicmodels** schema. All queries use the **pr
 1.  Prepare a list of products sorted by product name in descending order.
 
     ``` {.sql .interactive .cm}
+SELECT * FROM products 
+ ORDER BY productName DESC;
 
     ```
 
 2.  List the product names and their quantity available from high to low?
 
     ``` {.sql .interactive .cm}
-  
+SELECT productName, quantityInStock FROM products
+ ORDER BY quantityInStock DESC;
+ 
     ```
 
 3.  Report the MSRP for the products in “Vintage Cars” category?
 
     ``` {.sql .interactive .cm}
-    
+SELECT MSRP FROM products
+ WHERE productLine = 'Vintage Cars';    
     ```
 
 4.  Report the product(s) with the buy price of 48.81.
 
     ``` {.sql .interactive .cm}
-    
+SELECT * FROM products
+ WHERE buyPrice = 48.81;   
     ```
 
 5.  Report those products with the price greater than 70.
 
     ``` {.sql .interactive .cm}
-    
+SELECT * FROM products
+ WHERE buyPrice > 70;    
     ```
 
 6.  Which products have product scale ratio 1:10 and 1:72?
 
     ``` {.sql .interactive .cm}
-    
+SELECT * FROM products
+ WHERE productScale IN ('1:10', '1:72');    
     ```
 
 7.  List the product names except the ones in the Planes and Ships category.
 
     ``` {.sql .interactive .cm}
-    
+SELECT productName FROM products
+ WHERE productLine NOT IN ('Planes', 'Ships');   
     ```
 
 8.  Report the names of products excluding Motorcycles and Classic Cars.
 
     ``` {.sql .interactive .cm}
-    
+SELECT productName FROM products
+ WHERE productLine NOT IN ('Motorcycles', 'Classic Cars');    
     ```
 
 9.  Report the products having MSRP greater than 110.
 
     ``` {.sql .interactive .cm}
-    
+SELECT * FROM products
+ WHERE MSRP > 110;
+ 
     ```
 
 10. List the product vendors in ascending alphabetical order.
 
     ``` {.sql .interactive .cm}
-    
+SELECT DISTINCT productVendor FROM products
+ ORDER BY productVendor ASC; 
+ 
     ```
+
+::: {.callout-tip}
+ASC is not obligatory. By default ORDER BY  is asceding. 
+:::
 
 
 ```{=html}
