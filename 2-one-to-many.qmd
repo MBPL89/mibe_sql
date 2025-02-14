@@ -1,0 +1,17 @@
+---
+title: "2. One-to-Many relationship"
+draft: true
+author: "Dr. Bartosiak"
+format: live-html
+filters:
+  - interactive-sql
+databases:
+  - name: hr2
+    path: "https://raw.githubusercontent.com/MBPL89/dbs/refs/heads/main/htlreviews1.sql"
+---
+
+## Test
+
+``` {.sql .interactive .hr2}
+SELECT * FROM tableName;
+```
