@@ -13,11 +13,15 @@ website:
         href: index.qmd
       - text: "Class materials"
         menu:
+        - Introduction.qmd
         - 1-single-entity.qmd
       - text: "Homeworks"
         menu:
         - Homework1.qmd
       - text: "Homework solutions"
+      - text: "Readings"
+        menu:
+        - Readings.qmd
 
 format:
   html:

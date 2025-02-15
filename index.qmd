@@ -7,7 +7,6 @@ Welcome to the **MIBE SQL Corner**! This page is dedicated to all the key concep
 You will also use this website to query databases. It features interactive fields, where you can type and edit your SQL queries.
 
 
-
 ```{=html}
 <div>
   {{< include footer.html >}}

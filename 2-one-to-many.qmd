@@ -1,5 +1,5 @@
 ---
-title: "2. One-to-Many relationship"
+title: "One-to-Many relationship"
 draft: true
 author: "Dr. Bartosiak"
 format: live-html

@@ -1,0 +1,49 @@
+---
+title: "Readings"
+author: "Dr. Bartosiak"
+format: live-html
+---
+
+## Readings
+
+::::: {layout="[ 70, 30 ]"}
+::: {#first-column}
+Richard Watson 
+**Data Management: Databases and Organizations**
+6th Edition
+Prospect Press
+
+Available in the Department's library and at  
+<a href="https://www.richardtwatson.com/open/Reader/_book/data-management-databases-and-analytics.html" target="_blank" rel="noopener noreferrer">Data Management, Databases, and Analytics</a>
+
+:::
+
+::: {#second-column}
+![](images/watson.png)
+:::
+:::::
+
+
+::::: {layout="[ 70, 30 ]"}
+::: {#first-column}
+Coronel C. and Morris S.
+**Database Systems: Design, Implementation and Management**  
+12th Edition, 
+Cengage Learning.
+
+
+Available in the Department's library.
+
+:::
+
+::: {#second-column}
+![](images/coronel.png)
+:::
+:::::
+
+
+```{=html}
+<div>
+  {{< include footer.html >}}
+</div>
+```

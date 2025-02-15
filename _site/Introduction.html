@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Dr.&nbsp;Bartosiak">
 
-<title>MIBE SQL Corner</title>
+<title>Database Management - Introduction – MIBE SQL Corner</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -39,6 +40,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
+<link href="site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -66,12 +69,13 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
 
-<link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -89,7 +93,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -145,21 +149,25 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">MIBE SQL Corner</h1>
+<h1 class="title">Database Management - Introduction</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Dr.&nbsp;Bartosiak </p>
+          </div>
+  </div>
     
   
     
@@ -170,8 +178,189 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Welcome to the <strong>MIBE SQL Corner</strong>! This page is dedicated to all the key concepts, notes, and resources you need for mastering SQL in the Coding and Data Management course. Whether you’re just starting or refining your skills, you’ll find everything you need to excel in SQL here. Let’s dive in and sharpen those coding skills!</p>
-<p>You will also use this website to query databases. It features interactive fields, where you can type and edit your SQL queries.</p>
+<section id="managing-data" class="level2">
+<h2 class="anchored" data-anchor-id="managing-data">Managing Data</h2>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout="[ 80, 20 ]">
+<div class="quarto-layout-row">
+<div id="first-column" class="quarto-layout-cell" style="flex-basis: 80.0%;justify-content: flex-start;">
+<p>“<strong><em>All the value</em></strong> <em>of this company is in its people. If you burned down all our plants, and we just</em> <strong><em>kept</em></strong> <em>our</em> <strong><em>people</em></strong> <em>and our</em> <strong><em>information</em></strong> <em>files, we should</em> <strong><em>soon</em></strong> <em>be</em> <strong><em>as strong as ever.</em></strong>”</p>
+</div>
+<div id="second-column" class="quarto-layout-cell" style="flex-basis: 20.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Twatson.jpg" class="img-fluid figure-img"></p>
+<figcaption>Thomas Watson Jr, 2nd President of IBM</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout="[ 80, 20 ]">
+<div class="quarto-layout-row">
+<div id="first-column" class="quarto-layout-cell" style="flex-basis: 80.0%;justify-content: flex-start;">
+<p>“<em>The most meaningful way to</em> <strong><em>differentiate</em></strong> <em>your company from your competitors, the best way to put distance between you and the crowd, is to do an</em> <strong><em>outstanding job with information.</em></strong> <em>How you can gather,manage and use information will determine whether you win or lose</em>”</p>
+</div>
+<div id="second-column" class="quarto-layout-cell" style="flex-basis: 20.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/gates.jpg" class="img-fluid figure-img"></p>
+<figcaption>Bill Gates, Founder of Microsoft</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>The two quotes above show us a very important truth about managing organization. In the Information society, which is based on innovation, knowledge and services, the key determinant of success has shifted from product quality to decision quality. In the traditional industrial society, the better quality product you had, the better market position you had (which is still very true in some cases). Nowadays, Companies are very dependent on information systems to create value for their customers. In other words, the better information you have, the better is your position.</p>
+<p>If you are not convinced, think about your own private life. In today’s fast-paced world, managing personal information effectively is essential. Tools like <strong>calendars</strong> and <strong>address books</strong> serve as crucial external memory systems, helping us stay organized and on top of our daily tasks.</p>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout="[ 60, 40 ]">
+<div class="quarto-layout-row">
+<div id="first-column" class="quarto-layout-cell" style="flex-basis: 60.0%;justify-content: flex-start;">
+<p>A calendar not only helps us track appointments, meetings, and deadlines but also organizes time in a structured way, often with features to quickly navigate to today’s date or upcoming events.</p>
+</div>
+<div id="second-column" class="quarto-layout-cell" style="flex-basis: 40.0%;justify-content: center;">
+<p><img src="images/calendar.png" class="img-fluid"></p>
+</div>
+</div>
+</div>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout="[ 60, 40 ]">
+<div class="quarto-layout-row">
+<div id="first-column" class="quarto-layout-cell" style="flex-basis: 60.0%;justify-content: flex-start;">
+<p>Similarly, address books store important contact details, such as phone numbers and email addresses, allowing for easy access to frequently contacted individuals.</p>
+</div>
+<div id="second-column" class="quarto-layout-cell" style="flex-basis: 40.0%;justify-content: center;">
+<p><img src="images/adressbook.png" class="img-fluid"></p>
+</div>
+</div>
+</div>
+<p>Both systems are designed to reduce the mental burden of remembering every detail, providing an efficient means of storing and retrieving information, thus enabling us to focus on more important tasks.</p>
+<p>There are some common features of all these systems:</p>
+<ul>
+<li>Storage medium
+<ul>
+<li>Electronic / paper</li>
+</ul></li>
+<li>Structure for storing data</li>
+<li>Data is organized for:
+<ul>
+<li>Efficient data entry</li>
+<li>Rapid data retrieval</li>
+</ul></li>
+<li>Any design requires trade-offs</li>
+</ul>
+</section>
+<section id="organizational-data-management" class="level2">
+<h2 class="anchored" data-anchor-id="organizational-data-management">Organizational Data Management</h2>
+<p>Organizations, like people, need to remember many things. Deciding where and how to store data frequently involves a trade-off.</p>
+<p>Organizational data are used by a variety of <strong>information system</strong>s.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/IS.png" class="img-fluid figure-img"></p>
+<figcaption>A simple Informaion Sysem</figcaption>
+</figure>
+</div>
+<p>There are many types of Information Systems in organizations.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 60%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type of IS</th>
+<th>System’s purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>TPS</td>
+<td>Transaction processing system: Collects and stores data from routine transactions</td>
+</tr>
+<tr class="even">
+<td>MIS</td>
+<td>Management information system: Converts data from a TPS into information for planning, controlling, and managing an organization</td>
+</tr>
+<tr class="odd">
+<td>DSS</td>
+<td>Decision support system: Supports managerial decision making by providing models for processing and analysing data</td>
+</tr>
+<tr class="even">
+<td>EIS</td>
+<td>Executive information system: Provides senior management with information necessary to monitor organizational performance, and develop and implement strategies</td>
+</tr>
+<tr class="odd">
+<td>OLAP</td>
+<td>Online analytical processing: Presents a multidimensional, logical view of data</td>
+</tr>
+<tr class="even">
+<td>Data mining</td>
+<td>Uses statistical analysis and artificial intelligence techniques to identify hidden relationships in data</td>
+</tr>
+<tr class="odd">
+<td>BI</td>
+<td>Business intelligence: Systems for gathering, storing, analyzing, and accessing data to improve decision-making</td>
+</tr>
+</tbody>
+</table>
+<p>All of them may require some sort of data to work.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/ISlifecycle.png" class="img-fluid figure-img"></p>
+<figcaption>The IS cycle</figcaption>
+</figure>
+</div>
+<section id="attributes-of-a-data-management-system" class="level3">
+<h3 class="anchored" data-anchor-id="attributes-of-a-data-management-system">Attributes of a data management system</h3>
+<p>For the data to be effectively fed into all these systems, data management systems must meet specific requirements:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Requirement</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Shareable</strong></td>
+<td>Readily accessible to multiple users (at the same time)</td>
+</tr>
+<tr class="even">
+<td><strong>Transportable</strong></td>
+<td>Easily accessible by users in different locations (e.g.&nbsp;salesperson, decision-maker)</td>
+</tr>
+<tr class="odd">
+<td><strong>Secure</strong></td>
+<td>Safe from destruction or unauthorized use</td>
+</tr>
+<tr class="even">
+<td><strong>Accurate</strong></td>
+<td>Reliable and trustworthy</td>
+</tr>
+<tr class="odd">
+<td><strong>Timely</strong></td>
+<td>Current and up-to-date</td>
+</tr>
+<tr class="even">
+<td><strong>Relevant</strong></td>
+<td>Valuable and appropriate for its intended use</td>
+</tr>
+</tbody>
+</table>
 <div>
 <!-- Footer Section -->
 <div style="
@@ -221,8 +410,35 @@ ul.task-list li input[type="checkbox"] {
 </div>
 
 
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
+<div id="exercise-loading-status" class="d-flex gap-2">
+
+</div>
+<div class="spinner-grow spinner-grow-sm">
+
+</div>
+</div>
+<script type="vfs-file">
+W10=
+</script>
+</section>
+</section>
 
 </main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

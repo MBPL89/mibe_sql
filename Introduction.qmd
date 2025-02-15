@@ -1,0 +1,176 @@
+---
+title: "Database Management - Introduction"
+author: "Dr. Bartosiak"
+format: live-html
+---
+
+## Managing Data
+
+::::: {layout="[ 80, 20 ]"}
+::: {#first-column}
+“***All the value*** *of this company is in its people. If you burned down all our plants, and we just* ***kept*** *our* ***people*** *and our* ***information*** *files, we should* ***soon*** *be* ***as strong as ever.***”
+:::
+
+::: {#second-column}
+![Thomas Watson Jr, 2nd President of IBM](images/Twatson.jpg)
+:::
+:::::
+
+::::: {layout="[ 80, 20 ]"}
+::: {#first-column}
+“*The most meaningful way to* ***differentiate*** *your company from your competitors, the best way to put distance between you and the crowd, is to do an* ***outstanding job with information.*** *How you can gather,manage and use information will determine whether you win or lose*”
+:::
+
+::: {#second-column}
+![Bill Gates, Founder of Microsoft](images/gates.jpg)
+:::
+:::::
+
+The two quotes above show us a very important truth about managing organization. In the Information society, which is based on innovation, knowledge and services, the key determinant of success has shifted from product quality to decision quality. In the traditional industrial society, the better quality product you had, the better market position you had (which is still very true in some cases). Nowadays, Companies are very dependent on information systems to create value for their customers. In other words, the better information you have, the better is your position. 
+
+If you are not convinced, think about your own private life. In today's fast-paced world, managing personal information effectively is essential. Tools like **calendars** and **address books** serve as crucial external memory systems, helping us stay organized and on top of our daily tasks. 
+
+
+::::: {layout="[ 60, 40 ]"}
+::: {#first-column}
+A calendar not only helps us track appointments, meetings, and deadlines but also organizes time in a structured way, often with features to quickly navigate to today's date or upcoming events.
+:::
+
+::: {#second-column}
+![](images/calendar.png)
+:::
+:::::
+
+
+::::: {layout="[ 60, 40 ]"}
+::: {#first-column}
+Similarly, address books store important contact details, such as phone numbers and email addresses, allowing for easy access to frequently contacted individuals.
+:::
+
+::: {#second-column}
+![](images/adressbook.png)
+:::
+:::::
+
+Both systems are designed to reduce the mental burden of remembering every detail, providing an efficient means of storing and retrieving information, thus enabling us to focus on more important tasks.
+
+There are some common features of all these systems:
+
+* Storage medium
+  + Electronic / paper
+* Structure for storing data
+* Data is organized for:
+  + Efficient data entry
+  + Rapid data retrieval
+* Any design requires trade-offs
+
+## Organizational Data Management
+
+Organizations, like people, need to remember many things. Deciding where and how to store data frequently involves a trade-off.
+
+Organizational data are used by a variety of **information system**s.
+
+![A simple Informaion Sysem](images/IS.png)
+
+There are many types of Information Systems in organizations. 
+
+| Type of IS | System's purpose |
+|------------|------------------|
+| TPS | Transaction processing system: Collects and stores data from routine transactions |
+| MIS | Management information system: Converts data from a TPS into information for planning, controlling, and managing an organization |
+| DSS | Decision support system: Supports managerial decision making by providing models for processing and analysing data |
+| EIS | Executive information system: Provides senior management with information necessary to monitor organizational performance, and develop and implement strategies |
+| OLAP | Online analytical processing: Presents a multidimensional, logical view of data |
+| Data mining | Uses statistical analysis and artificial intelligence techniques to identify hidden relationships in data |
+| BI | Business intelligence: Systems for gathering, storing, analyzing, and accessing data to improve decision-making |
+
+
+All of them may require some sort of data to work.
+
+![The IS cycle](images/ISlifecycle.png)
+
+
+### Attributes of a data management system
+
+For the data to be effectively fed into all these systems, data management systems must meet specific requirements:
+
+
+| Requirement | Description |
+|----------|----------|
+| **Shareable** | Readily accessible to multiple users (at the same time) |
+|**Transportable** |Easily accessible by users in different locations (e.g. salesperson, decision-maker) |
+|**Secure**|Safe from destruction or unauthorized use |
+|**Accurate**|Reliable and trustworthy|
+|**Timely**|Current and up-to-date|
+|**Relevant**|Valuable and appropriate for its intended use|
+
+
+
+In the same manner, there are challenges and problems, daabase management systems have to overcome. 
+
+
+| Challenge | Description |
+|----------|----------|
+| **Redundancy** | The same data is replicated in
+multiple locations |
+|**Lack of data control** |Data is not secure or effectively organized and managed |
+|**Poor interface**|Data is not accessible |
+|**Delays**|Data is not timely|
+|**Lack of reality**|Data is not relevant because it lacks fidelity to the real world it represents |
+|**Lack of data integration**|Related data is stored in separate isolated locations|
+
+
+## Databases and Database Design
+
+### Data vs. Information
+
+### Database
+
+A database is a collection of related files
+* Logically related data stored in a single logical data repository
+* A self-describing collection of data
+  + User data
+  + Metadata
+
+**Terminology [Relational DB]**
+* Table (a data file)
+* Table Row (a unit/thing of interest; aka Record)
+* Table Column (an attribute of the units; aka Field)
+
+
+**Types of Databases**
+* Single- or Multi-user
+* Operational (i.e. Transactional) or Analytical
+* Centralized, Distributed or Cloud
+* Single-tenant or Multi-tenant
+* Relational or non relational
+
+
+### Database Model
+Database Model is the logical representation of the structure of the data.
+
+![Database Model Example](images/DBModel.png){fig-align="center" width="700"}
+
+**Data Modelling**
+
+* The technique for creating the logical structure of a database
+  + What files (tables)   should be in the database?
+  + How are these files related?
+  + What columns should describe each row in a table?
+* Data Modeling is an iterative process
+* Data Modeling is a communication tool
+
+
+:::{.callout-note}
+**Data Modelling is a design process**
+:::
+
+The specification of an object, intended to accomplish goals, in a particular environment, using a set of primitive components, satisfying a set of requirements, subject to constraints.
+
+
+
+```{=html}
+<div>
+  {{< include footer.html >}}
+</div>
+```
