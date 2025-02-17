@@ -42,6 +42,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -321,46 +324,463 @@ ul.task-list li input[type="checkbox"] {
 </figure>
 </div>
 <section id="attributes-of-a-data-management-system" class="level3">
-<h3 class="anchored" data-anchor-id="attributes-of-a-data-management-system">Attributes of a data management system</h3>
+<h3 class="anchored" data-anchor-id="attributes-of-a-data-management-system">Attributes of a Data Management System</h3>
 <p>For the data to be effectively fed into all these systems, data management systems must meet specific requirements:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
+<col style="width: 28%">
+<col style="width: 71%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Requirement</th>
-<th>Description</th>
+<th><strong>Requirement</strong></th>
+<th><strong>Description</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td><strong>Shareable</strong></td>
-<td>Readily accessible to multiple users (at the same time)</td>
+<td>Readily accessible to multiple users (at the same time).</td>
 </tr>
 <tr class="even">
 <td><strong>Transportable</strong></td>
-<td>Easily accessible by users in different locations (e.g.&nbsp;salesperson, decision-maker)</td>
+<td>Easily accessible by users in different locations (e.g., salesperson, decision-maker).</td>
 </tr>
 <tr class="odd">
 <td><strong>Secure</strong></td>
-<td>Safe from destruction or unauthorized use</td>
+<td>Safe from destruction or unauthorized use.</td>
 </tr>
 <tr class="even">
 <td><strong>Accurate</strong></td>
-<td>Reliable and trustworthy</td>
+<td>Reliable and trustworthy.</td>
 </tr>
 <tr class="odd">
 <td><strong>Timely</strong></td>
-<td>Current and up-to-date</td>
+<td>Current and up-to-date.</td>
 </tr>
 <tr class="even">
 <td><strong>Relevant</strong></td>
-<td>Valuable and appropriate for its intended use</td>
+<td>Valuable and appropriate for its intended use.</td>
 </tr>
 </tbody>
 </table>
+<hr>
+</section>
+<section id="challenges-of-a-data-management-system" class="level3">
+<h3 class="anchored" data-anchor-id="challenges-of-a-data-management-system">Challenges of a Data Management System</h3>
+<p>Similarly, there are challenges and problems that database management systems must overcome:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 71%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Challenge</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Redundancy</strong></td>
+<td>The same data is replicated in multiple locations.</td>
+</tr>
+<tr class="even">
+<td><strong>Lack of Data Control</strong></td>
+<td>Data is not secure or effectively organized and managed.</td>
+</tr>
+<tr class="odd">
+<td><strong>Poor Interface</strong></td>
+<td>Data is not accessible.</td>
+</tr>
+<tr class="even">
+<td><strong>Delays</strong></td>
+<td>Data is not timely.</td>
+</tr>
+<tr class="odd">
+<td><strong>Lack of Reality</strong></td>
+<td>Data is not relevant because it lacks fidelity to the real world it represents.</td>
+</tr>
+<tr class="even">
+<td><strong>Lack of Data Integration</strong></td>
+<td>Related data is stored in separate, isolated locations.</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="databases-and-database-design" class="level2">
+<h2 class="anchored" data-anchor-id="databases-and-database-design">Databases and Database Design</h2>
+<section id="data-vs.-information" class="level3">
+<h3 class="anchored" data-anchor-id="data-vs.-information">Data vs.&nbsp;Information</h3>
+<p>Before diving into databases, it’s crucial to grasp the distinction between data, information, and knowledge. Databases don’t just store raw data – they organize it into meaningful information that can be analyzed to generate knowledge.</p>
+<p><strong>Data</strong> consists of raw facts and figures without context, like individual numbers or words. <strong>Information</strong> emerges when data is organized and given context, making it meaningful and useful – for instance, when those numbers represent monthly sales figures. <strong>Knowledge</strong> goes further: it’s the understanding gained from analyzing and applying information, allowing us to make informed decisions and recognize patterns.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 44%">
+<col style="width: 27%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Category</th>
+<th>Characteristics</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Data</strong></td>
+<td>• Raw facts<br>• No context<br>• Just numbers and text</td>
+<td>Temperature readings: 23, 25, 22, 24, 26</td>
+</tr>
+<tr class="even">
+<td><strong>Information</strong></td>
+<td>• Data with context<br>• Processed data<br>• Value added to data<br>• Summarized<br>• Organized<br>• Analyzed</td>
+<td>Daily temperature readings in Celsius for Pavia, week of June 1-5, 2024, showing an average of 24°C with an upward trend</td>
+</tr>
+<tr class="odd">
+<td><strong>Knowledge</strong></td>
+<td>• Knowing what information is required<br>• Knowing what the information means</td>
+<td>Understanding that the rising temperature trend in Pavia indicates the start of summer and knowing to adjust city services (like water supply) and public health advisories accordingly</td>
+</tr>
+</tbody>
+</table>
+<p>A database’s true value lies in its ability to transform raw data into actionable insights through structured organization and relationships.</p>
+</section>
+<section id="database" class="level3">
+<h3 class="anchored" data-anchor-id="database">Database</h3>
+<p>A <strong>database</strong> is an organized collection of related files used to store and manage data efficiently. It serves as a single logical data repository, ensuring that data is structured, accessible, and self-describing. Databases contain both <strong>user data</strong> (actual stored information) and <strong>metadata</strong> (data about the data, such as structure and relationships).</p>
+<p>In a relational database, data is organized into <strong>tables</strong>, where each <strong>row (record)</strong> represents a unit of interest, and each <strong>column (field)</strong> defines an attribute of that unit.</p>
+<p>There are different types of databases based on usage and architecture:</p>
+<section id="types-of-databases-explained" class="level4">
+<h4 class="anchored" data-anchor-id="types-of-databases-explained"><strong>Types of Databases Explained</strong></h4>
+<section id="single-user-vs.-multi-user-databases" class="level5">
+<h5 class="anchored" data-anchor-id="single-user-vs.-multi-user-databases"><strong>1. Single-User vs.&nbsp;Multi-User Databases</strong></h5>
+<ul>
+<li><strong>Single-User Database</strong>: Designed for one user at a time, typically used in personal applications or small-scale projects (e.g., Microsoft Access, SQLite).<br>
+</li>
+<li><strong>Multi-User Database</strong>: Supports multiple users accessing and modifying data simultaneously, often used in businesses and enterprise systems (e.g., MySQL, PostgreSQL).</li>
+</ul>
+</section>
+<section id="operational-transactional-vs.-analytical-databases" class="level5">
+<h5 class="anchored" data-anchor-id="operational-transactional-vs.-analytical-databases"><strong>2. Operational (Transactional) vs.&nbsp;Analytical Databases</strong></h5>
+<ul>
+<li><strong>Operational (Transactional) Database</strong>: Used for real-time operations, such as processing daily business transactions (e.g., banking systems, e-commerce platforms). These databases are optimized for fast inserts, updates, and deletes.<br>
+</li>
+<li><strong>Analytical Database</strong>: Designed for reporting and decision-making, optimized for complex queries and data analysis rather than frequent transactions (e.g., data warehouses like Amazon Redshift or Google BigQuery).</li>
+</ul>
+</section>
+<section id="centralized-distributed-or-cloud-databases" class="level5">
+<h5 class="anchored" data-anchor-id="centralized-distributed-or-cloud-databases"><strong>3. Centralized, Distributed, or Cloud Databases</strong></h5>
+<ul>
+<li><strong>Centralized Database</strong>: All data is stored in a single location, often on a dedicated server. This setup simplifies management but can become a bottleneck as data scales.<br>
+</li>
+<li><strong>Distributed Database</strong>: Data is spread across multiple locations or servers, improving performance and reliability (e.g., Google Spanner, Apache Cassandra).<br>
+</li>
+<li><strong>Cloud Database</strong>: Hosted on cloud platforms, allowing for scalable, flexible, and remotely accessible data storage (e.g., AWS RDS, Google Cloud SQL).</li>
+</ul>
+</section>
+<section id="single-tenant-vs.-multi-tenant-databases" class="level5">
+<h5 class="anchored" data-anchor-id="single-tenant-vs.-multi-tenant-databases"><strong>4. Single-Tenant vs.&nbsp;Multi-Tenant Databases</strong></h5>
+<ul>
+<li><strong>Single-Tenant Database</strong>: Each customer (tenant) has their own dedicated database. This provides better security and customization but can be expensive (e.g., private database instances for enterprises).<br>
+</li>
+<li><strong>Multi-Tenant Database</strong>: A single database serves multiple customers, with data logically separated. This is commonly used in SaaS (Software as a Service) applications (e.g., Salesforce, Shopify).</li>
+</ul>
+</section>
+<section id="relational-vs.-non-relational-databases" class="level5">
+<h5 class="anchored" data-anchor-id="relational-vs.-non-relational-databases"><strong>5. Relational vs.&nbsp;Non-Relational Databases</strong></h5>
+<ul>
+<li><strong>Relational Database (RDBMS)</strong>: Uses structured tables with predefined relationships and follows <strong>SQL</strong> for querying (e.g., MySQL, PostgreSQL, Oracle). Best for structured, consistent data.<br>
+</li>
+<li><strong>Non-Relational Database (NoSQL)</strong>: Stores data in flexible formats like key-value pairs, documents, graphs, or columns (e.g., MongoDB, Redis, Cassandra). Ideal for big data, real-time applications, and unstructured data.</li>
+</ul>
+<p>Each database type is suited for different use cases depending on the scale, structure, and nature of the data being managed.</p>
+</section>
+</section>
+</section>
+<section id="database-model" class="level3">
+<h3 class="anchored" data-anchor-id="database-model">Database Model</h3>
+<p>Database Model is the logical representation of the structure of the data.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/DBModel.png" class="img-fluid figure-img" width="700"></p>
+<figcaption>Database Model Example</figcaption>
+</figure>
+</div>
+<p><strong>Data Modelling</strong></p>
+<ul>
+<li>The technique for creating the logical structure of a database
+<ul>
+<li>What files (tables) should be in the database?</li>
+<li>How are these files related?</li>
+<li>What columns should describe each row in a table?</li>
+</ul></li>
+<li>Data Modeling is an iterative process</li>
+<li>Data Modeling is a communication tool</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Data Modelling is a design process</strong></p>
+</div>
+</div>
+<p><strong>DESIGN</strong> The specification of an object, intended to accomplish goals, in a particular environment, using a set of primitive components, satisfying a set of requirements, subject to constraints.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/design_requirements.jpg" class="img-fluid figure-img" width="500"></p>
+<figcaption>Different requirements = different design</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Data Modelling is an iterative process</strong></p>
+</div>
+</div>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout="[ 60, 40 ]">
+<div class="quarto-layout-row">
+<div id="first-column" class="quarto-layout-cell" style="flex-basis: 60.0%;justify-content: flex-start;">
+<p>Data modeling is a highly repetitive and cyclical process, requiring continuous refinement and improvement at every stage. It begins with an initial conceptual model, which is repeatedly reviewed, adjusted, and expanded based on new insights, stakeholder feedback, and evolving business needs. Each iteration involves revisiting assumptions, restructuring relationships, and optimizing performance to ensure the model remains accurate and efficient. As data requirements change, the process loops back, refining previous versions and incorporating necessary modifications. This ongoing cycle of evaluation and enhancement ensures that the final data model is robust, scalable, and aligned with organizational goals.</p>
+</div>
+<div id="second-column" class="quarto-layout-cell" style="flex-basis: 40.0%;justify-content: center;">
+<p><img src="images/iteration.jpg" class="img-fluid"></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Data Modelling is a communication process</strong></p>
+</div>
+</div>
+<p>It serves as a bridge between technical teams, business stakeholders, and end users. It translates complex data structures into understandable diagrams and definitions, ensuring that everyone involved has a clear understanding of how data is organized, stored, and utilized. Effective data modeling requires collaboration, as stakeholders provide input on business rules and requirements while data architects translate these needs into structured models. This shared understanding helps prevent misinterpretations, aligns expectations, and ensures that the final database or system supports business objectives efficiently.</p>
+</section>
+</section>
+<section id="wait-why-bother" class="level2">
+<h2 class="anchored" data-anchor-id="wait-why-bother">WAIT! WHY BOTHER?</h2>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout="[ 20, 80 ]">
+<div class="quarto-layout-row">
+<div id="first-column" class="quarto-layout-cell" style="flex-basis: 20.0%;justify-content: center;">
+<p><img src="gifs/bother.gif" class="img-fluid"></p>
+</div>
+<div id="second-column" class="quarto-layout-cell" style="flex-basis: 80.0%;justify-content: flex-start;">
+<section id="why-dont-we-just-use-excel-like-everyone-else" class="level3">
+<h3 class="anchored" data-anchor-id="why-dont-we-just-use-excel-like-everyone-else">Why don’t we just use Excel like <em>everyone else</em>???</h3>
+</section>
+</div>
+</div>
+</div>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout="[ 80, 20 ]">
+<div class="quarto-layout-row">
+<div id="first-column" class="quarto-layout-cell" style="flex-basis: 80.0%;justify-content: flex-start;">
+<p>While Excel is a powerful tool for organizing and analyzing data, it is not designed for managing large-scale, complex datasets that require consistency, security, and efficient querying. Databases offer structured storage, ensuring data integrity through constraints, relationships, and normalization, which Excel lacks. Additionally, databases handle concurrent access, scalability, automation, and advanced querying via SQL, making them the superior choice for robust and reliable data management.l</p>
+</div>
+<div id="second-column" class="quarto-layout-cell" style="flex-basis: 20.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/Excel.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Bad things can happen, when you use Excel to store your data 😢"><img src="images/Excel.png" class="img-fluid figure-img" alt="Bad things can happen, when you use Excel to store your data 😢"></a></p>
+<figcaption>Bad things can happen, when you use Excel to store your data 😢</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>One major issue with using Excel for data management is the risk of <strong>anomalies—problems</strong> that arise due to poorly structured data.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Anomalies are problems that occur in a poorly designed database when inserting, updating, or deleting data. They happen because data is not organized properly, leading to inconsistencies, duplication, or unintended data loss.</p>
+</div>
+</div>
+<p>Let’s consider this table. It contains stock market data that is used by an investment firm dealing with international commodities and agricultural products. <strong><em>Think about the problems we may have with it</em></strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/anomalies_table.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Stock market data"><img src="images/anomalies_table.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700" alt="Stock market data"></a></p>
+</figure>
+</div>
+<figcaption>Stock market data</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Insertion</strong> anomalies occur when adding new data is difficult due to missing dependencies.</p>
+</div>
+</div>
+<p>For example n our table you cannot add a new nation exchange rate without creating a (fake) stock</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Update</strong> anomalies lead to inconsistencies when changes must be made in multiple places.</p>
+</div>
+</div>
+<p>When the exchange rate in the UK changes you must update the rows for 10 shares. Likely to generate errors and/or inconsistencies</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Deletion</strong> anomalies cause unintended data loss when removing a record also removes critical information.</p>
+</div>
+</div>
+<p>For example, if you sell “Bombay Duck” you lose information about the Indian exchange rate.</p>
+<p><strong>Unlike Excel, databases prevent these anomalies through normalization, ensuring data is stored efficiently and consistently.</strong></p>
+</section>
+<section id="database-management-systems" class="level2">
+<h2 class="anchored" data-anchor-id="database-management-systems">Database Management Systems</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A <strong>Database Management System (DBMS)</strong> is software that allows users to create, store, manage, and retrieve data efficiently.</p>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/dbms.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Database Management System (Icons created by Ranah Pixel Studio, Freepik, Pixel perfect, and xnimrodx - Flaticon)"><img src="images/dbms.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700" alt="Database Management System (Icons created by Ranah Pixel Studio, Freepik, Pixel perfect, and xnimrodx - Flaticon)"></a></p>
+</figure>
+</div>
+<figcaption>Database Management System (<a href="https://www.flaticon.com/" title="dbms icons">Icons created by Ranah Pixel Studio, Freepik, Pixel perfect, and xnimrodx - Flaticon</a>)</figcaption>
+</figure>
+</div>
+<p>A Database Management System (DBMS) is essential for businesses as it reduces data inconsistency, ensuring that the same information does not appear differently across multiple locations. A DBMS also improves data sharing, security, and access, allowing authorized users to retrieve and update data seamlessly. This leads to better decision-making as businesses can rely on accurate and up-to-date information. Additionally, it enhances end-user productivity by streamlining workflows and reducing errors.</p>
+<p>Examples of DBMS include MySQL, PostgreSQL, Oracle, and Microsoft SQL Server.</p>
+<p>Overall, <strong>a DBMS provides better data integration, making business operations more efficient and reliable</strong>.</p>
+<section id="dbms-functions" class="level4">
+<h4 class="anchored" data-anchor-id="dbms-functions">DBMS Functions:</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 43%">
+<col style="width: 56%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Data dictionary management</strong></td>
+<td>Stores definitions of the data elements and their relationships</td>
+</tr>
+<tr class="even">
+<td><strong>Data storage management</strong></td>
+<td>Performance tuning: Ensures efficient performance of the database in terms of storage and access speed</td>
+</tr>
+<tr class="odd">
+<td><strong>Data transformation and presentation</strong></td>
+<td>Transforms entered data to conform to required data structures</td>
+</tr>
+<tr class="even">
+<td><strong>Security management</strong></td>
+<td>Enforces user security and data privacy</td>
+</tr>
+<tr class="odd">
+<td><strong>Multiuser access control</strong></td>
+<td>Sophisticated algorithms ensure that multiple users can access the database concurrently without compromising its integrity</td>
+</tr>
+<tr class="even">
+<td><strong>Backup and recovery management</strong></td>
+<td>Enables recovery of the database after a failure</td>
+</tr>
+<tr class="odd">
+<td><strong>Data integrity management</strong></td>
+<td>Minimizes redundancy and maximizes consistency</td>
+</tr>
+<tr class="even">
+<td><strong>Database access languages and application programming interfaces</strong></td>
+<td>- <strong>Query language</strong>: Lets the user specify what must be done without having to specify how<br>- <strong>Structured Query Language (SQL)</strong>: De facto query language and data access standard supported by the majority of DBMS vendors</td>
+</tr>
+<tr class="odd">
+<td><strong>Database communication interfaces</strong></td>
+<td>Accept end-user requests via multiple, different network environments</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="disclaimer">
+<p>
+<strong>Images and GIFs Disclaimer:</strong> Some of the images and GIFs used on this website are not owned by me. They are used for educational and illustrative purposes only. All rights belong to their respective owners. If you believe any content violates copyright, please contact me for prompt removal.
+</p>
+</div>
+<style>
+.disclaimer {
+  font-size: 0.8em;
+  color: #666;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+  margin-top: 20px;
+}
+</style>
 <div>
 <!-- Footer Section -->
 <div style="
@@ -860,6 +1280,38 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom","loop":false});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

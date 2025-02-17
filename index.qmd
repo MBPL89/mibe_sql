@@ -1,5 +1,7 @@
 ---
 title: "MIBE SQL Corner"
+author: "Dr. Bartosiak"
+format: live-html
 ---
 
 Welcome to the **MIBE SQL Corner**! This page is dedicated to all the key concepts, notes, and resources you need for mastering SQL in the Coding and Data Management course. Whether you're just starting or refining your skills, you'll find everything you need to excel in SQL here. Let’s dive in and sharpen those coding skills!

@@ -3,8 +3,6 @@ project:
 
 website:
   title: "MIBE SQL Corner"
-  drafts:
-    - 2-one-to-many.qmd
   navbar:
     background: primary
     search: true
@@ -15,10 +13,18 @@ website:
         menu:
         - Introduction.qmd
         - 1-single-entity.qmd
+        # - 2-one-to-many.qmd
+        # - 3-many-to-many.qmd
       - text: "Homeworks"
         menu:
         - Homework1.qmd
+        # - Homework2.qmd
+        # - Homework4.qmd
       - text: "Homework solutions"
+        #menu:
+        #- Homework1-solution.qmd
+        #- Homework2-solution.qmd
+        #- Homework4-solution.qmd
       - text: "Readings"
         menu:
         - Readings.qmd
