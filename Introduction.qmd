@@ -4,7 +4,7 @@ author: "Dr. Bartosiak"
 format: live-html
 ---
 
-## Managing Data
+# Managing Data
 
 ::::: {layout="[ 80, 20 ]"}
 ::: {#first-column}
@@ -122,9 +122,9 @@ Similarly, there are challenges and problems that database management systems mu
 
 
 
-## Databases and Database Design
+# Databases and Database Design
 
-### Data vs. Information
+## Data vs. Information
 
 Before diving into databases, it's crucial to grasp the distinction between data, information, and knowledge. Databases don't just store raw data – they organize it into meaningful information that can be analyzed to generate knowledge.
 
@@ -141,7 +141,7 @@ Before diving into databases, it's crucial to grasp the distinction between data
 A database's true value lies in its ability to transform raw data into actionable insights through structured organization and relationships.
 
 
-### Database
+## Database
 
 A **database** is an organized collection of related files used to store and manage data efficiently. It serves as a single logical data repository, ensuring that data is structured, accessible, and self-describing. Databases contain both **user data** (actual stored information) and **metadata** (data about the data, such as structure and relationships).
 
@@ -177,7 +177,7 @@ Each database type is suited for different use cases depending on the scale, str
 
 
 
-### Database Model
+## Database Model
 Database Model is the logical representation of the structure of the data.
 
 ![Database Model Example](images/DBModel.png){fig-align="center" width="700"}
@@ -282,7 +282,7 @@ For example, if you sell “Bombay Duck” you lose information about the Indian
 **Unlike Excel, databases prevent these anomalies through normalization, ensuring data is stored efficiently and consistently.**
 
 
-## Database Management Systems
+# Database Management Systems
 
 :::{.callout-note}
 A **Database Management System (DBMS)** is software that allows users to create, store, manage, and retrieve data efficiently. 
@@ -314,7 +314,22 @@ Overall, **a DBMS provides better data integration, making business operations m
 | **Database communication interfaces** | Accept end-user requests via multiple, different network environments |
 
 
+------------------------------------------------------------------------
 
+:::: {layout="[ 70, 30 ]"}
+::: {#first-column}
+
+We’ve covered a lot of essential concepts in database management that will be crucial as you move forward in your careers. Whether you're working with data on a daily basis or simply using data-driven tools to make informed business decisions, understanding how databases function will help you navigate the complexities of the modern business world.
+
+:::
+
+::: {#second-column}
+![](images/data_everywhere.jpg)
+
+:::
+:::::
+
+As you start applying these principles in real-world scenarios, remember that data is one of your most valuable assets. The better you manage and understand it, the better decisions you’ll make, and the more competitive your business will be.
 
 ------------------------------------------------------------------------
 
