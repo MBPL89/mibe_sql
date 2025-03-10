@@ -15,6 +15,11 @@ website:
         - 1-single-entity.qmd
         # - 2-one-to-many.qmd
         # - 3-many-to-many.qmd
+      - text: "Class materials - complete"
+        menu:
+        - 1-single-entity-complete.qmd
+        # - 2-one-to-many-complete.qmd
+        # - 3-many-to-many-complete.qmd
       - text: "Homeworks"
         menu:
         - Homework1.qmd

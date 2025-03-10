@@ -475,7 +475,7 @@ Note
 <p>Of course, <code>tableName</code> is just a placeholder. We will have to replace it with the real name. In our case, the table is called <code>brand</code>.</p>
 <p><em>Try it yourself with our brand table:</em></p>
 <div class="interactive-sql">
-<div class="sourceCode" id="cb1"><pre class="sourceCode sql interactive hr1 code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> tableName;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sql interactive hr1 code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> brand;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -516,7 +516,7 @@ Note
 <p><em>Try yourself and report all brands owned by Hilton Worldwide.</em></p>
 <div class="interactive-sql">
 <div class="sourceCode" id="cb3"><pre class="sourceCode sql interactive hr1 code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> brand </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">WHERE</span> <span class="op">..</span>. ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">WHERE</span> brandChain <span class="op">=</span> <span class="st">'Hilton Worldwide'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This is like telling the server, “Only show me brands owned by Hilton.”</p>
 <p>You can choose any other lodging chain instead of ‘Hilton Worldwide’. For example, try with ‘Accor’ and see how the results change.</p>
@@ -549,15 +549,15 @@ Tip
 <p><em>Try yourself and report all brands but Hilton Worldwide. Edit the query to try it with <code>&lt;&gt;</code> too.</em></p>
 <div class="interactive-sql">
 <div class="sourceCode" id="cb4"><pre class="sourceCode sql interactive hr1 code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> brand </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">WHERE</span> brandChain <span class="op">!=</span> <span class="st">'Hilton Worldwide'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">WHERE</span> brandChain <span class="op">&lt;&gt;</span> <span class="st">'Hilton Worldwide'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="projection-and-restriction-together" class="level2">
 <h2 class="anchored" data-anchor-id="projection-and-restriction-together">Projection and Restriction Together</h2>
 <p>Combining both techniques, you can select specific columns and filter rows. <em>List the brand name and segment of all brands owned by Hilton Worldwide:</em></p>
 <div class="interactive-sql">
-<div class="sourceCode" id="cb5"><pre class="sourceCode sql interactive hr1 code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">..</span>. <span class="kw">FROM</span> <span class="op">..</span>. </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">WHERE</span> <span class="op">..</span>.;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sql interactive hr1 code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> brandName, brandSegment <span class="kw">FROM</span> brand </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">WHERE</span> brandChain <span class="op">=</span> <span class="st">'Hilton Worldwide'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now you’re asking, “Show me just the names and segments of Hilton brands.”</p>
 </section>
@@ -656,7 +656,7 @@ Note
 </div>
 <p><em>List all brands with rooms smaller than 350 square feet with largest first. Where areas are identical, list brands in alphabetical order.</em></p>
 <div class="interactive-sql">
-<div class="sourceCode" id="cb14"><pre class="sourceCode sql interactive hr1 code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode sql interactive hr1 code-with-copy"><code class="sourceCode sql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> brand <span class="kw">WHERE</span> brandMinSqFt <span class="op">&lt;</span> <span class="dv">350</span> <span class="kw">ORDER</span> <span class="kw">BY</span> brandMinSqFt <span class="kw">DESC</span>, brandName;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -689,7 +689,7 @@ Tip
 <h2 class="anchored" data-anchor-id="calculated-fields">Calculated Fields</h2>
 <p>SQL allows calculations directly in queries. Let’s say we want to convert square feet to square meters in the results (<code>m² = f² / 10.764</code>).</p>
 <div class="interactive-sql">
-<div class="sourceCode" id="cb15"><pre class="sourceCode sql interactive hr1 code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode sql interactive hr1 code-with-copy"><code class="sourceCode sql"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> brandName, brandMinSqFt <span class="op">/</span> <span class="fl">10.764</span> <span class="kw">FROM</span> brand;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="renaming-output-fields" class="level2">
@@ -697,7 +697,7 @@ Tip
 <p>The column name for our calculated field in the results above doesn’t look nice. To make results clearer, use <code>AS</code> to rename calculated fields (or any other column in your query).</p>
 <p><em>Get minimum room area in square meters for each brand. Rename the output</em></p>
 <div class="interactive-sql">
-<div class="sourceCode" id="cb16"><pre class="sourceCode sql interactive hr1 code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode sql interactive hr1 code-with-copy"><code class="sourceCode sql"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> brandName, brandMinSqFt <span class="op">/</span> <span class="fl">10.764</span> <span class="kw">AS</span> brandSqMt <span class="kw">FROM</span> brand;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now the result column will be labeled <code>brandSqMt</code> instead of an anonymous calculation. This new name is called <strong>alias</strong>.</p>
 </section>
@@ -1248,7 +1248,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","closeEffect":"zoom","selector":".lightbox","loop":false,"openEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"loop":false,"closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom","selector":".lightbox"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
