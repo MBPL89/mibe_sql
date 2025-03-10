@@ -2,11 +2,22 @@
 title: "MIBE SQL Corner"
 author: "Dr. Bartosiak"
 format: live-html
+filters:
+  - interactive-sql
+databases:
+  - name: hr1
+    path: "https://raw.githubusercontent.com/MBPL89/dbs/refs/heads/main/htlreviews1.sql"
 ---
 
 Welcome to the **MIBE SQL Corner**! This page is dedicated to all the key concepts, notes, and resources you need for mastering SQL in the Coding and Data Management course. Whether you're just starting or refining your skills, you'll find everything you need to excel in SQL here. Let’s dive in and sharpen those coding skills!
 
 You will also use this website to query databases. It features interactive fields, where you can type and edit your SQL queries.
+
+``` {.sql .interactive .hr1}
+
+
+
+```
 
 
 ```{=html}
