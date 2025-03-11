@@ -2,7 +2,10 @@
 title: "One-to-Many relationship"
 draft: true
 author: "Dr. Bartosiak"
-format: live-html
+format: 
+  live-html:
+    toc: true
+    toc-depth: 2
 filters:
   - interactive-sql
 databases:
@@ -10,13 +13,65 @@ databases:
     path: "https://raw.githubusercontent.com/MBPL89/dbs/refs/heads/main/htlreviews2.sql"
 ---
 
+# Database Modelling
+
+Now that you’ve learned how to model a basic, single-entity database, let’s explore **attributes**, which define the characteristics of an entity.
+
+## Attributes
+
+Attributes store important details about each record in a table, helping to describe and organize data effectively.
+
+In a database, attributes can be classified based on whether they require a value. A **required** attribute must always have a value and cannot be left empty, while an **optional** attribute can be left empty (**NULL**).
+
+::: callout-warning
+We use **NULL** to indicate missing values. Missing values can occur for different reasons, such as an existing attribute without data (e.g., a middle name) or an inapplicable condition (e.g., an apartment number for a house address).
+
+Don’t confuse NULL values with blank or zero.
+
+Multiple meanings:
+
+-   Unknown data
+-   Inapplicable data
+-   No value supplied
+-   Value undefined
+
+We will come back to NULL values later.
+:::
+
+Each attribute has a **domain**, which defines the set of possible values it can take.
+
+::: callout-tip
+A domain is the set of possible values that an attribute can have. Think of it like a rule that defines what kind of data is allowed in a column. For example, if you have an attribute "Age," its domain might be whole numbers between 0 and 120. If you have a "Country" attribute, its domain would be a list of valid country names. Domains help keep data consistent and prevent errors, like entering text in a column meant for numbers.
+:::
+
+To uniquely identify each record, **identifiers** are used—these are attributes that hold unique values for each instance. In relational databases, the primary key serves as this unique identifier.
+
+Sometimes, a **composite identifier** is needed, which combines two or more attributes to uniquely identify a record (e.g., a combination of Course ID and Student ID to track enrollments).
+
+Attributes can be classified into different types:
+
+-   **Composite attribute**: Attribute that can be subdivided to yield additional attributes
+-   **Simple attribute**: Attribute that cannot be subdivided
+-   **Derived attribute**: Attribute whose value is calculated from other attributes
+    -   Derived using an algorithm (i.e., Yield = Dividend \* Quantity)
+    -   Sometimes called ‘calculated fields’
+-   **Single-valued attribute**: Attribute that holds only a single value
+-   **Multivalued attributes**: Attributes that hold many values
+
+Understanding these attribute types is essential for designing efficient databases that accurately represent real-world scenarios.
+
+# Database Manipulation
+
 ## Test
 
 ``` {.sql .interactive .hr2}
 SELECT * FROM brand;
 ```
 
+## Extra practice cell
 
+``` {.sql .interactive .hr2}
+```
 
 ------------------------------------------------------------------------
 

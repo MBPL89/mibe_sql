@@ -116,7 +116,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -201,7 +201,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#database-modelling" id="toc-database-modelling" class="nav-link active" data-scroll-target="#database-modelling">Database Modelling</a>
+  <ul class="collapse">
+  <li><a href="#the-relational-model" id="toc-the-relational-model" class="nav-link" data-scroll-target="#the-relational-model">The Relational Model</a></li>
+  <li><a href="#single-entity" id="toc-single-entity" class="nav-link" data-scroll-target="#single-entity">Single Entity</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
+  </ul></li>
+  <li><a href="#data-manipulation" id="toc-data-manipulation" class="nav-link" data-scroll-target="#data-manipulation">Data Manipulation</a>
+  <ul class="collapse">
+  <li><a href="#querying-a-table" id="toc-querying-a-table" class="nav-link" data-scroll-target="#querying-a-table">Querying a Table</a></li>
+  <li><a href="#projection-choosing-columns" id="toc-projection-choosing-columns" class="nav-link" data-scroll-target="#projection-choosing-columns">Projection: Choosing Columns</a></li>
+  <li><a href="#restriction-choosing-rows" id="toc-restriction-choosing-rows" class="nav-link" data-scroll-target="#restriction-choosing-rows">Restriction: Choosing Rows</a></li>
+  <li><a href="#projection-and-restriction-together" id="toc-projection-and-restriction-together" class="nav-link" data-scroll-target="#projection-and-restriction-together">Projection and Restriction Together</a></li>
+  <li><a href="#primary-key-retrieval" id="toc-primary-key-retrieval" class="nav-link" data-scroll-target="#primary-key-retrieval">Primary Key Retrieval</a></li>
+  <li><a href="#queries-without-primary-key" id="toc-queries-without-primary-key" class="nav-link" data-scroll-target="#queries-without-primary-key">Queries Without Primary Key</a></li>
+  <li><a href="#the-in-operator" id="toc-the-in-operator" class="nav-link" data-scroll-target="#the-in-operator">The <code>IN</code> Operator</a></li>
+  <li><a href="#the-not-in-operator" id="toc-the-not-in-operator" class="nav-link" data-scroll-target="#the-not-in-operator">The <code>NOT IN</code> Operator</a></li>
+  <li><a href="#ordering-columns" id="toc-ordering-columns" class="nav-link" data-scroll-target="#ordering-columns">Ordering Columns</a></li>
+  <li><a href="#ordering-rows" id="toc-ordering-rows" class="nav-link" data-scroll-target="#ordering-rows">Ordering Rows</a></li>
+  <li><a href="#calculated-fields" id="toc-calculated-fields" class="nav-link" data-scroll-target="#calculated-fields">Calculated Fields</a></li>
+  <li><a href="#renaming-output-fields" id="toc-renaming-output-fields" class="nav-link" data-scroll-target="#renaming-output-fields">Renaming Output Fields</a></li>
+  <li><a href="#eliminating-duplicates" id="toc-eliminating-duplicates" class="nav-link" data-scroll-target="#eliminating-duplicates">Eliminating Duplicates</a></li>
+  <li><a href="#extra-practice-cell" id="toc-extra-practice-cell" class="nav-link" data-scroll-target="#extra-practice-cell">Extra practice cell</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -701,10 +731,18 @@ Tip
 </div>
 <p>Now the result column will be labeled <code>brandSqMt</code> instead of an anonymous calculation. This new name is called <strong>alias</strong>.</p>
 </section>
+<section id="eliminating-duplicates" class="level2">
+<h2 class="anchored" data-anchor-id="eliminating-duplicates">Eliminating Duplicates</h2>
+<p>The <strong>DISTINCT</strong> keyword in SQL is used to eliminate duplicate rows from query results, ensuring that only unique values are displayed. This is particularly useful when reporting different possible values for a specific column, such as brand segments.</p>
+<p><em>Run this query first. Then, modify it to retrieve a list of all unique brand segments without repetition.</em></p>
+<div class="interactive-sql">
+<div class="sourceCode" id="cb17"><pre class="sourceCode sql interactive hr1 code-with-copy"><code class="sourceCode sql"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span> brandSegment <span class="kw">FROM</span> brand;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
 <section id="extra-practice-cell" class="level2">
 <h2 class="anchored" data-anchor-id="extra-practice-cell">Extra practice cell</h2>
 <div class="interactive-sql">
-<div class="sourceCode" id="cb17"><pre class="sourceCode sql interactive hr1 code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode sql interactive hr1 code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <hr>
 <p>That’s it for now! 🎉</p>
@@ -1248,7 +1286,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"loop":false,"closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom","selector":".lightbox"});
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","openEffect":"zoom","selector":".lightbox","loop":false});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

@@ -383,5 +383,47 @@
     "title": "Introduction to SQL. Single entity",
     "section": "Extra practice cell",
     "text": "Extra practice cell\n\n\n\n\nThat’s it for now! 🎉\nEven if it seems like just a little, learning this is already a great achievement!\n\n\n\n\n\n\nRemember, SQL is like having a conversation in English with the database:\n\n“Show me everything” → SELECT * FROM table;\n\n“Give me only what I need” → SELECT column FROM table;\n\n“Filter the results” → WHERE = condition\n\n“Sort them” → ORDER BY column\n\nWith these basics, you’re already on your way to mastering SQL!\n\n\n\n\n\n\n\n\n\nImages and GIFs Disclaimer: Some of the images and GIFs used on this website are not owned by me. They are used for educational and illustrative purposes only. All rights belong to their respective owners. If you believe any content violates copyright, please contact me for prompt removal.\n\n\n\n\n\n\n  \n  \n    © 2025. All Rights Reserved.\n  \n  \n\n  \n  \n    Enabled by Dr. Marcin Bartosiak"
+  },
+  {
+    "objectID": "1-single-entity.html#eliminating-duplicates",
+    "href": "1-single-entity.html#eliminating-duplicates",
+    "title": "Introduction to SQL. Single entity",
+    "section": "Eliminating Duplicates",
+    "text": "Eliminating Duplicates\nThe DISTINCT keyword in SQL is used to eliminate duplicate rows from query results, ensuring that only unique values are displayed. This is particularly useful when reporting different possible values for a specific column, such as brand segments.\nRun this query first. Then, modify it to retrieve a list of all unique brand segments without repetition.\n\nSELECT brandSegment FROM brand;"
+  },
+  {
+    "objectID": "1-single-entity-complete.html#eliminating-duplicates",
+    "href": "1-single-entity-complete.html#eliminating-duplicates",
+    "title": "Introduction to SQL. Single entity",
+    "section": "Eliminating Duplicates",
+    "text": "Eliminating Duplicates\nThe DISTINCT keyword in SQL is used to eliminate duplicate rows from query results, ensuring that only unique values are displayed. This is particularly useful when reporting different possible values for a specific column, such as brand segments.\nRun this query first. Then, modify it to retrieve a list of all unique brand segments without repetition.\n\nSELECT DISTINCT brandSegment FROM brand;"
+  },
+  {
+    "objectID": "2-one-to-many.html",
+    "href": "2-one-to-many.html",
+    "title": "One-to-Many relationship",
+    "section": "",
+    "text": "Now that you’ve learned how to model a basic, single-entity database, let’s explore attributes, which define the characteristics of an entity.\n\n\nAttributes store important details about each record in a table, helping to describe and organize data effectively.\nIn a database, attributes can be classified based on whether they require a value. A required attribute must always have a value and cannot be left empty, while an optional attribute can be left empty (NULL).\n\n\n\n\n\n\nWarning\n\n\n\nWe use NULL to indicate missing values. Missing values can occur for different reasons, such as an existing attribute without data (e.g., a middle name) or an inapplicable condition (e.g., an apartment number for a house address).\nDon’t confuse NULL values with blank or zero.\nMultiple meanings:\n\nUnknown data\nInapplicable data\nNo value supplied\nValue undefined\n\nWe will come back to NULL values later.\n\n\nEach attribute has a domain, which defines the set of possible values it can take.\n\n\n\n\n\n\nTip\n\n\n\nA domain is the set of possible values that an attribute can have. Think of it like a rule that defines what kind of data is allowed in a column. For example, if you have an attribute “Age,” its domain might be whole numbers between 0 and 120. If you have a “Country” attribute, its domain would be a list of valid country names. Domains help keep data consistent and prevent errors, like entering text in a column meant for numbers.\n\n\nTo uniquely identify each record, identifiers are used—these are attributes that hold unique values for each instance. In relational databases, the primary key serves as this unique identifier.\nSometimes, a composite identifier is needed, which combines two or more attributes to uniquely identify a record (e.g., a combination of Course ID and Student ID to track enrollments).\nAttributes can be classified into different types:\n\nComposite attribute: Attribute that can be subdivided to yield additional attributes\nSimple attribute: Attribute that cannot be subdivided\nDerived attribute: Attribute whose value is calculated from other attributes\n\nDerived using an algorithm (i.e., Yield = Dividend * Quantity)\nSometimes called ‘calculated fields’\n\nSingle-valued attribute: Attribute that holds only a single value\nMultivalued attributes: Attributes that hold many values\n\nUnderstanding these attribute types is essential for designing efficient databases that accurately represent real-world scenarios."
+  },
+  {
+    "objectID": "2-one-to-many.html#attributes",
+    "href": "2-one-to-many.html#attributes",
+    "title": "One-to-Many relationship",
+    "section": "",
+    "text": "Attributes store important details about each record in a table, helping to describe and organize data effectively.\nIn a database, attributes can be classified based on whether they require a value. A required attribute must always have a value and cannot be left empty, while an optional attribute can be left empty (NULL).\n\n\n\n\n\n\nWarning\n\n\n\nWe use NULL to indicate missing values. Missing values can occur for different reasons, such as an existing attribute without data (e.g., a middle name) or an inapplicable condition (e.g., an apartment number for a house address).\nDon’t confuse NULL values with blank or zero.\nMultiple meanings:\n\nUnknown data\nInapplicable data\nNo value supplied\nValue undefined\n\nWe will come back to NULL values later.\n\n\nEach attribute has a domain, which defines the set of possible values it can take.\n\n\n\n\n\n\nTip\n\n\n\nA domain is the set of possible values that an attribute can have. Think of it like a rule that defines what kind of data is allowed in a column. For example, if you have an attribute “Age,” its domain might be whole numbers between 0 and 120. If you have a “Country” attribute, its domain would be a list of valid country names. Domains help keep data consistent and prevent errors, like entering text in a column meant for numbers.\n\n\nTo uniquely identify each record, identifiers are used—these are attributes that hold unique values for each instance. In relational databases, the primary key serves as this unique identifier.\nSometimes, a composite identifier is needed, which combines two or more attributes to uniquely identify a record (e.g., a combination of Course ID and Student ID to track enrollments).\nAttributes can be classified into different types:\n\nComposite attribute: Attribute that can be subdivided to yield additional attributes\nSimple attribute: Attribute that cannot be subdivided\nDerived attribute: Attribute whose value is calculated from other attributes\n\nDerived using an algorithm (i.e., Yield = Dividend * Quantity)\nSometimes called ‘calculated fields’\n\nSingle-valued attribute: Attribute that holds only a single value\nMultivalued attributes: Attributes that hold many values\n\nUnderstanding these attribute types is essential for designing efficient databases that accurately represent real-world scenarios."
+  },
+  {
+    "objectID": "2-one-to-many.html#test",
+    "href": "2-one-to-many.html#test",
+    "title": "One-to-Many relationship",
+    "section": "Test",
+    "text": "Test\n\nSELECT * FROM brand;"
+  },
+  {
+    "objectID": "2-one-to-many.html#extra-practice-cell",
+    "href": "2-one-to-many.html#extra-practice-cell",
+    "title": "One-to-Many relationship",
+    "section": "Extra practice cell",
+    "text": "Extra practice cell\n\n\n\n\n\n\nImages and GIFs Disclaimer: Some of the images and GIFs used on this website are not owned by me. They are used for educational and illustrative purposes only. All rights belong to their respective owners. If you believe any content violates copyright, please contact me for prompt removal.\n\n\n\n\n\n\n  \n  \n    © 2025. All Rights Reserved.\n  \n  \n\n  \n  \n    Enabled by Dr. Marcin Bartosiak"
   }
 ]

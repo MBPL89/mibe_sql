@@ -2,7 +2,10 @@
 title: "Many-to-Many relationship"
 draft: true
 author: "Dr. Bartosiak"
-format: live-html
+format: 
+  live-html:
+    toc: true
+    toc-depth: 2
 filters:
   - interactive-sql
 databases:

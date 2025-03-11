@@ -1,7 +1,10 @@
 ---
 title: "Introduction to SQL. Single entity"
 author: "Dr. Bartosiak"
-format: live-html
+format: 
+  live-html:
+    toc: true
+    toc-depth: 2
 filters:
   - interactive-sql
 databases:
@@ -93,7 +96,7 @@ Remember, an entity is:
 -   An entity is a class (or entity set)
 -   An instance is a particular occurrence of an entity
 
-:::{.callout-note}
+::: callout-note
 **An entity is represented by a rectangle in modelling notation**
 :::
 
@@ -107,7 +110,7 @@ An attribute is a discrete data element that describes an entity.
     -   Homonym: Same name is used to label different attributes
     -   Synonym: Different names are used to describe the same attribute
 
-:::{.callout-note}
+::: callout-note
 **Attribute names must be unique within a data model**
 
 *Attribute names should be meaningful*
@@ -123,7 +126,7 @@ Every instance of an entity must be uniquely identified.
 
 An identifier can be created if there is no obvious attribute (surrogate).
 
-:::{.callout-note}
+::: callout-note
 **A leading asterisk denotes an identifier** in our entity.
 :::
 
@@ -157,7 +160,7 @@ Of course, `tableName` is just a placeholder. We will have to replace it with th
 SELECT * FROM tableName;
 ```
 
-::: {.callout-note}
+::: callout-note
 ***Have you noticed the small detail at the end of line?*** Every query has to end with `;`. It tells the server that your query ends here. Everything after this sign is a new code. This will be important when we run more than one query at a time.
 :::
 
@@ -192,11 +195,11 @@ This is like telling the server, "Only show me brands owned by Hilton."
 
 You can choose any other lodging chain instead of 'Hilton Worldwide'. For example, try with 'Accor' and see how the results change.
 
-::: {.callout-warning}
+::: callout-warning
 Hilton or Accor are *values*, not *attributes*. Unlike column names or table name, you always have to wrap text values with quotation marks (`'...'` or `"..."`).
 :::
 
-::: {.callout-tip}
+::: callout-tip
 Following the same logic, you can exclude a value from the results. You have to replace `=` with `!=` or `<>` (they both mean the same thing).
 :::
 
@@ -300,25 +303,24 @@ SELECT * FROM brand WHERE brandMinSqFt < 350 ORDER BY brandMinSqFt DESC;
 
 This means, "Show me brands with rooms under 350 sqft, biggest first, and if sizes match, sort alphabetically."
 
-::: {.callout-tip}
+::: callout-tip
 `DESC` means descending order (biggest first). If you need ascending order (smallest first), you can replace it with `ASC` or simply remove it (ascending order is default in SQL).
 :::
 
-::: {.callout-note}
+::: callout-note
 Have you noticed that there are many brands with the same value? We can order results by two columns. If the results in the first column are identical, the second column will be used to sort them. Let's add `brandName` to our `ORDER BY` clause.
 :::
 
 *List all brands with rooms smaller than 350 square feet with largest first. Where areas are identical, list brands in alphabetical order.*
 
 ``` {.sql .interactive .hr1}
-
 ```
 
-::: {.callout-note}
+::: callout-note
 Notice that our results are ordered by `brandMinSqFt` in descending order (`DESC`), and alphabetically by brandName (you can add `ASC` after brandName to get the same results).
 :::
 
-::: {.callout-tip}
+::: callout-tip
 Last one more thing. Notice that we use `<` in this query. `WHERE` condition can take all the comparison operators: `=`, `!=`, `<`, `>`, `<=`, and `>=`.
 :::
 
@@ -327,7 +329,6 @@ Last one more thing. Notice that we use `<` in this query. `WHERE` condition can
 SQL allows calculations directly in queries. Let's say we want to convert square feet to square meters in the results (`m² = f² / 10.764`).
 
 ``` {.sql .interactive .hr1}
-
 ```
 
 ## Renaming Output Fields
@@ -337,11 +338,19 @@ The column name for our calculated field in the results above doesn't look nice.
 *Get minimum room area in square meters for each brand. Rename the output*
 
 ``` {.sql .interactive .hr1}
-
 ```
 
 Now the result column will be labeled `brandSqMt` instead of an anonymous calculation. This new name is called **alias**.
 
+## Eliminating Duplicates
+
+The **DISTINCT** keyword in SQL is used to eliminate duplicate rows from query results, ensuring that only unique values are displayed. This is particularly useful when reporting different possible values for a specific column, such as brand segments.
+
+*Run this query first. Then, modify it to retrieve a list of all unique brand segments without repetition.*
+
+``` {.sql .interactive .hr1}
+SELECT brandSegment FROM brand;
+```
 
 ## Extra practice cell
 

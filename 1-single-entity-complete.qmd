@@ -1,7 +1,10 @@
 ---
 title: "Introduction to SQL. Single entity"
 author: "Dr. Bartosiak"
-format: live-html
+format: 
+  live-html:
+    toc: true
+    toc-depth: 2
 filters:
   - interactive-sql
 databases:
@@ -341,6 +344,17 @@ SELECT brandName, brandMinSqFt / 10.764 AS brandSqMt FROM brand;
 ```
 
 Now the result column will be labeled `brandSqMt` instead of an anonymous calculation. This new name is called **alias**.
+
+## Eliminating Duplicates
+
+The **DISTINCT** keyword in SQL is used to eliminate duplicate rows from query results, ensuring that only unique values are displayed. This is particularly useful when reporting different possible values for a specific column, such as brand segments. 
+
+*Run this query first. Then, modify it to retrieve a list of all unique brand segments without repetition.*
+
+``` {.sql .interactive .hr1}
+SELECT DISTINCT brandSegment FROM brand;
+```
+
 
 
 ## Extra practice cell

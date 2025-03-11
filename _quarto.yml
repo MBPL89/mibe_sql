@@ -33,7 +33,7 @@ website:
       - text: "Readings"
         menu:
         - Readings.qmd
-
+        
 format:
   html:
     theme: flatly
