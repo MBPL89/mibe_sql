@@ -1,7 +1,10 @@
 ---
 title: "Database Management - Introduction"
 author: "Dr. Bartosiak"
-format: live-html
+format: 
+  live-html:
+    toc: true
+    toc-depth: 2
 ---
 
 # Managing Data
