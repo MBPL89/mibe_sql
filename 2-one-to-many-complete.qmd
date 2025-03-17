@@ -68,9 +68,17 @@ Think of the data scientists database we modeled last week.
 
 How would the model change, if our data scientist could get a second degree? Or multiple certificates?
 
+::: {.callout-note collapse="true"}
+![](images/dsmodel2.png){fig-align="center" width="350"}
+:::
+
 A multivalued attribute is an attribute that can have multiple values for a single entity. For example, an employee might have multiple phone numbers or an author might write multiple books. In database design, multivalued attributes should be handled properly to maintain data consistency. One approach is to create separate attributes for each component of the multivalued attribute (e.g., `Phone_1`, `Phone_2`). A better approach is to create a new entity that holds the multiple values, linking it to the original entity through a relationship (e.g., an `Employee_Phone` table linked to an `Employee` table). This ensures better organization, eliminates redundancy, and improves data integrity.
 
 Now, try to apply that knowledge to our data scientists database.
+
+::: {.callout-note collapse="true"}
+![](images/dsmodel3.png){fig-align="center" width="350"}
+:::
 
 ## Entity Relaionship
 
@@ -117,22 +125,23 @@ We said that there might be several problems (called *anomalies*) with it:
 -   **Update** anomalies lead to inconsistencies when changes must be made in multiple places.
 -   **Deletion** anomalies cause unintended data loss when removing a record also removes critical information.
 
-Let's try to design a database to store our stock portfolio data! 
+Let's try to design a database to store our stock portfolio data!
 
+::: {.callout-note collapse="true"}
+![](images/nation1tm.png){fig-align="center" width="350"}
+:::
 
-### Exercise 
+### Exercise
 
 Develop a data model for Marriott International to keep track of relevant information about its portfolio of hotels
 
 Focus on the assets, not on customers, employees, or transactions
 
-
 ![](images/marriott.png){.lightbox fig-align="center" width="550"}
-
 
 ### Hierarchical relationships
 
-**Hierarchical relationships** occur frequently in databases and follow a one-to-many structure, where one entity has multiple related entities beneath it. This structure is similar to a tree, where a parent node can have multiple child nodes, but each child has only one parent. For example, in a company database, one manager oversees many employees, but each employee has only one direct manager. Similarly, a firm can have many divisions, a division can have many departments, and a department can have many sections (see the example below). 
+**Hierarchical relationships** occur frequently in databases and follow a one-to-many structure, where one entity has multiple related entities beneath it. This structure is similar to a tree, where a parent node can have multiple child nodes, but each child has only one parent. For example, in a company database, one manager oversees many employees, but each employee has only one direct manager. Similarly, a firm can have many divisions, a division can have many departments, and a department can have many sections (see the example below).
 
 These relationships help organize data logically and efficiently, making it easier to navigate and retrieve information.
 
@@ -140,13 +149,13 @@ These relationships help organize data logically and efficiently, making it easi
 
 ## Mapping to a relational database
 
-So far, we covered a lot of abstract terms like entity, instances, attributes etc. As you correctly notice, we could simply say table, row, and columns instead. However, there is a good reason for using these abstract terms. 
+So far, we covered a lot of abstract terms like entity, instances, attributes etc. As you correctly notice, we could simply say table, row, and columns instead. However, there is a good reason for using these abstract terms.
 
-Understanding **entities, instances, and attributes** rather than just **tables, rows, and columns** is important because it helps us focus on the **conceptual meaning of the data** rather than just its storage format.  
+Understanding **entities, instances, and attributes** rather than just **tables, rows, and columns** is important because it helps us focus on the **conceptual meaning of the data** rather than just its storage format.
 
-- **Entity vs. Table:** An **entity** represents a real-world object or concept (like a "Customer" or "Product"), while a **table** is just how we store data in a database. Thinking in terms of entities helps us design better database models before deciding how to implement them.  
-- **Instance vs. Row:** An **instance** is a specific example of an entity (e.g., a particular customer, "John Doe"). A **row** is how that instance is stored in a table. Thinking in terms of instances makes it easier to understand relationships between data.  
-- **Attribute vs. Column:** An **attribute** describes a characteristic of an entity (e.g., a customer's "Name" or "Email"). A **column** is just where this data is stored. By focusing on attributes first, we ensure that all necessary information is captured properly.  
+-   **Entity vs. Table:** An **entity** represents a real-world object or concept (like a "Customer" or "Product"), while a **table** is just how we store data in a database. Thinking in terms of entities helps us design better database models before deciding how to implement them.\
+-   **Instance vs. Row:** An **instance** is a specific example of an entity (e.g., a particular customer, "John Doe"). A **row** is how that instance is stored in a table. Thinking in terms of instances makes it easier to understand relationships between data.\
+-   **Attribute vs. Column:** An **attribute** describes a characteristic of an entity (e.g., a customer's "Name" or "Email"). A **column** is just where this data is stored. By focusing on attributes first, we ensure that all necessary information is captured properly.
 
 By using these **abstract concepts**, we can design flexible and well-structured databases **before** deciding how to implement them in a specific DBMS.
 
@@ -154,22 +163,22 @@ By using these **abstract concepts**, we can design flexible and well-structured
 
 When designing a relational database, entities and their relationships are translated into tables and columns. The process follows these key steps:
 
-- **Each entity becomes a table**  
-- **The entity name becomes the table name**  
-- **Each attribute becomes a column**  
+-   **Each entity becomes a table**\
+-   **The entity name becomes the table name**\
+-   **Each attribute becomes a column**
 
 #### Handling One-to-Many Relationships
 
-In a one-to-many relationship, we structure the tables as follows:  
+In a one-to-many relationship, we structure the tables as follows:
 
-- **Add a column to the table on the "many" side of the relationship**  
-- **Store the identifier of the "one" side in this added column**  
+-   **Add a column to the table on the "many" side of the relationship**\
+-   **Store the identifier of the "one" side in this added column**
 
 This ensures proper linkage between related data while maintaining database integrity.
 
 #### Parsimonious notation
 
-::: {.callout-warning}
+::: callout-warning
 The conceptual database model uses a parsimonious notation, meaning that extra attributes do not need to be explicitly modeled, as they can be inferred from the relationship.
 :::
 
@@ -179,22 +188,24 @@ The conceptual database model uses a parsimonious notation, meaning that extra a
 :::
 
 ::: {#second-column}
-![](images/brandchain2.png){.lightbox fig-align="center"} 
+![](images/brandchain2.png){.lightbox fig-align="center"}
 :::
 :::::
 
 #### Integrity constraint
 
-Ensuring data integrity is crucial in relational databases. **Entity integrity** maintains the uniqueness and validity of primary keys, while **referential integrity** ensures that foreign keys correctly reference existing primary keys. These rules help prevent inconsistencies and maintain reliable relationships between tables.  
+Ensuring data integrity is crucial in relational databases. **Entity integrity** maintains the uniqueness and validity of primary keys, while **referential integrity** ensures that foreign keys correctly reference existing primary keys. These rules help prevent inconsistencies and maintain reliable relationships between tables.
 
 ##### Entity Integrity
-- A **primary key** must be **unique**.  
-- Primary keys **can never have NULL values**.  
+
+-   A **primary key** must be **unique**.\
+-   Primary keys **can never have NULL values**.
 
 ##### Referential Integrity
-- For every **non-null value** of a **foreign key**, there must be a **matching primary key** with that value.  
-- **Example:** For every value of `chainID` in the `brand` table, there must be a corresponding value of `chainID` in the `lodgingChain` table.  
-- A **primary key must exist** before a foreign key can be defined.  
+
+-   For every **non-null value** of a **foreign key**, there must be a **matching primary key** with that value.\
+-   **Example:** For every value of `chainID` in the `brand` table, there must be a corresponding value of `chainID` in the `lodgingChain` table.\
+-   A **primary key must exist** before a foreign key can be defined.
 
 ##Implementable database model
 
@@ -210,7 +221,7 @@ So far, we mainly focused on a **conceptual** database model. But there is also 
 
 The **conceptual database model** focuses on the high-level structure of the data, emphasizing entities, relationships, and constraints without considering how the data will be physically stored. It serves as a *blueprint* for understanding data requirements and is independent of any specific database management system (DBMS). On the other hand, the **implementational database model** translates the conceptual design into a format that a DBMS can use, incorporating tables, columns, keys, and constraints based on a specific database system. While the conceptual model is abstract and business-oriented, the implementational model is detailed and technical, bridging the gap between design and actual database implementation.
 
-We will learn how to design such implementational models in few weeks. First, let's learn how to read them. 
+We will learn how to design such implementational models in few weeks. First, let's learn how to read them.
 
 ::::: {layout="[ 60, 40 ]"}
 ::: {#first-column}
@@ -218,7 +229,7 @@ We will learn how to design such implementational models in few weeks. First, le
 :::
 
 ::: {#second-column}
-![Workbench symbolism](images/impllegend.png){.lightbox fig-align="center"} 
+![Workbench symbolism](images/impllegend.png){.lightbox fig-align="center"}
 :::
 :::::
 
@@ -226,7 +237,7 @@ We will learn how to design such implementational models in few weeks. First, le
 
 In database modeling, **identifying** and **non-identifying** relationships refer to how entities are related to one another. An identifying relationship occurs when the child entity’s existence depends on the parent entity, and the child entity's primary key includes the parent's primary key. This often happens in cases where the child cannot exist without the parent (e.g., an order item cannot exist without an order). In contrast, a non-identifying relationship occurs when the child entity can exist independently of the parent entity, and the child’s primary key does not include the parent’s primary key. Here, the relationship is more loosely coupled (e.g., a customer can exist without an address).
 
-In the implementational model, the relationships will look slightly differnt. 
+In the implementational model, the relationships will look slightly differnt.
 
 ::::: {layout="[ 50, 50 ]"}
 ::: {#first-column}
@@ -234,15 +245,15 @@ In the implementational model, the relationships will look slightly differnt.
 :::
 
 ::: {#second-column}
-![](images/nonidentify.png){.lightbox fig-align="center"} 
+![](images/nonidentify.png){.lightbox fig-align="center"}
 :::
 :::::
 
-::: {.callout-note}
+::: callout-note
 In the conceptual model, we will have to add a small plus (+) over a relationship, to mark the identifying relationship.
 :::
 
-![](images/pluscrowfoot.png){ fig-align="center" width="250"} 
+![](images/pluscrowfoot.png){fig-align="center" width="250"}
 
 # Database Manipulation
 
@@ -250,19 +261,20 @@ This week we will start querying models that are slightly more advanced. You kno
 
 ![](images/modelsession2.png){fig-align="center" width="450"}
 
-## Aggregate functions 
+## Aggregate functions
 
 In SQL aggregate functions help you combine lots of data into one result. These are like math operations that work on whole columns of information instead of just single values.
 
 Here are the main aggregate functions:
 
-- **COUNT()**: Tells you how many items are in your data (like counting how many customers you have)
-- **SUM()**: Adds up numbers (like finding your total sales for the month)
-- **AVG()**: Calculates the average (like finding the typical price of products)
-- **MIN()**: Finds the smallest value (like identifying your cheapest item)
-- **MAX()**: Finds the largest value (like identifying your most expensive item)
+-   **COUNT()**: Tells you how many items are in your data (like counting how many customers you have)
+-   **SUM()**: Adds up numbers (like finding your total sales for the month)
+-   **AVG()**: Calculates the average (like finding the typical price of products)
+-   **MIN()**: Finds the smallest value (like identifying your cheapest item)
+-   **MAX()**: Finds the largest value (like identifying your most expensive item)
 
 These functions are super helpful when you want to get quick summaries from your database without looking at every single row of information. You simply add the to your query follwoing this pattern:
+
 ``` {.sql .interactive .hr2-not-editable}
 SELECT FUNCTION(columnName) FROM tableName;
 ```
@@ -270,59 +282,76 @@ SELECT FUNCTION(columnName) FROM tableName;
 Let's test them in our *brand* table!
 
 *Find the average hotel room square footage for all brands.*
-``` {.sql .interactive .hr2}
 
+``` {.sql .interactive .hr2}
+SELECT AVG(brandMinSqFt) AS avgArea FROM brand;
 ```
 
 *What is the area of the largest hotel room specification in the DB? Rename as “Biggest Room”*
-``` {.sql .interactive .hr2}
 
+``` {.sql .interactive .hr2}
+SELECT MAX(brandMinSqFt) AS 'Biggest Room' FROM brand;
 ```
 
 *How many total brands do we have data for?*
-``` {.sql .interactive .hr2}
 
+``` {.sql .interactive .hr2}
+SELECT COUNT(*)FROM brand;
+```
+
+::: callout-tip
+The query below is an equivalent to the previous one. Can you explain why?
+:::
+
+``` {.sql .interactive .hr2}
+SELECT COUNT(brandName)FROM brand;
 ```
 
 *What is the total number of hotel rooms? - All rooms of all chains.*
 
-::: {.callout-tip}
+::: callout-tip
 The solve this task, you will have to query different table...
 :::
-``` {.sql .interactive .hr2}
 
+``` {.sql .interactive .hr2}
+SELECT SUM(numRooms) FROM lodgingchain;
 ```
 
 ## JOINing tables
 
-Joining tables in SQL allows you to *combine related data from different tables* into a single result set. The simplest way to join tables is using the **WHERE** clause with the equals operator (which is great!🤩 because you already know how to use WHERE). 
+Joining tables in SQL allows you to *combine related data from different tables* into a single result set. The simplest way to join tables is using the **WHERE** clause with the equals operator (which is great!🤩 because you already know how to use WHERE).
 
 Here's how it works:
 
-- **Basic JOIN using WHERE**: You list both tables in the FROM clause and use WHERE to match related columns
-- **Example syntax**: `SELECT * FROM brand, lodgingchain WHERE brand.chainID = lodgingchain.chainID;`
-- **How it works**: This tells SQL to match each row from the first table with rows from the second table where the specified columns have the same value
-- **Result**: Only rows where the join condition is true appear in your results
+-   **Basic JOIN using WHERE**: You list both tables in the FROM clause and use WHERE to match related columns
+-   **Example syntax**: `SELECT * FROM brand, lodgingchain WHERE brand.chainID = lodgingchain.chainID;`
+-   **How it works**: This tells SQL to match each row from the first table with rows from the second table where the specified columns have the same value
+-   **Result**: Only rows where the join condition is true appear in your results
 
-This approach creates what's known as an "inner join" - it only shows data where there are matches between both tables.
-We will explore more powerful ways to join tables in our next session.
+This approach creates what's known as an "inner join" - it only shows data where there are matches between both tables. We will explore more powerful ways to join tables in our next session.
 
 *Try it yourself!*
+
 ``` {.sql .interactive .hr2}
 SELECT * FROM brand, lodgingchain 
   WHERE brand.chainID = lodgingchain.chainID;
 ```
 
-### Exercise 
+### Exercise
 
 *Report the headquarter location of each brand’s parent chain.Order by brand name.*
-``` {.sql .interactive .hr2}
 
+``` {.sql .interactive .hr2}
+SELECT brandName, headquarters
+    FROM brand,lodgingchain
+    WHERE brand.chainID = lodgingchain.chainID
+    ORDER BY brandName;
 ```
 
-::: {.callout-tip}
+::: callout-tip
 ## Watch out for cross-products
-A cross-product in SQL occurs when you join two tables without specifying a join condition. This creates a result set containing every possible combination of rows from both tables. For example, if you run `SELECT * FROM brand, lodgingchain;` without a WHERE clause, each row from the brand table will be paired with every row from the lodgingchain table. If your brand table has 100 rows and your lodgingchain table has 500 rows, you'll end up with 50,000 rows in your result set. 
+
+A cross-product in SQL occurs when you join two tables without specifying a join condition. This creates a result set containing every possible combination of rows from both tables. For example, if you run `SELECT * FROM brand, lodgingchain;` without a WHERE clause, each row from the brand table will be paired with every row from the lodgingchain table. If your brand table has 100 rows and your lodgingchain table has 500 rows, you'll end up with 50,000 rows in your result set.
 
 Cross-products are rarely useful in practical applications and can cause serious performance problems with large tables, which is why properly specifying join conditions with WHERE clauses is essential for efficient queries.
 :::
@@ -337,12 +366,12 @@ The **GROUP BY** clause in SQL allows you to organize similar data into groups a
 
 Here's how it works:
 
-- **Basic purpose**: Groups rows that have the same values in specified columns
-- **Typical usage**: Used with aggregate functions (COUNT, SUM, AVG, etc.) to perform calculations on each group
-- **Example syntax**: `SELECT chainHQ, COUNT(*) FROM lodgingChaing GROUP BY chainHQ;`
-- **Result**: One row for each unique value in the grouped column(s)
-- **Multiple columns**: You can group by multiple columns like `GROUP BY department, job_title`
-- **Common requirement**: Generally, columns in the SELECT list must either be part of the GROUP BY clause or used within an aggregate function
+-   **Basic purpose**: Groups rows that have the same values in specified columns
+-   **Typical usage**: Used with aggregate functions (COUNT, SUM, AVG, etc.) to perform calculations on each group
+-   **Example syntax**: `SELECT chainHQ, COUNT(*) FROM lodgingChaing GROUP BY chainHQ;`
+-   **Result**: One row for each unique value in the grouped column(s)
+-   **Multiple columns**: You can group by multiple columns like `GROUP BY department, job_title`
+-   **Common requirement**: Generally, columns in the SELECT list must either be part of the GROUP BY clause or used within an aggregate function
 
 ``` {.sql .interactive .hr2}
 SELECT headquarters, COUNT(*) FROM lodgingchain 
@@ -356,18 +385,21 @@ SELECT headquarters, COUNT(*) FROM lodgingchain
 *Report number of brands in each chain by chain name (not chainID).*
 
 ``` {.sql .interactive .hr2}
-
+SELECT chainName, COUNT(brandName) AS NumBrands
+    FROM brand, lodgingchain 
+    WHERE brand.chainID = lodgingchain.chainID
+    GROUP BY chainName;
 ```
 
 ### HAVING
 
-In SQL, the `HAVING` clause is used to filter the results of a `GROUP BY` query. It is like `WHERE` clause for grouped results. However, `HAVING` allows you to filter groups based on aggregate functions (like `COUNT()`, `SUM()`, `AVG()`, etc.), which cannot be done using the `WHERE` clause. 
+In SQL, the `HAVING` clause is used to filter the results of a `GROUP BY` query. It is like `WHERE` clause for grouped results. However, `HAVING` allows you to filter groups based on aggregate functions (like `COUNT()`, `SUM()`, `AVG()`, etc.), which cannot be done using the `WHERE` clause.
 
-::: {.callout-note}
+::: callout-note
 The `WHERE` clause filters rows before they are grouped, while `HAVING` filters groups after the aggregation is done.
 :::
 
-Consider the previous example. We can easily filter the results and keep only, for example, countries with at least 3 headquarters. 
+Consider the previous example. We can easily filter the results and keep only, for example, countries with at least 3 headquarters.
 
 ``` {.sql .interactive .hr2}
 SELECT headquarters, COUNT(*) FROM lodgingchain 
@@ -380,24 +412,26 @@ SELECT headquarters, COUNT(*) FROM lodgingchain
 *Report the average room area and number of brands for all chains that own more than one brand*
 
 ``` {.sql .interactive .hr2}
-
+SELECT chainName, AVG(brandMinSqFt) AS avgArea, COUNT(*) AS totalBrands
+    FROM brand, lodgingchain 
+    WHERE lodgingchain.chainID = brand.chainID  
+    GROUP BY chainName 
+    HAVING COUNT(*) >= 2;
 ```
 
 ## Subqueries
 
 A **subquery** is a query that is nested inside another query. It is used to retrieve data that will be used in the main query for filtering, selecting, or computing results. Subqueries can be placed in the `SELECT`, `FROM`, or `WHERE` clauses of a SQL query.
 
-There are two main types of subqueries:
-1. **Scalar subqueries**: Return a single value.
-2. **Table subqueries**: Return multiple rows and columns.
+There are two main types of subqueries: 1. **Scalar subqueries**: Return a single value. 2. **Table subqueries**: Return multiple rows and columns.
 
 For now, we will only focus on scalar subqueries.
 
 **When to Use Subqueries**:
 
-- When you need to compare a value in a column with a result from another query.
-- When you want to perform an operation on a subset of data before using it in the main query.
-- When a join is not possible or too complex to use.
+-   When you need to compare a value in a column with a result from another query.
+-   When you want to perform an operation on a subset of data before using it in the main query.
+-   When a join is not possible or too complex to use.
 
 ### Example of a Subquery in the `WHERE` Clause:
 
@@ -407,9 +441,9 @@ For now, we will only focus on scalar subqueries.
 SELECT brandName FROM lodgingChain, brand 
   WHERE lodgingChain.chainID = brand.chainID 
   AND headquarters IN (SELECT headquarters 
-				FROM lodgingChain, brand
-				WHERE lodgingChain.chainID = brand.chainID 
-				AND brandName='Grand Hyatt');
+                FROM lodgingChain, brand
+                WHERE lodgingChain.chainID = brand.chainID 
+                AND brandName='Grand Hyatt');
 ```
 
 A subquery in the `WHERE` clause can be used to filter results based on data from another table. You can run the subquery as a separate query and see its results.
@@ -423,14 +457,16 @@ SELECT headquarters FROM lodgingChain, brand
 ### Exercise
 
 *Report all data about the oldest chain with worldwide presence (i.e., founded earliest)*
-``` {.sql .interactive .hr2}
 
+``` {.sql .interactive .hr2}
+SELECT * FROM lodgingchain 
+  WHERE yearfounded = (
+    SELECT MIN(yearfounded) FROM lodgingchain);
 ```
 
 ## Extra practice cell
 
 ``` {.sql .interactive .hr2}
-
 ```
 
 ------------------------------------------------------------------------

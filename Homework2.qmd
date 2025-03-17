@@ -1,6 +1,6 @@
 ---
 title: "Homework2"
-draft: true
+#draft: true
 author: "Dr. Bartosiak"
 format: live-html
 filters:
@@ -21,6 +21,7 @@ The following queries use the **classicmodels** schema.
 1.  How many unique products are in the table products?
 
 ``` {.sql .interactive .cm}
+
 ```
 
 2.  What is the total number of products and the total quantity of all products?
@@ -77,7 +78,7 @@ The following queries use the **classicmodels** schema.
     
 ```
 
-11. Report those payments greater than \$100,000. Group the report by customer name. Sort the report so the customer who made the highest payment appears first.
+11. Report those payments greater than $100,000. Group the report by customer name. Sort the report so the customer who made the highest payment appears first.
 
 ``` {.sql .interactive .cm}
     

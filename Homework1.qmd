@@ -23,17 +23,16 @@ The following queries use the **classicmodels** schema. All queries use the **pr
 :::
 :::::
 
-
 1.  Prepare a list of products sorted by product name in descending order.
 
     ``` {.sql .interactive .cm}
-
+    
     ```
 
 2.  List the product names and their quantity available from high to low?
 
     ``` {.sql .interactive .cm}
-  
+
     ```
 
 3.  Report the MSRP for the products in “Vintage Cars” category?
@@ -83,7 +82,6 @@ The following queries use the **classicmodels** schema. All queries use the **pr
     ``` {.sql .interactive .cm}
     
     ```
-
 
 ```{=html}
 <div>

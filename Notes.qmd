@@ -1,0 +1,57 @@
+---
+title: "Notes"
+---
+
+
+## Regular expressions
+In SQL, `REGEXP` (short for **regular expression**) is used to match a string against a pattern. It allows you to search for complex patterns in text data. It is often used to perform advanced searches, such as matching substrings, validating formats, or finding specific patterns in a column.
+
+For example, the query below lists all brands containing 'Hotel' in their name. We don't know the exact names. Just that small piece.
+
+``` {.sql .interactive .hr2}
+SELECT brandName FROM brand
+		WHERE brandName REGEXP 'hotel';
+```
+
+::: {.callout-note}
+Pay attention how the syntax for REGEXP uses the WHERE clause (which is, again, great!🤩 because you already know how to use WHERE).
+:::
+
+Common Regular Expression Syntax:
+
+- `^` : Matches the start of a string.
+- `$` : Matches the end of a string.
+- `.` : Matches any single character.
+- `*` : Matches 0 or more occurrences of the preceding element.
+- `+` : Matches 1 or more occurrences of the preceding element.
+- `[]` : Matches any character within the brackets.
+- `[A-Z]` : Matches any upper case letter.
+- `[a-z]` : Matches any lower case letter
+- `[0-9]` : Matches any digit from 0 through to 9.
+ 
+**Examples**
+ 
+``` {.sql .interactive .hr2}
+SELECT brandName FROM brand
+		WHERE brandName REGEXP '^H';
+```
+
+``` {.sql .interactive .hr2}
+SELECT brandName FROM brand
+		WHERE brandName REGEXP '$or';
+```
+
+``` {.sql .interactive .hr2}
+SELECT headquarters FROM lodgingchain
+		WHERE headquarters REGEXP '[united]';
+```
+
+``` {.sql .interactive .hr2}
+SELECT headquarters FROM lodgingchain
+		WHERE headquarters REGEXP '[United]';
+```
+
+``` {.sql .interactive .hr2}
+SELECT headquarters FROM lodgingchain
+		WHERE headquarters REGEXP '+or';
+```

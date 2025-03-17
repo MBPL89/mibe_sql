@@ -355,7 +355,6 @@ SELECT brandSegment FROM brand;
 ## Extra practice cell
 
 ``` {.sql .interactive .hr1}
-
 ```
 
 ------------------------------------------------------------------------

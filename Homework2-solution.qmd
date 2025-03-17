@@ -14,19 +14,17 @@ databases:
 
 ## SQL - Homework 2 - solution
 
-The following queries use the **classicmodels** schema. 
+The following queries use the **classicmodels** schema.
 
 ![Source: https://www.richardtwatson.com/](images/classic_models.png){.lightbox width="550"}
 
-
-1. How many unique products are in the table products?
+1.  How many unique products are in the table products?
 
 ``` {.sql .interactive .cm}
 SELECT COUNT(DISTINCT(productCode)) FROM products;
-
 ```
 
-2. What is the total number of products and the total quantity of all products?
+2.  What is the total number of products and the total quantity of all products?
 
 ``` {.sql .interactive .cm}
 SELECT COUNT(productCode) AS TotalP, SUM(quantityInStock) AS TotalQ
@@ -34,7 +32,7 @@ FROM products;
   
 ```
 
-3. What are the minimum and maximum prices of products? 
+3.  What are the minimum and maximum prices of products?
 
 ``` {.sql .interactive .cm}
 SELECT MIN(buyPrice)AS minprice, MAX(buyPrice) AS maxprice FROM products;
@@ -42,7 +40,7 @@ SELECT MIN(buyPrice)AS minprice, MAX(buyPrice) AS maxprice FROM products;
     
 ```
 
-4. Provide the number of products by product line (hint: use group by)
+4.  Provide the number of products by product line (hint: use group by)
 
 ``` {.sql .interactive .cm}
 SELECT COUNT(productCode) AS NumberOfProducts, productline 
@@ -51,16 +49,15 @@ GROUP BY productline;
     
 ```
 
-5. Report the sales representative for each customer.
+5.  Report the sales representative for each customer.
 
 ``` {.sql .interactive .cm}
 SELECT customers.customerName, employees.lastName,employees.firstName
 FROM customers, employees 
 WHERE customers.salesRepEmployeeNumber = employees.employeeNumber;
-
 ```
 
-6. Report the total payments by date. 
+6.  Report the total payments by date.
 
 ``` {.sql .interactive .cm}
 SELECT SUM(payments.amount) AS TotalP, paymentDate 
@@ -69,7 +66,7 @@ GROUP BY paymentDate;
     
 ```
 
-7. Report the products that have not been sold.
+7.  Report the products that have not been sold.
 
 ``` {.sql .interactive .cm}
 SELECT  productName FROM products WHERE
@@ -78,17 +75,17 @@ productCode NOT IN
     
 ```
 
-8. List the amount paid by each customer.
+8.  List the amount paid by each customer.
 
 ``` {.sql .interactive .cm}
 SELECT customers.customerName, SUM(payments.amount) AS Total 
 FROM customers, payments
 WHERE customers.customerNumber = payments.customerNumber
-GROUP BY customerNumber;
+GROUP BY customers.customerNumber;
     
 ```
 
-9. How many orders have been placed by Herkku Gifts?
+9.  How many orders have been placed by Herkku Gifts?
 
 ``` {.sql .interactive .cm}
 SELECT COUNT(orderNumber) FROM orders WHERE customerNumber IN (
@@ -101,7 +98,6 @@ SELECT customerNumber FROM customers WHERE customerName = 'Herkku Gifts');
 ``` {.sql .interactive .cm}
 SELECT employees.firstName, employees.lastName FROM employees WHERE officeCode IN(
 SELECT officeCode FROM offices WHERE city = 'Boston');
-
 ```
 
 11. Report those payments greater than $100,000. Group the report by customer name. Sort the report so the customer who made the highest payment appears first.
@@ -113,7 +109,6 @@ WHERE customers.customerNumber = payments.customerNumber
 AND payments.amount > 100000
 GROUP BY customerName
 ORDER BY Total DESC;
-
 ```
 
 ```{=html}
