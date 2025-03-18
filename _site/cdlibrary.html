@@ -8,7 +8,7 @@
 
 <meta name="author" content="Dr.&nbsp;Bartosiak">
 
-<title>MIBE SQL Corner</title>
+<title>CD Library – MIBE SQL Corner</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -77,6 +77,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/interactive-sql-1.0.0/interactive-sql.css" rel="stylesheet">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -131,7 +134,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -233,7 +236,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">MIBE SQL Corner</h1>
+<h1 class="title">CD Library</h1>
 </div>
 
 
@@ -256,12 +259,56 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Welcome to the <strong>MIBE SQL Corner</strong>! This page is dedicated to all the key concepts, notes, and resources you need for mastering SQL in the Coding and Data Management course. Whether you’re just starting or refining your skills, you’ll find everything you need to excel in SQL here. Let’s dive in and sharpen those coding skills!</p>
-<p>You will also use this website to query databases. It features interactive fields, where you can type and edit your SQL queries.</p>
-<div class="interactive-sql">
-<div class="sourceCode" id="cb1"><pre class="sourceCode sql interactive hr1 code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="cd-library-challenge" class="level1">
+<h1>CD Library Challenge</h1>
+<div>
+
 </div>
+<div class="quarto-layout-panel" data-layout="[ 60, 40 ]">
+<div class="quarto-layout-row">
+<div id="first-column" class="quarto-layout-cell" style="flex-basis: 60.0%;justify-content: flex-start;">
+<p>Welcome to the CD Library Database Challenge! In this exercise, you’ll put your SQL skills to work by querying a database that manages a collection of music CDs. As future business analysts and decision-makers, you’ll need to extract meaningful insights from company databases. This challenge simulates a real-world scenario where you’ll help a music store manager understand their inventory and track popular artists. Your task is to craft SQL queries that answer specific business questions and provide actionable intelligence.</p>
+</div>
+<div id="second-column" class="quarto-layout-cell" style="flex-basis: 40.0%;justify-content: center;">
+<p><img src="images/cdlibrary.jpg" class="img-fluid" width="350"></p>
+</div>
+</div>
+</div>
+<p>This is the database model. It is a bit messy, but you will have to deal with it. <a href="images/cdlibrrymodel.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/cdlibrrymodel.png" class="img-fluid" width="550"></a></p>
+<ol type="1">
+<li><p>What are the titles of the recordings on which Asleep at the Wheel appear?</p>
+<div class="interactive-sql">
+<div class="sourceCode" id="cb1"><pre class="sourceCode sql interactive cd code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>List all CDs that have any tracks featuring Asleep at the Wheel.</p>
+<div class="interactive-sql">
+<div class="sourceCode" id="cb2"><pre class="sourceCode sql interactive cd code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>Who are the members of Manhattan Transfer?</p>
+<div class="interactive-sql">
+<div class="sourceCode" id="cb3"><pre class="sourceCode sql interactive cd code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>What CDs feature Manhattan Transfer?</p>
+<div class="interactive-sql">
+<div class="sourceCode" id="cb4"><pre class="sourceCode sql interactive cd code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>For what songs has John Hendricks written the lyrics?</p>
+<div class="interactive-sql">
+<div class="sourceCode" id="cb5"><pre class="sourceCode sql interactive cd code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>Report all compositions and their composers where more than one person was involved in composing the music.</p>
+<div class="interactive-sql">
+<div class="sourceCode" id="cb6"><pre class="sourceCode sql interactive cd code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>List all CDs featuring more than one group.</p>
+<div class="interactive-sql">
+<div class="sourceCode" id="cb7"><pre class="sourceCode sql interactive cd code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>List the composers appearing on each CD.</p>
+<div class="interactive-sql">
+<div class="sourceCode" id="cb8"><pre class="sourceCode sql interactive cd code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+</ol>
 <div>
 <!-- Footer Section -->
 <div style="
@@ -325,8 +372,9 @@ eyJjb250ZW50cyI6W119
 <script type="vfs-file">
 W10=
 </script>
-<sqlime-db name="hr1" path="https://raw.githubusercontent.com/MBPL89/dbs/refs/heads/main/htlreviews1.sql"></sqlime-db>
-<sqlime-examples db="hr1" selector="div.interactive-sql pre.hr1 code" editable=""></sqlime-examples>
+<sqlime-db name="cd" path="https://raw.githubusercontent.com/MBPL89/dbs/refs/heads/main/cdlibrary.sql"></sqlime-db>
+<sqlime-examples db="cd" selector="div.interactive-sql pre.cd code" editable=""></sqlime-examples>
+</section>
 
 </main> <!-- /main -->
 <script type="ojs-module-contents">
@@ -761,6 +809,38 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom","openEffect":"zoom"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

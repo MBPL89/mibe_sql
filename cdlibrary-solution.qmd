@@ -1,0 +1,116 @@
+---
+title: "CD Library"
+#draft: true
+author: "Dr. Bartosiak"
+format: live-html
+filters:
+  - interactive-sql
+databases:
+  - name: cd
+    path: "https://raw.githubusercontent.com/MBPL89/dbs/refs/heads/main/cdlibrary.sql"
+---
+
+# CD Library Challenge
+
+::::: {layout="[ 60, 40 ]"}
+::: {#first-column}
+Welcome to the CD Library Database Challenge! In this exercise, you'll put your SQL skills to work by querying a database that manages a collection of music CDs. As future business analysts and decision-makers, you'll need to extract meaningful insights from company databases. This challenge simulates a real-world scenario where you'll help a music store manager understand their inventory and track popular artists. Your task is to craft SQL queries that answer specific business questions and provide actionable intelligence.
+:::
+
+::: {#second-column}
+![](images/cdlibrary.jpg){width="350"}
+:::
+:::::
+
+This is the database model. It is a bit messy, but you will have to deal with it. ![](images/cdlibrrymodel.png){.lightbox width="550"}
+
+1.  What are the titles of the recordings on which Asleep at the Wheel appear?
+
+    ``` {.sql .interactive .cd}
+    SELECT comptitle, grpcdrole
+   FROM composition JOIN recording
+      ON composition.compid = recording.compid
+      JOIN group_recording ON recording.rcdid = group_recording.rcdid
+      JOIN grp ON grp.grpid = group_recording.grpid
+      WHERE grpname = 'Asleep at the Wheel';
+    ```
+
+2.  List all CDs that have any tracks featuring Asleep at the Wheel.
+
+    ``` {.sql .interactive .cd}
+    SELECT DISTINCT cd.cdid, cdtitle
+   FROM grp JOIN group_recording
+         ON grp.grpid = group_recording.grpid
+         JOIN recording ON  recording.rcdid = group_recording.rcdid
+        JOIN track ON recording.rcdid = track.rcdid
+        JOIN cd ON  cd.cdid = track.cdid 
+	    WHERE grpname = 'Asleep at the Wheel';
+    ```
+
+3.  Who are the members of Manhattan Transfer?
+
+    ``` {.sql .interactive .cd}
+    SELECT psnfname, psnlname
+ FROM grp JOIN person_group USING(grpid) JOIN person USING(psnid)
+ WHERE grpname = 'Manhattan Transfer';
+    ```
+
+4.  What CDs feature Manhattan Transfer?
+
+    ``` {.sql .interactive .cd}
+    SELECT cdtitle
+ FROM grp JOIN group_cd USING(grpid) JOIN cd USING(cdid)
+ WHERE grpname = 'Manhattan Transfer';
+    ```
+
+5.  For what songs has John Hendricks written the lyrics?
+
+    ``` {.sql .interactive .cd}
+    SELECT comptitle FROM person, person_composition, composition
+   WHERE person.psnid = person_composition.psnid
+   AND composition.compid = person_composition.compid
+   AND psnfname = 'John'
+   AND psnlname = 'Hendricks'
+   AND psncomprole = 'lyrics';
+    ```
+
+6.  Report all compositions and their composers where more than one person was involved in composing the music.
+
+    ``` {.sql .interactive .cd}
+    SELECT comptitle, psnfname, psnlname, psncomprole
+   FROM composition, person_composition, person
+      WHERE person.psnid = person_composition.psnid
+      AND composition.compid = person_composition.compid
+      AND composition.compid IN
+         (SELECT compid FROM person_composition
+            GROUP BY compid HAVING COUNT(*) > 1);
+    ```
+
+7.  List all CDs featuring more than one group.
+
+    ``` {.sql .interactive .cd}
+    SELECT cdtitle
+   FROM cd, group_cd, grp
+      WHERE cd.cdid = group_cd.cdid
+      AND group_cd.grpid=grp.grpid
+      GROUP BY cdtitle
+      HAVING COUNT(*) > 1;
+    ```
+
+8.  List the composers appearing on each CD.
+
+    ``` {.sql .interactive .cd}
+    SELECT DISTINCT cdtitle, psnfname, psnlname 
+ FROM cd, person, person_composition, composition, recording, track
+  WHERE person.psnid = person_composition.psnid
+   AND composition.compid = person_composition.compid
+   AND composition.compid = recording.compid
+   AND recording.rcdid = track.rcdid
+   AND cd.cdid = track.cdid;
+    ```
+
+```{=html}
+<div>
+  {{< include footer.html >}}
+</div>
+```

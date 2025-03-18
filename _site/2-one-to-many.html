@@ -705,10 +705,34 @@ Watch out for cross-products
 <div class="callout-body-container callout-body">
 <p>A cross-product in SQL occurs when you join two tables without specifying a join condition. This creates a result set containing every possible combination of rows from both tables. For example, if you run <code>SELECT * FROM brand, lodgingchain;</code> without a WHERE clause, each row from the brand table will be paired with every row from the lodgingchain table. If your brand table has 100 rows and your lodgingchain table has 500 rows, you’ll end up with 50,000 rows in your result set.</p>
 <p>Cross-products are rarely useful in practical applications and can cause serious performance problems with large tables, which is why properly specifying join conditions with WHERE clauses is essential for efficient queries.</p>
-</div>
-</div>
 <div class="interactive-sql">
 <div class="sourceCode" id="cb8"><pre class="sourceCode sql interactive hr2 code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> brand, lodgingchain;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The risk of homonyms
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Homonyms in database design—particularly columns with identical names across different tables—create risks. When fields like “id” or “status” appear in multiple tables but represent different concepts, developers may mistakenly join these columns or apply incorrect business logic. This confusion leads to flawed queries, unpredictable results, and potential data corruption.</p>
+<p>To prevent these issues, best practices include using descriptive, context-specific column names (e.g., “customer_id” instead of just “id”), implementing consistent naming conventions, and maintaining clear documentation of each column’s specific meaning and purpose.</p>
+<p>However, sometimes you may find a database with homonyms. Let’s take a look at our nation-stock database. Try to run the query below. What is the result? How would you change the query to get the correct result?</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/implnatstock.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="images/implnatstock.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="250"></a></p>
+</figure>
+</div>
+<div class="interactive-sql">
+<div class="sourceCode" id="cb9"><pre class="sourceCode sql interactive ns code-with-copy"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> stock, nation</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">WHERE</span> natcode <span class="op">=</span> natcode;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
 </div>
 </section>
 </section>
@@ -725,15 +749,15 @@ Watch out for cross-products
 <li><strong>Common requirement</strong>: Generally, columns in the SELECT list must either be part of the GROUP BY clause or used within an aggregate function</li>
 </ul>
 <div class="interactive-sql">
-<div class="sourceCode" id="cb9"><pre class="sourceCode sql interactive hr2 code-with-copy"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> headquarters, <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">FROM</span> lodgingchain </span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">GROUP</span> <span class="kw">BY</span> headquarters;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sql interactive hr2 code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> headquarters, <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">FROM</span> lodgingchain </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">GROUP</span> <span class="kw">BY</span> headquarters;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>GROUP BY</strong> is essential for summarizing data and generating reports that show totals, averages, or counts for different categories within your data.</p>
 <section id="exercise-2" class="level4">
 <h4 class="anchored" data-anchor-id="exercise-2">Exercise</h4>
 <p><em>Report number of brands in each chain by chain name (not chainID).</em></p>
 <div class="interactive-sql">
-<div class="sourceCode" id="cb10"><pre class="sourceCode sql interactive hr2 code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sql interactive hr2 code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="having" class="level3">
@@ -754,15 +778,15 @@ Note
 </div>
 <p>Consider the previous example. We can easily filter the results and keep only, for example, countries with at least 3 headquarters.</p>
 <div class="interactive-sql">
-<div class="sourceCode" id="cb11"><pre class="sourceCode sql interactive hr2 code-with-copy"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> headquarters, <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">FROM</span> lodgingchain </span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">GROUP</span> <span class="kw">BY</span> headquarters</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">HAVING</span> <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="op">&gt;=</span> <span class="dv">3</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sql interactive hr2 code-with-copy"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> headquarters, <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">FROM</span> lodgingchain </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">GROUP</span> <span class="kw">BY</span> headquarters</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">HAVING</span> <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="op">&gt;=</span> <span class="dv">3</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="exercise-3" class="level4">
 <h4 class="anchored" data-anchor-id="exercise-3">Exercise</h4>
 <p><em>Report the average room area and number of brands for all chains that own more than one brand</em></p>
 <div class="interactive-sql">
-<div class="sourceCode" id="cb12"><pre class="sourceCode sql interactive hr2 code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sql interactive hr2 code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -782,32 +806,32 @@ Note
 <h3 class="anchored" data-anchor-id="example-of-a-subquery-in-the-where-clause">Example of a Subquery in the <code>WHERE</code> Clause:</h3>
 <p><em>Report the name of all brands headquartered in the same country as the Grand Hyatt.</em></p>
 <div class="interactive-sql">
-<div class="sourceCode" id="cb13"><pre class="sourceCode sql interactive hr2 code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> brandName <span class="kw">FROM</span> lodgingChain, brand </span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">WHERE</span> lodgingChain.chainID <span class="op">=</span> brand.chainID </span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">AND</span> headquarters <span class="kw">IN</span> (<span class="kw">SELECT</span> headquarters </span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                <span class="kw">FROM</span> lodgingChain, brand</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                <span class="kw">WHERE</span> lodgingChain.chainID <span class="op">=</span> brand.chainID </span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                <span class="kw">AND</span> brandName<span class="op">=</span><span class="st">'Grand Hyatt'</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode sql interactive hr2 code-with-copy"><code class="sourceCode sql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> brandName <span class="kw">FROM</span> lodgingChain, brand </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">WHERE</span> lodgingChain.chainID <span class="op">=</span> brand.chainID </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">AND</span> headquarters <span class="kw">IN</span> (<span class="kw">SELECT</span> headquarters </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                <span class="kw">FROM</span> lodgingChain, brand</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>                <span class="kw">WHERE</span> lodgingChain.chainID <span class="op">=</span> brand.chainID </span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>                <span class="kw">AND</span> brandName<span class="op">=</span><span class="st">'Grand Hyatt'</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>A subquery in the <code>WHERE</code> clause can be used to filter results based on data from another table. You can run the subquery as a separate query and see its results.</p>
 <div class="interactive-sql">
-<div class="sourceCode" id="cb14"><pre class="sourceCode sql interactive hr2 code-with-copy"><code class="sourceCode sql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> headquarters <span class="kw">FROM</span> lodgingChain, brand</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">WHERE</span> lodgingChain.chainID <span class="op">=</span> brand.chainID </span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">AND</span> brandName<span class="op">=</span><span class="st">'Grand Hyatt'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode sql interactive hr2 code-with-copy"><code class="sourceCode sql"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> headquarters <span class="kw">FROM</span> lodgingChain, brand</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">WHERE</span> lodgingChain.chainID <span class="op">=</span> brand.chainID </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">AND</span> brandName<span class="op">=</span><span class="st">'Grand Hyatt'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="exercise-4" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-4">Exercise</h3>
 <p><em>Report all data about the oldest chain with worldwide presence (i.e., founded earliest)</em></p>
 <div class="interactive-sql">
-<div class="sourceCode" id="cb15"><pre class="sourceCode sql interactive hr2 code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode sql interactive hr2 code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
 <section id="extra-practice-cell" class="level2">
 <h2 class="anchored" data-anchor-id="extra-practice-cell">Extra practice cell</h2>
 <div class="interactive-sql">
-<div class="sourceCode" id="cb16"><pre class="sourceCode sql interactive hr2 code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode sql interactive hr2 code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <hr>
 <div class="disclaimer">
@@ -889,6 +913,8 @@ W10=
 </script>
 <sqlime-db name="hr2" path="https://raw.githubusercontent.com/MBPL89/dbs/refs/heads/main/htlreviews2.sql"></sqlime-db>
 <sqlime-examples db="hr2" selector="div.interactive-sql pre.hr2 code" editable=""></sqlime-examples>
+<sqlime-db name="ns" path="https://raw.githubusercontent.com/MBPL89/dbs/refs/heads/main/natstock.sql"></sqlime-db>
+<sqlime-examples db="ns" selector="div.interactive-sql pre.ns code" editable=""></sqlime-examples>
 </section>
 </section>
 
@@ -1325,7 +1351,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","loop":false,"selector":".lightbox","openEffect":"zoom","descPosition":"bottom"});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","loop":false,"closeEffect":"zoom","descPosition":"bottom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

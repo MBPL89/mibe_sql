@@ -348,17 +348,36 @@ SELECT brandName, headquarters
     ORDER BY brandName;
 ```
 
-::: callout-tip
+::: {.callout-tip}
 ## Watch out for cross-products
-
-A cross-product in SQL occurs when you join two tables without specifying a join condition. This creates a result set containing every possible combination of rows from both tables. For example, if you run `SELECT * FROM brand, lodgingchain;` without a WHERE clause, each row from the brand table will be paired with every row from the lodgingchain table. If your brand table has 100 rows and your lodgingchain table has 500 rows, you'll end up with 50,000 rows in your result set.
+A cross-product in SQL occurs when you join two tables without specifying a join condition. This creates a result set containing every possible combination of rows from both tables. For example, if you run `SELECT * FROM brand, lodgingchain;` without a WHERE clause, each row from the brand table will be paired with every row from the lodgingchain table. If your brand table has 100 rows and your lodgingchain table has 500 rows, you'll end up with 50,000 rows in your result set. 
 
 Cross-products are rarely useful in practical applications and can cause serious performance problems with large tables, which is why properly specifying join conditions with WHERE clauses is essential for efficient queries.
-:::
 
 ``` {.sql .interactive .hr2}
 SELECT * FROM brand, lodgingchain;
 ```
+
+:::
+
+
+::: {.callout-warning}
+## The risk of homonyms
+Homonyms in database design—particularly columns with identical names across different tables—create risks. When fields like "id" or "status" appear in multiple tables but represent different concepts, developers may mistakenly join these columns or apply incorrect business logic. This confusion leads to flawed queries, unpredictable results, and potential data corruption. 
+
+To prevent these issues, best practices include using descriptive, context-specific column names (e.g., "customer_id" instead of just "id"), implementing consistent naming conventions, and maintaining clear documentation of each column's specific meaning and purpose.
+
+However, sometimes you may find a database with homonyms. Let's take a look at our nation-stock database. Try to run the query below. What is the result? How would you change the query to get the correct result? 
+
+![](images/implnatstock.png){.lightbox fig-align="center" width="250"} 
+
+``` {.sql .interactive .ns}
+SELECT * FROM stock, nation
+	WHERE stock.natcode = nation.natcode;
+	
+```
+
+:::
 
 ## Grouping the results
 

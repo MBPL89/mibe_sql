@@ -1,0 +1,83 @@
+---
+title: "CD Library"
+#draft: true
+author: "Dr. Bartosiak"
+format: live-html
+filters:
+  - interactive-sql
+databases:
+  - name: cd
+    path: "https://raw.githubusercontent.com/MBPL89/dbs/refs/heads/main/cdlibrary.sql"
+---
+
+
+# CD Library Challenge
+
+::::: {layout="[ 60, 40 ]"}
+::: {#first-column}
+Welcome to the CD Library Database Challenge! In this exercise, you'll put your SQL skills to work by querying a database that manages a collection of music CDs. As future business analysts and decision-makers, you'll need to extract meaningful insights from company databases. This challenge simulates a real-world scenario where you'll help a music store manager understand their inventory and track popular artists. Your task is to craft SQL queries that answer specific business questions and provide actionable intelligence. 
+:::
+
+::: {#second-column}
+![](images/cdlibrary.jpg){width="350"}
+:::
+:::::
+
+This is the database model. It is a bit messy, but you will have to deal with it.
+![](images/cdlibrrymodel.png){.lightbox width="550"}
+
+1.  What are the titles of the recordings on which Asleep at the Wheel appear?
+
+    ``` {.sql .interactive .cd}
+    
+    ```
+
+2.  List all CDs that have any tracks featuring Asleep at the Wheel.
+
+    ``` {.sql .interactive .cd}
+
+    ```
+
+3.  Who are the members of Manhattan Transfer?
+
+    ``` {.sql .interactive .cd}
+    
+    ```
+
+4.  What CDs feature Manhattan Transfer?
+
+    ``` {.sql .interactive .cd}
+    
+    ```
+
+5.  For what songs has John Hendricks written the lyrics?
+
+    ``` {.sql .interactive .cd}
+    
+    ```
+
+6.  Report all compositions and their composers where more than one person was involved in composing
+the music.
+
+    ``` {.sql .interactive .cd}
+    
+    ```
+
+7.  List all CDs featuring more than one group.
+
+    ``` {.sql .interactive .cd}
+    
+    ```
+
+8.  List the composers appearing on each CD.
+
+    ``` {.sql .interactive .cd}
+    
+    ```
+
+
+```{=html}
+<div>
+  {{< include footer.html >}}
+</div>
+```
