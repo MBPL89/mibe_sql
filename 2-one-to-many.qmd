@@ -456,6 +456,21 @@ SELECT headquarters FROM lodgingChain, brand
 
 ------------------------------------------------------------------------
 
+
+
+::::: {layout="[ 70, 30 ]"}
+::: {#first-column}
+That's it for now, but this is just the beginning! 🎉
+
+There’s so much more to explore. With each step, you’ll unlock more powerful ways to interact with databases and make sense of data. Keep practicing, stay curious, and get ready for even more exciting topics ahead! 
+:::
+
+::: {#second-column}
+![](gifs/hobbit-adventure.gif)
+:::
+:::::
+
+
 ::: disclaimer
 <p><strong>Images and GIFs Disclaimer:</strong> Some of the images and GIFs used on this website are not owned by me. They are used for educational and illustrative purposes only. All rights belong to their respective owners. If you believe any content violates copyright, please contact me for prompt removal.</p>
 :::

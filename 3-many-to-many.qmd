@@ -13,6 +13,28 @@ databases:
     path: "https://raw.githubusercontent.com/MBPL89/dbs/refs/heads/main/htlreviews3.sql"
 ---
 
+# Database Modelling
+
+One-to-many relationship will not always be enough to represent all the situations in real life. 
+
+## A sales form example
+
+A sales form is a document or (digital) record that captures details of a sale, including the products sold, the quantities, the price, the date, and the customer information. If you think about it, it would be hard to design a one-to-many relationship for a sales form:
+
+- You can sell (conceptually) the same item many times.
+  (E.g. Yesterday you sold two IPhones. Today you also sold an IPhone.)
+
+- In one sale, you can sell various products.
+  (E.g. A client bought an Iphone and an IPad.)
+
+To represent this situation in database modeling, we would need a **many-to-many relationship** between sales and products. This is because a single sale can include multiple products, and the same product can be sold in multiple sales. To model this relationship, a junction table (often called sales_details or order_items) is used, linking the sales table (which stores each transaction) with the products table. This table typically includes fields such as sale_id, product_id, quantity, and price. The many-to-many nature of this relationship allows for flexibility in tracking sales history and inventory management.
+
+## Implementing many-to-many
+
+In a **many-to-many (m:m) relationship**, a **third entity** is required to properly map the connection between the two related entities. This third entity, known as an **associative entity**, acts as a bridge between them. In database modeling, the **associative table** includes two **foreign keys**, one for each of the entities in the m:m relationship, ensuring that each instance of the relationship is properly recorded. Additionally, a foreign key can also be part of the **primary key** of the associative entity.  
+
+For example, in a sales database, a `LINEITEM` table is used to associate `SALE` and `PRODUCT`. The `LINEITEM` table is identified by concatenating `lineno` and `saleno`, as indicated by the **+ on the crow’s foot notation**. This structure ensures data integrity and enforces the same relational rules as any other table in the database.
+
 ## Test
 
 ``` {.sql .interactive .hr3}
