@@ -361,6 +361,7 @@ SELECT DISTINCT brandSegment FROM brand;
 ## Extra practice cell
 
 ``` {.sql .interactive .hr1}
+
 ```
 
 ------------------------------------------------------------------------

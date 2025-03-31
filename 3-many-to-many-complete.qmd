@@ -55,24 +55,28 @@ Let's go back to our hotel database. So far it was a fairly simple database. How
 
 **How would you model the following scenario?** - An author can write reviews about many hotels. - A hotel can have reviews written by many authors.
 
+::: {.callout-note collapse="true"}
+![](images/reviewmodel.png){fig-align="center" width="550"}
+:::
 
 ## Database Manipulation
 
-So far, we’ve learned how to join tables using the `WHERE` clause—this is known as an implicit join.
+So far, we’ve learned how to join tables using the `WHERE` clause—this is known as an implicit join. 
 
-::: callout-note
+::: {.callout-note}
 *Implicit JOIN (OR "Comma syntax" JOIN)*
 
 `SELECT ... FROM ..., ... WHERE fk = pk;`
 
 `SELECT * FROM table1, table2 WHERE table1.id = table2.id;`
+
 :::
 
 While implicit joins work, SQL also provides a more structured way to combine tables: explicit joins using keywords like `JOIN ... ON`.
 
 The key difference is that implicit joins mix filtering (`WHERE`) with table relationships, making queries harder to read as they grow. Explicit joins, on the other hand, separate the logic of joining tables from filtering rows, improving readability and maintainability.
 
-::: callout-note
+::: {.callout-note}
 *Explicit JOIN*
 
 `SELECT ... FROM ... JOIN ... ON fk = pk;`
@@ -82,24 +86,28 @@ The key difference is that implicit joins mix filtering (`WHERE`) with table rel
 
 Different join syntaxes exist because SQL is designed to be flexible. In some cases, explicit joins provide better performance and clarity, especially when dealing with complex queries or different types of joins (we will see them later).
 
-There many ways to JOIN tbles in SQL. All these methods are called Equijoin.
+There many ways to JOIN tbles in SQL. All these methods are called Equijoin. 
 
 Compare These queries:
 
 ``` {.sql .interactive .hr3}
 SELECT * FROM brand, lodgingchain WHERE brand.chainId = lodgingchain.chainId;
+
 ```
 
 ``` {.sql .interactive .hr3}
 SELECT * FROM brand JOIN lodgingchain ON brand.chainId = lodgingchain.chainId;
+
 ```
 
 ``` {.sql .interactive .hr3}
 SELECT * FROM brand NATURAL JOIN lodgingchain;
+
 ```
 
 ``` {.sql .interactive .hr3}
 SELECT * FROM brand JOIN lodgingchain USING(chainId);
+
 ```
 
 ### Three table join
@@ -109,26 +117,42 @@ List the authors that have reviewed hotels. Report the author name, the hotel ID
 Use all four methods
 
 implicit JOIN (WHERE)
-
 ``` {.sql .interactive .hr3}
+SELECT authorNickname, hotel.hotelId, hotelName
+ FROM author, review, hotel
+ WHERE review.authorId = author.authorId
+ AND review.hotelId = hotel.hotelId
+ ORDER BY authorNickname;
 
 ```
 
 NATURAL JOIN
-
 ``` {.sql .interactive .hr3}
+SELECT authorNickname, hotelId, hotelName 
+ FROM author 
+  NATURAL JOIN review 
+  NATURAL JOIN hotel 
+ ORDER BY authorNickname;
 
 ```
 
 JOIN ... USING
-
 ``` {.sql .interactive .hr3}
-
+SELECT authorNickname, hotelId, hotelName 
+ FROM author 
+  JOIN review USING(authorId) 
+  JOIN hotel USING(hotelId) 
+ ORDER BY authorNickname;
+ 
 ```
 
 JOIN ... ON
-
 ``` {.sql .interactive .hr3}
+SELECT authorNickname, hotel.hotelId, hotelName
+ FROM author JOIN review JOIN hotel
+  ON  hotel.hotelId = review.hotelId
+  AND review.authorId = author.authorId
+ORDER BY authorNickname;
 
 ```
 
@@ -136,20 +160,20 @@ JOIN ... ON
 
 **NATURAL JOIN**
 
--   Join on “same” column (name and data type)
--   Risky: the condition is implicit
+* Join on “same” column (name and data type)
+* Risky: the condition is implicit 
 
 **USING()**
 
--   Explicitly specifies columns in the equijoin
--   Allows multiple (comma separated) columns
+* Explicitly specifies columns in the equijoin
+* Allows multiple (comma separated) columns 
 
-**ON**
+**ON** 
 
--   The ON clause enables multiple conditions
--   Logical operator can be used to combine condition
--   ON and USING are mutually exclusive
--   ON enables inequality joins (Theta JOIN – more later)
+* The ON clause enables multiple conditions
+* Logical operator can be used to combine condition
+* ON and USING are mutually exclusive
+* ON enables inequality joins (Theta JOIN – more later) 
 
 ### JOIN Variations
 
@@ -157,7 +181,7 @@ So far, you've learner about `INNER JOIN`, which is the JOIN that returns only t
 
 However, there are different JOINS too. An **OUTER JOIN** is a powerful SQL feature used when you want to retain *"dangling tuples"*—rows that don’t have a match in the other table. Unlike inner joins, which only return matching records, outer joins ensure that unmatched rows from one or both tables are included in the results. These missing values are padded with `NULLs` based on the type of outer join used.
 
--   A `LEFT OUTER JOIN` returns all rows from the left table, along with matching rows from the right table. If there’s no match, NULLs are used for the right table’s columns.
+* A `LEFT OUTER JOIN` returns all rows from the left table, along with matching rows from the right table. If there’s no match, NULLs are used for the right table’s columns.
 
 ::::: {layout="[ 30, 70 ]"}
 ::: {#first-column}
@@ -168,28 +192,32 @@ However, there are different JOINS too. An **OUTER JOIN** is a powerful SQL feat
 ![](images/table_left.png){.lightbox fig-align="center" width="350"}
 
 `SELECT * FROM t1 LEFT OUTER JOIN t2 USING (id);`
+
 :::
 :::::
 
--   A `RIGHT OUTER JOIN` does the opposite—it keeps all rows from the right table and includes matching rows from the left table, filling in NULLs when no match is found.
+* A `RIGHT OUTER JOIN` does the opposite—it keeps all rows from the right table and includes matching rows from the left table, filling in NULLs when no match is found.
 
 ::::: {layout="[ 30, 70 ]"}
 ::: {#first-column}
 ![](images/right_join.png){fig-align="center" width="350"}
+
 :::
 
 ::: {#second-column}
 ![](images/table_right.png){.lightbox fig-align="center" width="350"}
 
 `SELECT * FROM t1 RIGHT OUTER JOIN t2 USING (id);`
+
 :::
 :::::
 
--   A `FULL OUTER JOIN` includes all rows from both tables, ensuring that even non-matching rows from either table appear, with NULLs where data is missing.
+* A `FULL OUTER JOIN` includes all rows from both tables, ensuring that even non-matching rows from either table appear, with NULLs where data is missing.
 
 ::::: {layout="[ 30, 70 ]"}
 ::: {#first-column}
 ![](images/full_join.png){fig-align="center" width="350"}
+
 :::
 
 ::: {#second-column}
@@ -205,13 +233,19 @@ Outer joins are especially useful for analyzing incomplete data, maintaining rec
 
 Provide a list of all chain names and their respective brands. Order the list by chain name.
 
+**Tip:** Keep in mind that not all chains have sub-brands.
+
 ``` {.sql .interactive .hr3}
+SELECT chainName, brandName
+ FROM lodgingchain LEFT OUTER JOIN brand USING(chainId)
+ ORDER BY chainName;
 
 ```
 
 ## Extra practice cell
 
 ``` {.sql .interactive .hr3}
+
 
 ```
 
