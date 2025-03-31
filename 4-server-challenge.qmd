@@ -1,0 +1,127 @@
+---
+title: "Server Connections - practice"
+#draft: true
+author: "Dr. Bartosiak"
+format: 
+  live-html:
+    toc: true
+    toc-depth: 2
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+editor_options: 
+  chunk_output_type: console
+---
+
+{{< include ./_extensions/r-wasm/live/_knitr.qmd >}} {{< include ./_extensions/r-wasm/live/_gradethis.qmd >}}
+
+## Exercise 1: Hotel Brand Performance Analysis
+
+### Objective:
+Write a Python program that connects to the database, retrieves hotel ratings and brand information, and analyzes the average rating for each brand.
+
+### Instructions:
+
+* Connect to the database using Python (mysql.connector or SQLAlchemy).
+* Retrieve the average hotelStarRating for each brand.
+* Display the results in a sorted table (highest-rated brands first).
+
+### Hints:
+
+* The hotel table contains the hotelStarRating and brandId.
+* The brand table contains brand details.
+* Use GROUP BY and AVG() in SQL.
+
+### Expected Outcome:
+A dictionary of brands with their average star rating, sorted by star rating.
+
+```
+'Park Hyatt': 5.0,
+ 'Mandarin Oriental': 5.0,
+ 'Luxury Collection': 5.0,
+ 'Four Seasons': 4.96154,
+ 'Ritz-Carlton': 4.95833,
+ 'Waldorf Astoria Hotels & Resorts': 4.83333,
+ 'Taj': 4.66667,
+ 'Conrad': 4.66667,
+ 'Sofitel': 4.4,
+ ...
+```
+
+### Challenge 
+Visualize the data for the top 30 hotels using matplotlib (bar chart).
+
+![](images/output41.png){fig-align="center" width="550"}
+
+## Exercise 2: Sentiment Analysis on Hotel Reviews
+
+### Objective:
+Write a Python program that connects to a MySQL database, retrieves hotel reviews and their ratings, and classifies each review as Positive, Neutral, or Negative based on its rating.
+
+### Classification Rules:
+
+* Negative Review: Rating < 3
+* Neutral Review: Rating = 3
+* Positive Review: Rating > 3
+
+### Tasks:
+
+1. Connect to the MySQL database
+* Use MySQL Connector (mysql.connector) to connect to the database.
+* Retrieve reviews and ratings
+* Query the database to get the hotel name, review text, and rating.
+
+2. Classify reviews based on rating
+* Use the classification rules to assign a sentiment category (Positive, Neutral, Negative).
+* Count how many reviews fall into each category for each hotel.
+
+3. Find and display:
+* The top 5 hotels with the most positive reviews.
+* The top 5 hotels with the most negative reviews.
+
+### Expected output 
+
+```
+Top 5 Hotels with Most Positive Reviews:
+The New Yorker Hotel: 584 positive reviews
+Distrikt Hotel: 580 positive reviews
+Staybridge Suites Times Square - New York City: 558 positive reviews
+Hilton Garden Inn Times Square: 556 positive reviews
+Le Parker Meridien: 552 positive reviews
+
+Top 5 Hotels with Most Negative Reviews:
+Hotel Pennsylvania New York: 362 negative reviews
+Hudson New York: 202 negative reviews
+Milford Plaza Hotel: 184 negative reviews
+Hotel Carter: 147 negative reviews
+Park Central: 122 negative reviews
+```
+
+### Challenge 
+Use matplotlib to create a pie chart or histogram.
+
+![](images/output42.png){fig-align="center" width="550"}
+
+------------------------------------------------------------------------
+
+
+::: disclaimer
+<p><strong>Images and GIFs Disclaimer:</strong> Some of the images and GIFs used on this website are not owned by me. They are used for educational and illustrative purposes only. All rights belong to their respective owners. If you believe any content violates copyright, please contact me for prompt removal.</p>
+:::
+
+```{=html}
+<style>
+.disclaimer {
+  font-size: 0.8em;
+  color: #666;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+  margin-top: 20px;
+}
+</style>
+```
+
+```{=html}
+<div>
+  {{< include footer.html >}}
+</div>
+```
