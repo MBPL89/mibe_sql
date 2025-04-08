@@ -1,6 +1,5 @@
 ---
 title: "Many-to-Many relationship"
-draft: true
 author: "Dr. Bartosiak"
 format: 
   live-html:

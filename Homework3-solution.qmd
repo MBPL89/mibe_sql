@@ -1,5 +1,5 @@
 ---
-title: "Homework4 solution"
+title: "Homework3 solution"
 draft: true
 author: "Dr. Bartosiak"
 format: live-html
@@ -12,7 +12,7 @@ databases:
 
 # Coding and Database Managment
 
-## SQL - Homework 4 - solution
+## SQL - Homework 3 - solution
 
 The following queries use the **classicmodels** schema.
 
@@ -66,6 +66,10 @@ SELECT customerName, orderNumber
 4.  Are there any products that appear on all orders? If so, list their product code and the total number of orders they appear in. Rename the columns as 'Total Orders'.
 
 ``` {.sql .interactive .cm}
+SELECT products.productCode, COUNT(*) as 'Total Orders'
+ FROM products JOIN orderdetails ON products.productCode = orderdetails.productCode
+ GROUP BY products.productCode
+ HAVING COUNT(DISTINCT orderNumber) = (SELECT COUNT(DISTINCT orderNumber) FROM orders);
 ```
 
 5.  Report those orders containing products sold at a discount (i.e., sold at a price less than the product's MSRP). For these orders report the order number, the product code of the items sold at discount and both the price and the MSRP.

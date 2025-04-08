@@ -8,7 +8,7 @@
 
 <meta name="author" content="Dr.&nbsp;Bartosiak">
 
-<title>Many-to-Many relationship – MIBE SQL Corner</title>
+<title>Homework3 – MIBE SQL Corner</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -116,7 +116,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -254,27 +254,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul class="collapse">
-  <li><a href="#database-modelling" id="toc-database-modelling" class="nav-link active" data-scroll-target="#database-modelling">Database Modelling</a>
-  <ul class="collapse">
-  <li><a href="#a-sales-form-example" id="toc-a-sales-form-example" class="nav-link" data-scroll-target="#a-sales-form-example">A sales form example</a></li>
-  <li><a href="#implementing-many-to-many" id="toc-implementing-many-to-many" class="nav-link" data-scroll-target="#implementing-many-to-many">Implementing many-to-many</a></li>
-  <li><a href="#database-manipulation" id="toc-database-manipulation" class="nav-link" data-scroll-target="#database-manipulation">Database Manipulation</a></li>
-  <li><a href="#extra-practice-cell" id="toc-extra-practice-cell" class="nav-link" data-scroll-target="#extra-practice-cell">Extra practice cell</a></li>
-  </ul></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Many-to-Many relationship</h1>
+<h1 class="title">Homework3</h1>
 </div>
 
 
@@ -297,290 +283,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="database-modelling" class="level1">
-<h1>Database Modelling</h1>
-<p>One-to-many relationship will not always be enough to represent all the situations in real life.</p>
-<section id="a-sales-form-example" class="level2">
-<h2 class="anchored" data-anchor-id="a-sales-form-example">A sales form example</h2>
-<p>A sales form is a document or (digital) record that captures details of a sale, including the products sold, the quantities, the price, the date, and the customer information.</p>
-<p><a href="images/salesform.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/salesform.png" class="img-fluid" width="550"></a></p>
-<p>If you think about it, it would be hard to design a one-to-many relationship for a sales form:</p>
-<ul>
-<li><p>You can sell (conceptually) the same item many times. (E.g. Yesterday you sold two IPhones. Today you also sold an IPhone.)</p></li>
-<li><p>In one sale, you can sell various products. (E.g. A client bought an Iphone and an IPad.)</p></li>
-</ul>
-<p>To represent this situation in database modeling, we would need a <strong>many-to-many relationship</strong> between sales and products. This is because a single sale can include multiple products, and the same product can be sold in multiple sales. To model this relationship, a junction table (often called sales_details or order_items) is used, linking the sales table (which stores each transaction) with the products table. This table typically includes fields such as sale_id, product_id, quantity, and price. The many-to-many nature of this relationship allows for flexibility in tracking sales history and inventory management.</p>
-</section>
-<section id="implementing-many-to-many" class="level2">
-<h2 class="anchored" data-anchor-id="implementing-many-to-many">Implementing many-to-many</h2>
-<p>In a <strong>many-to-many (m:m) relationship</strong>, a <strong>third entity</strong> is required to properly map the connection between the two related entities. This third entity, known as an <strong>associative entity</strong>, acts as a bridge between them.</p>
-<p><a href="images/salesformmodel.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="images/salesformmodel.png" class="img-fluid" width="550"></a></p>
-<p>In database modeling, the <strong>associative table</strong> includes two <strong>foreign keys</strong>, one for each of the entities in the m:m relationship, ensuring that each instance of the relationship is properly recorded. Additionally, a foreign key can also be part of the <strong>primary key</strong> of the associative entity.</p>
-<p><a href="images/salesformtable.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="images/salesformtable.png" class="img-fluid" width="550"></a></p>
-<p>For example, in a sales database, a <code>LINEITEM</code> table is used to associate <code>SALE</code> and <code>PRODUCT</code>. The <code>LINEITEM</code> table is identified by concatenating <code>lineno</code> and <code>saleno</code>, as indicated by the <strong>+ on the crow’s foot notation</strong>. This structure ensures data integrity and enforces the same relational rules as any other table in the database.</p>
-<p>As you already know the concepts related to the implementable model, let’s take a look at many-to-many model:</p>
-<p><a href="images/implsalesform.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="images/implsalesform.png" class="img-fluid" width="550"></a></p>
-<section id="exercise" class="level3">
-<h3 class="anchored" data-anchor-id="exercise">Exercise</h3>
-<p>Let’s go back to our hotel database. So far it was a fairly simple database. However, its’ main purpose is not to track hotels. It stores data about hotel reviews, scraped from the Internet.</p>
-<p><a href="images/hotelreview.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="images/hotelreview.png" class="img-fluid" width="750"></a></p>
-<p><strong>How would you model the following scenario?</strong> - An author can write reviews about many hotels. - A hotel can have reviews written by many authors.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
+<section id="coding-and-database-managment" class="level1">
+<h1>Coding and Database Managment</h1>
+<section id="sql---homework-3" class="level2">
+<h2 class="anchored" data-anchor-id="sql---homework-3">SQL - Homework 3</h2>
+<p>The following queries use the <strong>classicmodels</strong> schema.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/reviewmodel.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="550"></p>
+<p><a href="images/classic_models.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Source: https://www.richardtwatson.com/"><img src="images/classic_models.png" class="img-fluid figure-img" width="550" alt="Source: https://www.richardtwatson.com/"></a></p>
+<figcaption>Source: https://www.richardtwatson.com/</figcaption>
 </figure>
 </div>
-</div>
-</div>
-</div>
-</section>
-</section>
-<section id="database-manipulation" class="level2">
-<h2 class="anchored" data-anchor-id="database-manipulation">Database Manipulation</h2>
-<p>So far, we’ve learned how to join tables using the <code>WHERE</code> clause—this is known as an implicit join.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><em>Implicit JOIN (OR “Comma syntax” JOIN)</em></p>
-<p><code>SELECT ... FROM ..., ... WHERE fk = pk;</code></p>
-<p><code>SELECT * FROM table1, table2 WHERE table1.id = table2.id;</code></p>
-</div>
-</div>
-<p>While implicit joins work, SQL also provides a more structured way to combine tables: explicit joins using keywords like <code>JOIN ... ON</code>.</p>
-<p>The key difference is that implicit joins mix filtering (<code>WHERE</code>) with table relationships, making queries harder to read as they grow. Explicit joins, on the other hand, separate the logic of joining tables from filtering rows, improving readability and maintainability.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><em>Explicit JOIN</em></p>
-<p><code>SELECT ... FROM ... JOIN ... ON fk = pk;</code></p>
-<p><code>SELECT * FROM table1 JOIN table2 ON table1.id = table2.id;</code></p>
-</div>
-</div>
-<p>Different join syntaxes exist because SQL is designed to be flexible. In some cases, explicit joins provide better performance and clarity, especially when dealing with complex queries or different types of joins (we will see them later).</p>
-<p>There many ways to JOIN tbles in SQL. All these methods are called Equijoin.</p>
-<p>Compare These queries:</p>
+<ol type="1">
+<li><p>Report product number, product name of products sold by order date. Order results by date (descending) and product code (ascending). Use both the USING and ON syntax for the join. Observe their different behavior.</p>
 <div class="interactive-sql">
-<div class="sourceCode" id="cb1"><pre class="sourceCode sql interactive hr3 code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> brand, lodgingchain <span class="kw">WHERE</span> brand.chainId <span class="op">=</span> lodgingchain.chainId;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sql interactive cm code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>List all the order number and status for all the orders containing the 1940 Ford Pickup Truck.</p>
 <div class="interactive-sql">
-<div class="sourceCode" id="cb2"><pre class="sourceCode sql interactive hr3 code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> brand <span class="kw">JOIN</span> lodgingchain <span class="kw">ON</span> brand.chainId <span class="op">=</span> lodgingchain.chainId;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sql interactive cm code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>List the names of customers and the corresponding order numbers for those orders from that customer that have a total value greater than $25,000? Total value is obtained by adding the price times quantity sold of all products in the order.</p>
 <div class="interactive-sql">
-<div class="sourceCode" id="cb3"><pre class="sourceCode sql interactive hr3 code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> brand <span class="kw">NATURAL</span> <span class="kw">JOIN</span> lodgingchain;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sql interactive cm code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>Are there any products that appear on all orders? If so, list their product code and the total number of orders they appear in. Rename the columns as ‘Total Orders’.</p>
 <div class="interactive-sql">
-<div class="sourceCode" id="cb4"><pre class="sourceCode sql interactive hr3 code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> brand <span class="kw">JOIN</span> lodgingchain <span class="kw">USING</span>(chainId);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<section id="three-table-join" class="level3">
-<h3 class="anchored" data-anchor-id="three-table-join">Three table join</h3>
-<p>List the authors that have reviewed hotels. Report the author name, the hotel ID and the name of the hotels. Order the output by author name.</p>
-<p>Use all four methods</p>
-<p>implicit JOIN (WHERE)</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sql interactive cm code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>Report those orders containing products sold at a discount (i.e., sold at a price less than the product’s MSRP). For these orders report the order number, the product code of the items sold at discount and both the price and the MSRP.</p>
 <div class="interactive-sql">
-<div class="sourceCode" id="cb5"><pre class="sourceCode sql interactive hr3 code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> authorNickname, hotel.hotelId, hotelName</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a> <span class="kw">FROM</span> author, review, hotel</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a> <span class="kw">WHERE</span> review.authorId <span class="op">=</span> author.authorId</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a> <span class="kw">AND</span> review.hotelId <span class="op">=</span> hotel.hotelId</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a> <span class="kw">ORDER</span> <span class="kw">BY</span> authorNickname;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>NATURAL JOIN</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sql interactive cm code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>Repeat the above query but only return the order number for the orders containing products sold at a discount.</p>
 <div class="interactive-sql">
-<div class="sourceCode" id="cb6"><pre class="sourceCode sql interactive hr3 code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> authorNickname, hotelId, hotelName </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a> <span class="kw">FROM</span> author </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">NATURAL</span> <span class="kw">JOIN</span> review </span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">NATURAL</span> <span class="kw">JOIN</span> hotel </span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a> <span class="kw">ORDER</span> <span class="kw">BY</span> authorNickname;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>JOIN … USING</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sql interactive cm code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>Report those products that have been sold with a markup of 100% or more (i.e., the priceEach is at least twice the buyPrice) on at least one sale. Provide the product code, the price at which it sold, the buy price and the MSRP. Be sure not to duplicate output unnecessarily.</p>
 <div class="interactive-sql">
-<div class="sourceCode" id="cb7"><pre class="sourceCode sql interactive hr3 code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> authorNickname, hotelId, hotelName </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a> <span class="kw">FROM</span> author </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">JOIN</span> review <span class="kw">USING</span>(authorId) </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">JOIN</span> hotel <span class="kw">USING</span>(hotelId) </span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a> <span class="kw">ORDER</span> <span class="kw">BY</span> authorNickname;</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>JOIN … ON</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sql interactive cm code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>What is the total quantity on hand for products listed in orders with staus: ‘On Hold’? Rename the quantity ordered as ‘Total Ordered’ and the quantity in stock as ‘Total on Hand’. Use the ON syntax for the JOIN.</p>
 <div class="interactive-sql">
-<div class="sourceCode" id="cb8"><pre class="sourceCode sql interactive hr3 code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> authorNickname, hotel.hotelId, hotelName</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a> <span class="kw">FROM</span> author <span class="kw">JOIN</span> review <span class="kw">JOIN</span> hotel</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">ON</span>  hotel.hotelId <span class="op">=</span> review.hotelId</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">AND</span> review.authorId <span class="op">=</span> author.authorId</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> authorNickname;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<section id="notes" class="level4">
-<h4 class="anchored" data-anchor-id="notes">Notes</h4>
-<p><strong>NATURAL JOIN</strong></p>
-<ul>
-<li>Join on “same” column (name and data type)</li>
-<li>Risky: the condition is implicit</li>
-</ul>
-<p><strong>USING()</strong></p>
-<ul>
-<li>Explicitly specifies columns in the equijoin</li>
-<li>Allows multiple (comma separated) columns</li>
-</ul>
-<p><strong>ON</strong></p>
-<ul>
-<li>The ON clause enables multiple conditions</li>
-<li>Logical operator can be used to combine condition</li>
-<li>ON and USING are mutually exclusive</li>
-<li>ON enables inequality joins (Theta JOIN – more later)</li>
-</ul>
-</section>
-</section>
-<section id="join-variations" class="level3">
-<h3 class="anchored" data-anchor-id="join-variations">JOIN Variations</h3>
-<p>So far, you’ve learner about <code>INNER JOIN</code>, which is the JOIN that returns only the rows that have matching values in both tables based on a specified condition. It eliminates unmatched rows from both tables, ensuring that only records with a relationship between them appear in the result set.</p>
-<p>However, there are different JOINS too. An <strong>OUTER JOIN</strong> is a powerful SQL feature used when you want to retain <em>“dangling tuples”</em>—rows that don’t have a match in the other table. Unlike inner joins, which only return matching records, outer joins ensure that unmatched rows from one or both tables are included in the results. These missing values are padded with <code>NULLs</code> based on the type of outer join used.</p>
-<ul>
-<li>A <code>LEFT OUTER JOIN</code> returns all rows from the left table, along with matching rows from the right table. If there’s no match, NULLs are used for the right table’s columns.</li>
-</ul>
-<div>
-
-</div>
-<div class="quarto-layout-panel" data-layout="[ 30, 70 ]">
-<div class="quarto-layout-row">
-<div id="first-column" class="quarto-layout-cell" style="flex-basis: 30.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/left_join.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="350"></p>
-</figure>
-</div>
-</div>
-<div id="second-column" class="quarto-layout-cell" style="flex-basis: 70.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/table_left.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="images/table_left.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="350"></a></p>
-</figure>
-</div>
-<p><code>SELECT * FROM t1 LEFT OUTER JOIN t2 USING (id);</code></p>
-</div>
-</div>
-</div>
-<ul>
-<li>A <code>RIGHT OUTER JOIN</code> does the opposite—it keeps all rows from the right table and includes matching rows from the left table, filling in NULLs when no match is found.</li>
-</ul>
-<div>
-
-</div>
-<div class="quarto-layout-panel" data-layout="[ 30, 70 ]">
-<div class="quarto-layout-row">
-<div id="first-column" class="quarto-layout-cell" style="flex-basis: 30.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/right_join.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="350"></p>
-</figure>
-</div>
-</div>
-<div id="second-column" class="quarto-layout-cell" style="flex-basis: 70.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/table_right.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="images/table_right.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="350"></a></p>
-</figure>
-</div>
-<p><code>SELECT * FROM t1 RIGHT OUTER JOIN t2 USING (id);</code></p>
-</div>
-</div>
-</div>
-<ul>
-<li>A <code>FULL OUTER JOIN</code> includes all rows from both tables, ensuring that even non-matching rows from either table appear, with NULLs where data is missing.</li>
-</ul>
-<div>
-
-</div>
-<div class="quarto-layout-panel" data-layout="[ 30, 70 ]">
-<div class="quarto-layout-row">
-<div id="first-column" class="quarto-layout-cell" style="flex-basis: 30.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/full_join.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="350"></p>
-</figure>
-</div>
-</div>
-<div id="second-column" class="quarto-layout-cell" style="flex-basis: 70.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/table_full.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="350"></p>
-</figure>
-</div>
-<p><code>SELECT * FROM t1 RIGHT OUTER JOIN t2 USING (id);</code></p>
-</div>
-</div>
-</div>
-<p>Outer joins are especially useful for analyzing incomplete data, maintaining records even when relationships are not fully established, and ensuring that no important information is lost in queries.</p>
-</section>
-<section id="exercise-1" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-1">Exercise</h3>
-<p>Provide a list of all chain names and their respective brands. Order the list by chain name.</p>
-<p><strong>Tip:</strong> Keep in mind that not all chains have sub-brands.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sql interactive cm code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>Report product code, name and MSRP for all products that have not sold any units.</p>
 <div class="interactive-sql">
-<div class="sourceCode" id="cb9"><pre class="sourceCode sql interactive hr3 code-with-copy"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> chainName, brandName</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a> <span class="kw">FROM</span> lodgingchain <span class="kw">LEFT</span> <span class="kw">OUTER</span> <span class="kw">JOIN</span> brand <span class="kw">USING</span>(chainId)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a> <span class="kw">ORDER</span> <span class="kw">BY</span> chainName;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-</section>
-<section id="extra-practice-cell" class="level2">
-<h2 class="anchored" data-anchor-id="extra-practice-cell">Extra practice cell</h2>
-<div class="interactive-sql">
-<div class="sourceCode" id="cb10"><pre class="sourceCode sql interactive hr3 code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<hr>
-<div>
-
-</div>
-<div class="quarto-layout-panel" data-layout="[ 70, 30 ]">
-<div class="quarto-layout-row">
-<div id="first-column" class="quarto-layout-cell" style="flex-basis: 70.0%;justify-content: flex-start;">
-<p>That’s it for this lesson on SQL joins! Understanding how to combine data from multiple tables is a crucial skill for making informed business decisions. Whether you’re analyzing sales trends, tracking customer behavior, or managing inventory, SQL joins help you unlock valuable insights from your data. As you continue learning, you’ll discover even more ways to refine and optimize your queries. Keep practicing, and soon, you’ll be confidently using SQL to drive smarter business strategies! 🚀</p>
-</div>
-<div id="second-column" class="quarto-layout-cell" style="flex-basis: 30.0%;justify-content: center;">
-<p><img src="images/taken.jpeg" class="img-fluid"></p>
-</div>
-</div>
-</div>
-<hr>
-<div class="disclaimer">
-<p>
-<strong>Images and GIFs Disclaimer:</strong> Some of the images and GIFs used on this website are not owned by me. They are used for educational and illustrative purposes only. All rights belong to their respective owners. If you believe any content violates copyright, please contact me for prompt removal.
-</p>
-</div>
-<style>
-.disclaimer {
-  font-size: 0.8em;
-  color: #666;
-  border-top: 1px solid #ddd;
-  padding-top: 10px;
-  margin-top: 20px;
-}
-</style>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sql interactive cm code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+</ol>
 <div>
 <!-- Footer Section -->
 <div style="
@@ -644,8 +395,8 @@ eyJjb250ZW50cyI6W119
 <script type="vfs-file">
 W10=
 </script>
-<sqlime-db name="hr3" path="https://raw.githubusercontent.com/MBPL89/dbs/refs/heads/main/htlreviews3.sql"></sqlime-db>
-<sqlime-examples db="hr3" selector="div.interactive-sql pre.hr3 code" editable=""></sqlime-examples>
+<sqlime-db name="cm" path="https://raw.githubusercontent.com/MBPL89/dbs/refs/heads/main/cm2.sql"></sqlime-db>
+<sqlime-examples db="cm" selector="div.interactive-sql pre.cm code" editable=""></sqlime-examples>
 </section>
 </section>
 
@@ -1082,7 +833,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","closeEffect":"zoom","loop":false,"descPosition":"bottom"});
+<script>var lightboxQuarto = GLightbox({"loop":false,"openEffect":"zoom","selector":".lightbox","closeEffect":"zoom","descPosition":"bottom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
