@@ -1,0 +1,38 @@
+---
+title: "Homework4"
+author: "Dr. Bartosiak"
+format: live-html
+filters:
+  - interactive-sql
+databases:
+  - name: cm
+    path: "https://raw.githubusercontent.com/MBPL89/dbs/refs/heads/main/cm2.sql"
+---
+
+# Coding and Database Managment
+
+## SQL - Homework 4
+
+::: callout-warning
+You have to run these queries in Workbench (or Python program).
+:::
+
+The following queries use the **classicmodels** schema.
+
+![Source: https://www.richardtwatson.com/](images/classic_models.png){.lightbox width="550"}
+
+1.  Who is at the top of organization?
+
+2.  Who reports to directly to William Patterson?
+
+3.  List the employees who report to those employees who report to Diane Murphy.
+
+4.  How many employees report to the Sales Manager that is employee named 'Bow Anthony'? Rename the column as "Mr. Bow's Direct Reports"
+
+5.  Find the pair of customer that have the same credit limit. Omit the customers having no credit limit (That is creditlimit = 0): Report the customer name and credit limit for each pair and be sure to avoid unnecessary duplication.
+
+```{=html}
+<div>
+  {{< include footer.html >}}
+</div>
+```

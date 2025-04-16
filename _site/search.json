@@ -707,20 +707,6 @@
     "text": "That’s it for this lesson on SQL joins! Understanding how to combine data from multiple tables is a crucial skill for making informed business decisions. Whether you’re analyzing sales trends, tracking customer behavior, or managing inventory, SQL joins help you unlock valuable insights from your data. As you continue learning, you’ll discover even more ways to refine and optimize your queries. Keep practicing, and soon, you’ll be confidently using SQL to drive smarter business strategies! 🚀\n\n\n\n\n\n\n\n\n\nImages and GIFs Disclaimer: Some of the images and GIFs used on this website are not owned by me. They are used for educational and illustrative purposes only. All rights belong to their respective owners. If you believe any content violates copyright, please contact me for prompt removal.\n\n\n\n\n\n\n  \n  \n    © 2025. All Rights Reserved.\n  \n  \n\n  \n  \n    Enabled by Dr. Marcin Bartosiak"
   },
   {
-    "objectID": "Homework4.html",
-    "href": "Homework4.html",
-    "title": "Homework4",
-    "section": "",
-    "text": "The following queries use the classicmodels schema.\n\n\n\nSource: https://www.richardtwatson.com/\n\n\n\nReport product number, product name of products sold by order date. Order results by date (descending) and product code (ascending). Use both the USING and ON syntax for the join. Observe their different behavior.\n\n\n\nList all the order number and status for all the orders containing the 1940 Ford Pickup Truck.\n\n\n\nList the names of customers and the corresponding order numbers for those orders from that customer that have a total value greater than $25,000? Total value is obtained by adding the price times quantity sold of all products in the order.\n\n\n\nAre there any products that appear on all orders? If so, list their product code and the total number of orders they appear in. Rename the columns as ‘Total Orders’.\n\n\n\nReport those orders containing products sold at a discount (i.e., sold at a price less than the product’s MSRP). For these orders report the order number, the product code of the items sold at discount and both the price and the MSRP.\n\n\n\nRepeat the above query but only return the order number for the orders containing products sold at a discount.\n\n\n\nReport those products that have been sold with a markup of 100% or more (i.e., the priceEach is at least twice the buyPrice) on at least one sale. Provide the product code, the price at which it sold, the buy price and the MSRP. Be sure not to duplicate output unnecessarily.\n\n\n\nWhat is the total quantity on hand for products listed in orders with staus: ‘On Hold’? Rename the quantity ordered as ‘Total Ordered’ and the quantity in stock as ‘Total on Hand’. Use the ON syntax for the JOIN.\n\n\n\nReport product code, name and MSRP for all products that have not sold any units.\n\n\n\n\n\n\n\n  \n  \n    © 2025. All Rights Reserved.\n  \n  \n\n  \n  \n    Enabled by Dr. Marcin Bartosiak"
-  },
-  {
-    "objectID": "Homework4.html#sql---homework-4",
-    "href": "Homework4.html#sql---homework-4",
-    "title": "Homework4",
-    "section": "",
-    "text": "The following queries use the classicmodels schema.\n\n\n\nSource: https://www.richardtwatson.com/\n\n\n\nReport product number, product name of products sold by order date. Order results by date (descending) and product code (ascending). Use both the USING and ON syntax for the join. Observe their different behavior.\n\n\n\nList all the order number and status for all the orders containing the 1940 Ford Pickup Truck.\n\n\n\nList the names of customers and the corresponding order numbers for those orders from that customer that have a total value greater than $25,000? Total value is obtained by adding the price times quantity sold of all products in the order.\n\n\n\nAre there any products that appear on all orders? If so, list their product code and the total number of orders they appear in. Rename the columns as ‘Total Orders’.\n\n\n\nReport those orders containing products sold at a discount (i.e., sold at a price less than the product’s MSRP). For these orders report the order number, the product code of the items sold at discount and both the price and the MSRP.\n\n\n\nRepeat the above query but only return the order number for the orders containing products sold at a discount.\n\n\n\nReport those products that have been sold with a markup of 100% or more (i.e., the priceEach is at least twice the buyPrice) on at least one sale. Provide the product code, the price at which it sold, the buy price and the MSRP. Be sure not to duplicate output unnecessarily.\n\n\n\nWhat is the total quantity on hand for products listed in orders with staus: ‘On Hold’? Rename the quantity ordered as ‘Total Ordered’ and the quantity in stock as ‘Total on Hand’. Use the ON syntax for the JOIN.\n\n\n\nReport product code, name and MSRP for all products that have not sold any units.\n\n\n\n\n\n\n\n  \n  \n    © 2025. All Rights Reserved.\n  \n  \n\n  \n  \n    Enabled by Dr. Marcin Bartosiak"
-  },
-  {
     "objectID": "Homework2-solution.html",
     "href": "Homework2-solution.html",
     "title": "Homework2 solution",
@@ -796,5 +782,103 @@
     "title": "Homework3 solution",
     "section": "",
     "text": "The following queries use the classicmodels schema.\n\n\n\nSource: https://www.richardtwatson.com/\n\n\n\nReport product number, product name of products sold by order date. Order results by date (descending) and product code (ascending). Use both the USING and ON syntax for the join. Observe their different behavior.\n\n\nSELECT productCode, productName, orderDate\n FROM (orders JOIN orderdetails USING(orderNumber)) JOIN products USING (productCode) \n ORDER BY orderDate DESC, productCode; \n\n\nSELECT products.productCode, productName, orderDate\n FROM orders JOIN orderdetails JOIN products \n  ON orders.orderNumber = orderdetails.orderNumber\n  AND orderdetails.productCode = products.productCode\n ORDER BY orderDate DESC, productCode;\n\n\nList all the order number and status for all the orders containing the 1940 Ford Pickup Truck.\n\n\nSELECT orderNumber, status \nFROM orders JOIN orderdetails USING(orderNumber) JOIN products USING(productCode)\n WHERE productName = '1940 Ford Pickup Truck';  \n\n\nList the names of customers and the corresponding order numbers for those orders from that customer that have a total value greater than $25,000? Total value is obtained by adding the price times quantity sold of all products in the order.\n\n\nSELECT customerName, orderNumber\nFROM customers JOIN orders USING(customerNumber) JOIN orderdetails USING(orderNumber) \nGROUP BY customerName, orderNumber\nHAVING SUM(priceEach*quantityOrdered) &gt; 25000\nORDER BY SUM(priceEach*quantityOrdered);\n    \n\n\nSELECT customerName, orderNumber\n FROM customers JOIN orders USING(customerNumber)\n WHERE orderNumber IN (SELECT orderNumber \n                        FROM orders JOIN orderdetails USING(orderNumber)\n                        GROUP BY orderNumber\n                        HAVING SUM(priceEach * quantityOrdered) &gt; 25000);\n    \n\n\nAre there any products that appear on all orders? If so, list their product code and the total number of orders they appear in. Rename the columns as ‘Total Orders’.\n\n\nSELECT products.productCode, COUNT(*) as 'Total Orders'\n FROM products JOIN orderdetails ON products.productCode = orderdetails.productCode\n GROUP BY products.productCode\n HAVING COUNT(DISTINCT orderNumber) = (SELECT COUNT(DISTINCT orderNumber) FROM orders);\n\n\nReport those orders containing products sold at a discount (i.e., sold at a price less than the product’s MSRP). For these orders report the order number, the product code of the items sold at discount and both the price and the MSRP.\n\n\nSELECT orderNumber, productCode, priceEach, MSRP\n FROM orderdetails JOIN products USING(productCode)\n WHERE priceEach &lt; MSRP;    \n\n\nRepeat the above query but only return the order number for the orders containing products sold at a discount. Use a subquery.\n\n\nSELECT DISTINCT orderNumber\n FROM orderdetails\n WHERE priceEach &lt; (SELECT MSRP FROM products\n                    WHERE orderdetails.productCode = products.productCode); \n\n\nReport those products that have been sold with a markup of 100% or more (i.e., the priceEach is at least twice the buyPrice) on at least one sale. Provide the product code, the price at which it sold, the buy price and the MSRP. Be sure not to duplicate output unnecessarily.\n\n\nSELECT DISTINCT productCode, priceEach, buyPrice, MSRP\n FROM orderdetails JOIN products USING(productCode)\n WHERE priceEach &gt; 2 * buyPrice;    \n\n\nWhat is the total quantity on hand for products listed in orders with staus: ‘On Hold’? Rename the quantity ordered as ‘Total Ordered’ and the quantity in stock as ‘Total on Hand’. Use the ON syntax for the JOIN.\n\n\nSELECT products.productCode, SUM(quantityOrdered) AS 'Total Ordered', quantityInStock AS 'On Hand'\n FROM orders JOIN orderdetails JOIN products\n  ON orders.orderNumber = orderdetails.orderNumber\n  AND orderdetails.productCode = products.productCode\n WHERE status = 'On Hold'\n GROUP BY products.productCode;\n    \n\n\nReport product code, name and MSRP for all products that have not sold any units.\n\n\nSELECT productCode, productName, MSRP\n FROM products\n WHERE productCode NOT IN (SELECT DISTINCT productCode FROM orderdetails);  \n\n\n\n\n  \n  \n    © 2025. All Rights Reserved.\n  \n  \n\n  \n  \n    Enabled by Dr. Marcin Bartosiak"
+  },
+  {
+    "objectID": "5-one-to-one-and-recursive-complete.html",
+    "href": "5-one-to-one-and-recursive-complete.html",
+    "title": "One-to-One and Recursive relationship",
+    "section": "",
+    "text": "Warning\n\n\n\nRecursive relationship is a bit more complex and it won’t work on the website. To try queries in this section, we will use Workbench.\nYou can also run them in your Python program."
+  },
+  {
+    "objectID": "5-one-to-one-and-recursive-complete.html#modelling-one-to-one-relationship",
+    "href": "5-one-to-one-and-recursive-complete.html#modelling-one-to-one-relationship",
+    "title": "One-to-One and Recursive relationship",
+    "section": "Modelling one-to-one relationship",
+    "text": "Modelling one-to-one relationship\nLet’s consider this organizational chart. We can clarely see that each (one) department has a (one) head.\n\n\n1:1 relationship is labeled\n\nA relationship descriptor\n\nObvious relationships are not labeled"
+  },
+  {
+    "objectID": "5-one-to-one-and-recursive-complete.html#querying-one-to-one-relationship",
+    "href": "5-one-to-one-and-recursive-complete.html#querying-one-to-one-relationship",
+    "title": "One-to-One and Recursive relationship",
+    "section": "Querying One-to-One Relationship",
+    "text": "Querying One-to-One Relationship\nGOOD NEWS! Querying one-to-one relationship works EXACTLY like the queries you already know :D .\nWe will use these new tables:\n\nList the hotel name, first name and title of each hotel’s contact employee.\nSELECT hotelName, employeeFName, employeeTitle  \n FROM employee JOIN hotel USING(employeeId);\nFor reviews with a response, find the total number of reviews posted and their average response time in days for all reviews posted on Valentine’s day (2011-02-14). ((DATEDIFF(date2, date1) – calculates the difference between two dates)\nSELECT COUNT(reviewDate), AVG(DATEDIFF(responseDate, reviewDate))\n FROM review JOIN response USING(reviewId)\n WHERE reviewDate = '2011-02-14';"
+  },
+  {
+    "objectID": "5-one-to-one-and-recursive-complete.html#modelling-recursive-relationship",
+    "href": "5-one-to-one-and-recursive-complete.html#modelling-recursive-relationship",
+    "title": "One-to-One and Recursive relationship",
+    "section": "Modelling recursive relationship",
+    "text": "Modelling recursive relationship\nLet’s go back to our organizational chart. There is more here…\n\n\nA recursive relationship relates an entity to itself\nLabel recursive relationships"
+  },
+  {
+    "objectID": "5-one-to-one-and-recursive-complete.html#querying-recursive-relationship",
+    "href": "5-one-to-one-and-recursive-complete.html#querying-recursive-relationship",
+    "title": "One-to-One and Recursive relationship",
+    "section": "Querying recursive relationship",
+    "text": "Querying recursive relationship\nA recursive relationship in a database, also known as a self-join, is when a table is joined with itself to represent relationships within the same entity. This technique is often used to model hierarchical or parent-child relationships, such as employees managing other employees. To perform a self-join, table aliasing is required so that the same table can be referenced multiple times in a query. For instance, using the alias boss in:\nFROM employee AS boss\nallows the query to distinguish between the employee acting as the manager and the one being managed. This approach is essential for querying and understanding internal relationships within a single table.\nOpen your Workbench and find the name of Leo Lee’s boss.\nSELECT boss.employeeFName, boss.employeeLName \n FROM employee AS wrk JOIN employee AS boss   \n  ON wrk.reportsTo = boss.employeeId \n WHERE wrk.employeeLName = 'Lee'  \n AND wrk.employeeFName='Leo';"
+  },
+  {
+    "objectID": "5-one-to-one-and-recursive-complete.html#handling-null-values",
+    "href": "5-one-to-one-and-recursive-complete.html#handling-null-values",
+    "title": "One-to-One and Recursive relationship",
+    "section": "Handling NULL values",
+    "text": "Handling NULL values\n\n\n\n\n\n\nCaution\n\n\n\nDon’t confuse with blank or zero\nMultiple meanings: - Unknown data - Inapplicable data - No value supplied - Value undefined\nNULL creates confusion because the user must make an inference\n\n\nTry the following and observe the difference:\n\n    SELECT \"a\" IN (\"a\", \"b\", \"\");\n\n\n    SELECT \"c\" IN (\"a\", \"b\", \"\");\n\n\n    SELECT \"\" IN (\"a\", \"b\", \"\");\n\n\n    SELECT NULL IN (\"a\", \"b\", \"\");\n\nHandling NULL values in SQL requires special care, as they represent unknown or missing data.\nComparisons with NULL always return NULL, not TRUE or FALSE, which can lead to unexpected results. For example, NULL = NULL is not TRUE, but NULL, making the query:\n\nSELECT * FROM hotel WHERE hotelRooms = NULL;\n\nincorrect.\nInstead, the correct way to check for NULL values is with the IS NULL operator, like:\n\nSELECT * FROM hotel WHERE hotelRooms IS NULL;\n\n###Exercise List the independent hotels (independent hotels are those properties not affiliated with any brand).\n\nSELECT hotelId, hotelName\n FROM hotel\n WHERE brandId IS NULL;\n\n\n\n\nImages and GIFs Disclaimer: Some of the images and GIFs used on this website are not owned by me. They are used for educational and illustrative purposes only. All rights belong to their respective owners. If you believe any content violates copyright, please contact me for prompt removal.\n\n\n\n\n\n\n  \n  \n    © 2025. All Rights Reserved.\n  \n  \n\n  \n  \n    Enabled by Dr. Marcin Bartosiak"
+  },
+  {
+    "objectID": "5-one-to-one-and-recursive.html",
+    "href": "5-one-to-one-and-recursive.html",
+    "title": "One-to-One and Recursive relationship",
+    "section": "",
+    "text": "Warning\n\n\n\nRecursive relationship is a bit more complex and it won’t work on the website. To try queries in this section, we will use Workbench.\nYou can also run them in your Python program."
+  },
+  {
+    "objectID": "5-one-to-one-and-recursive.html#modelling-one-to-one-relationship",
+    "href": "5-one-to-one-and-recursive.html#modelling-one-to-one-relationship",
+    "title": "One-to-One and Recursive relationship",
+    "section": "Modelling one-to-one relationship",
+    "text": "Modelling one-to-one relationship\nLet’s consider this organizational chart. We can clarely see that each (one) department has a (one) head.\n\n\n1:1 relationship is labeled\n\nA relationship descriptor\n\nObvious relationships are not labeled"
+  },
+  {
+    "objectID": "5-one-to-one-and-recursive.html#querying-one-to-one-relationship",
+    "href": "5-one-to-one-and-recursive.html#querying-one-to-one-relationship",
+    "title": "One-to-One and Recursive relationship",
+    "section": "Querying One-to-One Relationship",
+    "text": "Querying One-to-One Relationship\nGOOD NEWS! Querying one-to-one relationship works EXACTLY like the queries you already know :D .\nWe will use these new tables:\n\nList the hotel name, first name and title of each hotel’s contact employee.\n\nFor reviews with a response, find the total number of reviews posted and their average response time in days for all reviews posted on Valentine’s day (2011-02-14). ((DATEDIFF(date2, date1) – calculates the difference between two dates)"
+  },
+  {
+    "objectID": "5-one-to-one-and-recursive.html#modelling-recursive-relationship",
+    "href": "5-one-to-one-and-recursive.html#modelling-recursive-relationship",
+    "title": "One-to-One and Recursive relationship",
+    "section": "Modelling recursive relationship",
+    "text": "Modelling recursive relationship\nLet’s go back to our organizational chart. There is more here…\n\n\nA recursive relationship relates an entity to itself\nLabel recursive relationships"
+  },
+  {
+    "objectID": "5-one-to-one-and-recursive.html#querying-recursive-relationship",
+    "href": "5-one-to-one-and-recursive.html#querying-recursive-relationship",
+    "title": "One-to-One and Recursive relationship",
+    "section": "Querying recursive relationship",
+    "text": "Querying recursive relationship\nA recursive relationship in a database, also known as a self-join, is when a table is joined with itself to represent relationships within the same entity. This technique is often used to model hierarchical or parent-child relationships, such as employees managing other employees. To perform a self-join, table aliasing is required so that the same table can be referenced multiple times in a query. For instance, using the alias boss in:\nFROM employee AS boss\nallows the query to distinguish between the employee acting as the manager and the one being managed. This approach is essential for querying and understanding internal relationships within a single table.\nOpen your Workbench and find the name of Leo Lee’s boss."
+  },
+  {
+    "objectID": "5-one-to-one-and-recursive.html#handling-null-values",
+    "href": "5-one-to-one-and-recursive.html#handling-null-values",
+    "title": "One-to-One and Recursive relationship",
+    "section": "Handling NULL values",
+    "text": "Handling NULL values\n\n\n\n\n\n\nCaution\n\n\n\nDon’t confuse with blank or zero\nMultiple meanings: - Unknown data - Inapplicable data - No value supplied - Value undefined\nNULL creates confusion because the user must make an inference\n\n\nTry the following and observe the difference:\n    SELECT \"a\" IN (\"a\", \"b\", \"\");\n    SELECT \"c\" IN (\"a\", \"b\", \"\");\n    SELECT \"\" IN (\"a\", \"b\", \"\");\n    SELECT NULL IN (\"a\", \"b\", \"\");\nHandling NULL values in SQL requires special care, as they represent unknown or missing data.\nComparisons with NULL always return NULL, not TRUE or FALSE, which can lead to unexpected results. For example, NULL = NULL is not TRUE, but NULL, making the query:\nSELECT * FROM hotel WHERE hotelRooms = NULL;\nincorrect.\nInstead, the correct way to check for NULL values is with the IS NULL operator, like:\nSELECT * FROM hotel WHERE hotelRooms IS NULL;\n\nExercise\nList the independent hotels (independent hotels are those properties not affiliated with any brand).\n\n\n\n\n\n\nImages and GIFs Disclaimer: Some of the images and GIFs used on this website are not owned by me. They are used for educational and illustrative purposes only. All rights belong to their respective owners. If you believe any content violates copyright, please contact me for prompt removal.\n\n\n\n\n\n\n  \n  \n    © 2025. All Rights Reserved.\n  \n  \n\n  \n  \n    Enabled by Dr. Marcin Bartosiak"
+  },
+  {
+    "objectID": "Homework4.html",
+    "href": "Homework4.html",
+    "title": "Homework4",
+    "section": "",
+    "text": "Warning\n\n\n\nYou have to run these queries in Workbench (or Python program).\n\n\nThe following queries use the classicmodels schema.\n\n\n\nSource: https://www.richardtwatson.com/\n\n\n\nWho is at the top of organization?\nWho reports to directly to William Patterson?\nList the employees who report to those employees who report to Diane Murphy.\nHow many employees report to the Sales Manager that is employee named ‘Bow Anthony’? Rename the column as “Mr. Bow’s Direct Reports”\nFind the pair of customer that have the same credit limit. Omit the customers having no credit limit (That is creditlimit = 0): Report the customer name and credit limit for each pair and be sure to avoid unnecessary duplication.\n\n\n\n\n  \n  \n    © 2025. All Rights Reserved.\n  \n  \n\n  \n  \n    Enabled by Dr. Marcin Bartosiak"
+  },
+  {
+    "objectID": "Homework4.html#sql---homework-4",
+    "href": "Homework4.html#sql---homework-4",
+    "title": "Homework4",
+    "section": "",
+    "text": "Warning\n\n\n\nYou have to run these queries in Workbench (or Python program).\n\n\nThe following queries use the classicmodels schema.\n\n\n\nSource: https://www.richardtwatson.com/\n\n\n\nWho is at the top of organization?\nWho reports to directly to William Patterson?\nList the employees who report to those employees who report to Diane Murphy.\nHow many employees report to the Sales Manager that is employee named ‘Bow Anthony’? Rename the column as “Mr. Bow’s Direct Reports”\nFind the pair of customer that have the same credit limit. Omit the customers having no credit limit (That is creditlimit = 0): Report the customer name and credit limit for each pair and be sure to avoid unnecessary duplication.\n\n\n\n\n  \n  \n    © 2025. All Rights Reserved.\n  \n  \n\n  \n  \n    Enabled by Dr. Marcin Bartosiak"
   }
 ]

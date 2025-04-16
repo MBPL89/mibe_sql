@@ -1,0 +1,82 @@
+---
+title: "Homework4 solution"
+draft: true
+author: "Dr. Bartosiak"
+format: live-html
+filters:
+  - interactive-sql
+databases:
+  - name: cm
+    path: "https://raw.githubusercontent.com/MBPL89/dbs/refs/heads/main/cm2.sql"
+---
+
+# Coding and Database Managment
+
+## SQL - Homework 4 - solution
+
+::: callout-warning
+You have to run these queries in Workbench (or Python program).
+:::
+
+The following queries use the **classicmodels** schema.
+
+![Source: https://www.richardtwatson.com/](images/classic_models.png){.lightbox width="550"}
+
+1.  Who is at the top of organization?
+
+``` sql
+SELECT  DISTINCT boss.employeeNumber, boss.lastName, boss.firstName
+ FROM employees as emp JOIN employees boss
+  ON emp.reportsTo = boss.employeeNumber
+ WHERE boss.reportsTo IS NULL; 
+```
+
+2.  Who reports to directly to William Patterson?
+
+``` sql
+SELECT emp.lastName, emp.firstName 
+ FROM employees as emp JOIN employees boss
+  ON emp.reportsTo = boss.employeeNumber
+ WHERE boss.lastName = 'Patterson'
+ AND boss.firstName = 'William';
+```
+
+3.  List the employees who report to those employees who report to Diane Murphy.
+
+``` sql
+SELECT emp.lastName, emp.firstName , emp.employeeNumber, emp.reportsTo
+ FROM employees as emp JOIN employees as boss JOIN employees as bigboss
+  ON emp.reportsTo = boss.employeeNumber
+  AND boss.reportsTo = bigboss.employeeNumber
+ WHERE bigboss.lastName = 'Murphy'
+ AND bigboss.firstName = 'Diane';
+    
+```
+
+4.  How many employees report to the Sales Manager that is employee named 'Bow Anthony'? Rename the column as "Mr. Bow's Direct Reports"
+
+``` sql
+SELECT  count(emp.reportsTo) AS 'Mr. Bows Direct Reports'
+ FROM employees as emp JOIN employees boss
+  ON emp.reportsTo = boss.employeeNumber
+ WHERE boss.employeeNumber IN (SELECT employeeNumber 
+                                FROM employees 
+                                WHERE firstName= 'Anthony' AND lastName= 'Bow');
+    
+```
+
+5.  Find the pair of customer that have the same credit limit. Omit the customers having no credit limit (That is creditlimit = 0): Report the customer name and credit limit for each pair and be sure to avoid unnecessary duplication.
+
+``` sql
+SELECT a.customerName, b.customerName, a.creditLimit, b.creditLimit
+ FROM customers AS a JOIN customers AS b
+  ON a.customerName> b.customerName
+ WHERE a.creditLimit = b.creditLimit
+ AND b.creditLimit !=0; 
+```
+
+```{=html}
+<div>
+  {{< include footer.html >}}
+</div>
+```

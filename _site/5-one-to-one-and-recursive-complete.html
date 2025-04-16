@@ -8,7 +8,7 @@
 
 <meta name="author" content="Dr.&nbsp;Bartosiak">
 
-<title>Homework4 – MIBE SQL Corner</title>
+<title>One-to-One and Recursive relationship – MIBE SQL Corner</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -82,7 +116,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -178,10 +212,6 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="./Homework3.html">
  <span class="dropdown-text">Homework3</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="./Homework4.html">
- <span class="dropdown-text">Homework4</span></a>
-  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -232,13 +262,31 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#one-to-one-relationship" id="toc-one-to-one-relationship" class="nav-link active" data-scroll-target="#one-to-one-relationship">One-to-One Relationship</a>
+  <ul class="collapse">
+  <li><a href="#modelling-one-to-one-relationship" id="toc-modelling-one-to-one-relationship" class="nav-link" data-scroll-target="#modelling-one-to-one-relationship">Modelling one-to-one relationship</a></li>
+  <li><a href="#querying-one-to-one-relationship" id="toc-querying-one-to-one-relationship" class="nav-link" data-scroll-target="#querying-one-to-one-relationship">Querying One-to-One Relationship</a></li>
+  </ul></li>
+  <li><a href="#recursive-relationship" id="toc-recursive-relationship" class="nav-link" data-scroll-target="#recursive-relationship">Recursive Relationship</a>
+  <ul class="collapse">
+  <li><a href="#modelling-recursive-relationship" id="toc-modelling-recursive-relationship" class="nav-link" data-scroll-target="#modelling-recursive-relationship">Modelling recursive relationship</a></li>
+  <li><a href="#querying-recursive-relationship" id="toc-querying-recursive-relationship" class="nav-link" data-scroll-target="#querying-recursive-relationship">Querying recursive relationship</a></li>
+  </ul></li>
+  <li><a href="#handling-null-values" id="toc-handling-null-values" class="nav-link" data-scroll-target="#handling-null-values">Handling NULL values</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Homework4</h1>
+<h1 class="title">One-to-One and Recursive relationship</h1>
 </div>
 
 
@@ -261,10 +309,6 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="coding-and-database-managment" class="level1">
-<h1>Coding and Database Managment</h1>
-<section id="sql---homework-4" class="level2">
-<h2 class="anchored" data-anchor-id="sql---homework-4">SQL - Homework 4</h2>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -275,23 +319,117 @@ Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>You have to run these queries in Workbench (or Python program).</p>
+<p>Recursive relationship is a bit more complex and it won’t work on the website. To try queries in this section, we will use Workbench.</p>
+<p>You can also run them in your Python program.</p>
 </div>
 </div>
-<p>The following queries use the <strong>classicmodels</strong> schema.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/classic_models.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Source: https://www.richardtwatson.com/"><img src="images/classic_models.png" class="img-fluid figure-img" width="550" alt="Source: https://www.richardtwatson.com/"></a></p>
-<figcaption>Source: https://www.richardtwatson.com/</figcaption>
-</figure>
+<section id="one-to-one-relationship" class="level1">
+<h1>One-to-One Relationship</h1>
+<p>A <strong>one-to-one (1:1) relationship</strong> is a type of association between two entities where each instance of one entity is related to exactly one instance of the other, and vice versa. This setup is used when specific data is best organized across two tables to reduce redundancy or improve security. For example, in a database, a <code>Person</code> entity might have a one-to-one relationship with a <code>Passport</code> entity—each person has one unique passport, and each passport is assigned to only one person.</p>
+<section id="modelling-one-to-one-relationship" class="level2">
+<h2 class="anchored" data-anchor-id="modelling-one-to-one-relationship">Modelling one-to-one relationship</h2>
+<p>Let’s consider this organizational chart. We can clarely see that each (one) department has a (one) head.</p>
+<p><a href="images/1t1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/1t1.png" class="img-fluid" width="550"></a></p>
+<ul>
+<li>1:1 relationship is labeled
+<ul>
+<li>A relationship descriptor</li>
+</ul></li>
+<li>Obvious relationships are not labeled</li>
+</ul>
+<p><a href="images/1t1model.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="images/1t1model.png" class="img-fluid" width="550"></a></p>
+</section>
+<section id="querying-one-to-one-relationship" class="level2">
+<h2 class="anchored" data-anchor-id="querying-one-to-one-relationship">Querying One-to-One Relationship</h2>
+<p>GOOD NEWS! Querying one-to-one relationship works EXACTLY like the queries you already know :D .</p>
+<p>We will use these new tables:</p>
+<p><a href="images/1t1hotel.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="images/1t1hotel.png" class="img-fluid" width="550"></a></p>
+<p>List the hotel name, first name and title of each hotel’s contact employee.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> hotelName, employeeFName, employeeTitle  </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a> <span class="kw">FROM</span> employee <span class="kw">JOIN</span> hotel <span class="kw">USING</span>(employeeId);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For reviews with a response, find the total number of reviews posted and their average response time in days for all reviews posted on Valentine’s day (2011-02-14). (<code>(DATEDIFF(date2, date1)</code> – calculates the difference between two dates)</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="fu">COUNT</span>(reviewDate), <span class="fu">AVG</span>(DATEDIFF(responseDate, reviewDate))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a> <span class="kw">FROM</span> review <span class="kw">JOIN</span> response <span class="kw">USING</span>(reviewId)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a> <span class="kw">WHERE</span> reviewDate <span class="op">=</span> <span class="st">'2011-02-14'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="recursive-relationship" class="level1">
+<h1>Recursive Relationship</h1>
+<p>A recursive relationship occurs when an entity is related to itself. This happens when instances of the same entity type are connected in a hierarchical or referential way. For example, in an Employee entity, an employee might manage another employee, creating a recursive “manages” relationship within the same table. This is useful for modeling organizational charts, family trees, or any structure with self-referencing links.</p>
+<section id="modelling-recursive-relationship" class="level2">
+<h2 class="anchored" data-anchor-id="modelling-recursive-relationship">Modelling recursive relationship</h2>
+<p>Let’s go back to our organizational chart. There is more here…</p>
+<p><a href="images/organizational.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="images/organizational.png" class="img-fluid" width="550"></a></p>
+<ul>
+<li>A recursive relationship relates an entity to itself</li>
+<li>Label recursive relationships</li>
+</ul>
+<p><a href="images/recursive.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="images/recursive.png" class="img-fluid" width="550"></a></p>
+</section>
+<section id="querying-recursive-relationship" class="level2">
+<h2 class="anchored" data-anchor-id="querying-recursive-relationship">Querying recursive relationship</h2>
+<p>A recursive relationship in a database, also known as a self-join, is when a table is joined with itself to represent relationships within the same entity. This technique is often used to model hierarchical or parent-child relationships, such as employees managing other employees. To perform a self-join, <strong>table aliasing</strong> is required so that the same table can be referenced multiple times in a query. For instance, using the alias <code>boss</code> in:</p>
+<p><code>FROM employee AS boss</code></p>
+<p>allows the query to distinguish between the employee acting as the manager and the one being managed. This approach is essential for querying and understanding internal relationships within a single table.</p>
+<p>Open your Workbench and find the name of Leo Lee’s boss.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> boss.employeeFName, boss.employeeLName </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a> <span class="kw">FROM</span> employee <span class="kw">AS</span> wrk <span class="kw">JOIN</span> employee <span class="kw">AS</span> boss   </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">ON</span> wrk.reportsTo <span class="op">=</span> boss.employeeId </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a> <span class="kw">WHERE</span> wrk.employeeLName <span class="op">=</span> <span class="st">'Lee'</span>  </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a> <span class="kw">AND</span> wrk.employeeFName<span class="op">=</span><span class="st">'Leo'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="handling-null-values" class="level1">
+<h1>Handling NULL values</h1>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<ol type="1">
-<li><p>Who is at the top of organization?</p></li>
-<li><p>Who reports to directly to William Patterson?</p></li>
-<li><p>List the employees who report to those employees who report to Diane Murphy.</p></li>
-<li><p>How many employees report to the Sales Manager that is employee named ‘Bow Anthony’? Rename the column as “Mr.&nbsp;Bow’s Direct Reports”</p></li>
-<li><p>Find the pair of customer that have the same credit limit. Omit the customers having no credit limit (That is creditlimit = 0): Report the customer name and credit limit for each pair and be sure to avoid unnecessary duplication.</p></li>
-</ol>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Don’t confuse with blank or zero</strong></p>
+<p>Multiple meanings: - Unknown data - Inapplicable data - No value supplied - Value undefined</p>
+<p><code>NULL</code> creates confusion because the user must make an inference</p>
+</div>
+</div>
+<p>Try the following and observe the difference:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SELECT</span> <span class="ot">"a"</span> <span class="kw">IN</span> (<span class="ot">"a"</span>, <span class="ot">"b"</span>, <span class="ot">""</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SELECT</span> <span class="ot">"c"</span> <span class="kw">IN</span> (<span class="ot">"a"</span>, <span class="ot">"b"</span>, <span class="ot">""</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SELECT</span> <span class="ot">""</span> <span class="kw">IN</span> (<span class="ot">"a"</span>, <span class="ot">"b"</span>, <span class="ot">""</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SELECT</span> <span class="kw">NULL</span> <span class="kw">IN</span> (<span class="ot">"a"</span>, <span class="ot">"b"</span>, <span class="ot">""</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Handling <code>NULL</code> values in SQL requires special care, as they represent unknown or missing data.</p>
+<p><strong>Comparisons</strong> with <code>NULL</code> always return <code>NULL</code>, not <code>TRUE</code> or <code>FALSE</code>, which can lead to unexpected results. For example, <code>NULL = NULL</code> is not <code>TRUE</code>, but <code>NULL</code>, making the query:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> hotel <span class="kw">WHERE</span> hotelRooms <span class="op">=</span> <span class="kw">NULL</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>incorrect</strong>.</p>
+<p>Instead, the correct way to check for <code>NULL</code> values is with the <strong><code>IS NULL</code></strong> operator, like:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> hotel <span class="kw">WHERE</span> hotelRooms <span class="kw">IS</span> <span class="kw">NULL</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="exercise" class="level3">
+<h3 class="anchored" data-anchor-id="exercise">Exercise</h3>
+<p>List the independent hotels (independent hotels are those properties not affiliated with any brand).</p>
+<div class="interactive-sql">
+<div class="sourceCode" id="cb10"><pre class="sourceCode sql interactive hr3 code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> hotelId, hotelName</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a> <span class="kw">FROM</span> hotel</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a> <span class="kw">WHERE</span> brandId <span class="kw">IS</span> <span class="kw">NULL</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+<div class="disclaimer">
+<p>
+<strong>Images and GIFs Disclaimer:</strong> Some of the images and GIFs used on this website are not owned by me. They are used for educational and illustrative purposes only. All rights belong to their respective owners. If you believe any content violates copyright, please contact me for prompt removal.
+</p>
+</div>
+<style>
+.disclaimer {
+  font-size: 0.8em;
+  color: #666;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+  margin-top: 20px;
+}
+</style>
 <div>
 <!-- Footer Section -->
 <div style="
@@ -355,8 +493,8 @@ eyJjb250ZW50cyI6W119
 <script type="vfs-file">
 W10=
 </script>
-<sqlime-db name="cm" path="https://raw.githubusercontent.com/MBPL89/dbs/refs/heads/main/cm2.sql"></sqlime-db>
-<sqlime-examples db="cm" selector="div.interactive-sql pre.cm code" editable=""></sqlime-examples>
+<sqlime-db name="hr3" path="https://raw.githubusercontent.com/MBPL89/dbs/refs/heads/main/htlreviews3.sql"></sqlime-db>
+<sqlime-examples db="hr3" selector="div.interactive-sql pre.hr3 code" editable=""></sqlime-examples>
 </section>
 </section>
 
@@ -793,7 +931,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","loop":false,"selector":".lightbox","descPosition":"bottom","closeEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","openEffect":"zoom","selector":".lightbox","loop":false,"closeEffect":"zoom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

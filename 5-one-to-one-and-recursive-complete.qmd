@@ -1,0 +1,171 @@
+---
+title: "One-to-One and Recursive relationship"
+author: "Dr. Bartosiak"
+format: 
+  live-html:
+    toc: true
+    toc-depth: 2
+filters:
+  - interactive-sql
+databases:
+  - name: hr3
+    path: "https://raw.githubusercontent.com/MBPL89/dbs/refs/heads/main/htlreviews3.sql"
+---
+
+::: callout-warning
+Recursive relationship is a bit more complex and it won't work on the website. To try queries in this section, we will use Workbench.
+
+You can also run them in your Python program.
+:::
+
+# One-to-One Relationship
+
+A **one-to-one (1:1) relationship** is a type of association between two entities where each instance of one entity is related to exactly one instance of the other, and vice versa. This setup is used when specific data is best organized across two tables to reduce redundancy or improve security. For example, in a database, a `Person` entity might have a one-to-one relationship with a `Passport` entity—each person has one unique passport, and each passport is assigned to only one person.
+
+## Modelling one-to-one relationship
+
+Let's consider this organizational chart. We can clarely see that each (one) department has a (one) head.
+
+![](images/1t1.png){.lightbox width="550"}
+
+-   1:1 relationship is labeled
+    -   A relationship descriptor
+-   Obvious relationships are not labeled
+
+![](images/1t1model.png){.lightbox width="550"}
+
+## Querying One-to-One Relationship
+
+GOOD NEWS! Querying one-to-one relationship works EXACTLY like the queries you already know :D .
+
+We will use these new tables:
+
+![](images/1t1hotel.png){.lightbox width="550"}
+
+List the hotel name, first name and title of each hotel’s contact employee.
+
+``` sql
+SELECT hotelName, employeeFName, employeeTitle  
+ FROM employee JOIN hotel USING(employeeId);
+```
+
+For reviews with a response, find the total number of reviews posted and their average response time in days for all reviews posted on Valentine’s day (2011-02-14). (`(DATEDIFF(date2, date1)` – calculates the difference between two dates)
+
+``` sql
+SELECT COUNT(reviewDate), AVG(DATEDIFF(responseDate, reviewDate))
+ FROM review JOIN response USING(reviewId)
+ WHERE reviewDate = '2011-02-14';
+```
+
+# Recursive Relationship
+
+A recursive relationship occurs when an entity is related to itself. This happens when instances of the same entity type are connected in a hierarchical or referential way. For example, in an Employee entity, an employee might manage another employee, creating a recursive "manages" relationship within the same table. This is useful for modeling organizational charts, family trees, or any structure with self-referencing links.
+
+## Modelling recursive relationship
+
+Let's go back to our organizational chart. There is more here...
+
+![](images/organizational.png){.lightbox width="550"}
+
+-   A recursive relationship relates an entity to itself
+-   Label recursive relationships
+
+![](images/recursive.png){.lightbox width="550"}
+
+## Querying recursive relationship
+
+A recursive relationship in a database, also known as a self-join, is when a table is joined with itself to represent relationships within the same entity. This technique is often used to model hierarchical or parent-child relationships, such as employees managing other employees. To perform a self-join, **table aliasing** is required so that the same table can be referenced multiple times in a query. For instance, using the alias `boss` in:
+
+`FROM employee AS boss`
+
+allows the query to distinguish between the employee acting as the manager and the one being managed. This approach is essential for querying and understanding internal relationships within a single table.
+
+Open your Workbench and find the name of Leo Lee’s boss.
+
+``` sql
+SELECT boss.employeeFName, boss.employeeLName 
+ FROM employee AS wrk JOIN employee AS boss   
+  ON wrk.reportsTo = boss.employeeId 
+ WHERE wrk.employeeLName = 'Lee'  
+ AND wrk.employeeFName='Leo';
+```
+
+# Handling NULL values
+
+::: callout-caution
+**Don’t confuse with blank or zero**
+
+Multiple meanings:
+- Unknown data 
+- Inapplicable data 
+- No value supplied 
+- Value undefined
+
+`NULL` creates confusion because the user must make an inference
+:::
+
+Try the following and observe the difference:
+``` {.sql}
+	SELECT "a" IN ("a", "b", "");
+```
+
+``` {.sql}
+	SELECT "c" IN ("a", "b", "");
+```
+
+``` {.sql}
+	SELECT "" IN ("a", "b", "");
+```
+
+``` {.sql}
+	SELECT NULL IN ("a", "b", "");
+```
+
+Handling `NULL` values in SQL requires special care, as they represent unknown or missing data.
+
+**Comparisons** with `NULL` always return `NULL`, not `TRUE` or `FALSE`, which can lead to unexpected results. For example, `NULL = NULL` is not `TRUE`, but `NULL`, making the query:
+
+``` {.sql}
+SELECT * FROM hotel WHERE hotelRooms = NULL;
+```
+
+**incorrect**.
+
+Instead, the correct way to check for `NULL` values is with the **`IS NULL`** operator, like:
+
+``` {.sql}
+SELECT * FROM hotel WHERE hotelRooms IS NULL;
+```
+
+### Exercise
+List the independent hotels (independent hotels are those properties not affiliated with any brand).
+
+``` {.sql .interactive .hr3}
+SELECT hotelId, hotelName
+ FROM hotel
+ WHERE brandId IS NULL;
+```
+
+------------------------------------------------------------------------
+
+::: disclaimer
+<p><strong>Images and GIFs Disclaimer:</strong> Some of the images and GIFs used on this website are not owned by me. They are used for educational and illustrative purposes only. All rights belong to their respective owners. If you believe any content violates copyright, please contact me for prompt removal.</p>
+:::
+
+```{=html}
+<style>
+.disclaimer {
+  font-size: 0.8em;
+  color: #666;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+  margin-top: 20px;
+}
+</style>
+```
+
+```{=html}
+<div>
+  {{< include footer.html >}}
+</div>
+```

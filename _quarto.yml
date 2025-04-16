@@ -16,22 +16,26 @@ website:
         - 2-one-to-many.qmd
         - 3-many-to-many.qmd
         - 4-server-conn.qmd
+        - 5-one-to-one-and-recursive.qmd
       - text: "Class materials - complete"
         menu:
         - 1-single-entity-complete.qmd
         - 2-one-to-many-complete.qmd
         - 3-many-to-many-complete.qmd
         - 4-server-conn.qmd
+        - 5-one-to-one-and-recursive-complete.qmd
       - text: "Homeworks"
         menu:
         - Homework1.qmd
         - Homework2.qmd
         - Homework3.qmd
+        - Homework4.qmd
       - text: "Homework solutions"
         menu:
         - Homework1-solution.qmd
         - Homework2-solution.qmd
         #- Homework3-solution.qmd
+        #- Homework4-solution.qmd
       - text: "Challenges"
         menu:
         - 4-server-challenge.qmd
