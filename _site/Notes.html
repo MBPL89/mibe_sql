@@ -73,8 +73,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script src="site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
-<link href="site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -102,13 +100,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
-<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
 
+<link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -142,6 +139,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="./1-single-entity.html">
  <span class="dropdown-text">Introduction to SQL. Single entity</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./2-one-to-many.html">
+ <span class="dropdown-text">One-to-Many relationship</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./3-many-to-many.html">
+ <span class="dropdown-text">Many-to-Many relationship</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./4-server-conn.html">
+ <span class="dropdown-text">Server Connections</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./5-one-to-one-and-recursive.html">
+ <span class="dropdown-text">One-to-One and Recursive relationship</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -152,6 +165,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li>
     <a class="dropdown-item" href="./1-single-entity-complete.html">
  <span class="dropdown-text">Introduction to SQL. Single entity</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./2-one-to-many-complete.html">
+ <span class="dropdown-text">One-to-Many relationship</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./3-many-to-many-complete.html">
+ <span class="dropdown-text">Many-to-Many relationship</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./4-server-conn.html">
+ <span class="dropdown-text">Server Connections</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./5-one-to-one-and-recursive-complete.html">
+ <span class="dropdown-text">One-to-One and Recursive relationship</span></a>
   </li>  
     </ul>
   </li>
@@ -164,13 +193,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="./Homework1.html">
  <span class="dropdown-text">Homework 1</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./Homework2.html">
+ <span class="dropdown-text">Homework2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Homework3.html">
+ <span class="dropdown-text">Homework3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Homework4.html">
+ <span class="dropdown-text">Homework4</span></a>
+  </li>  
     </ul>
   </li>
-  <li class="nav-item">
-    <span class="nav-link">
-<span class="menu-text">Homework solutions</span>
-    </span>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-homework-solutions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Homework solutions</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-homework-solutions">    
+        <li>
+    <a class="dropdown-item" href="./Homework1-solution.html">
+ <span class="dropdown-text">Homework 1 solution</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./Homework2-solution.html">
+ <span class="dropdown-text">Homework2 solution</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-challenges" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Challenges</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-challenges">    
+        <li>
+    <a class="dropdown-item" href="./4-server-challenge.html">
+ <span class="dropdown-text">Server Connections - practice</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-readings" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Readings</span>
@@ -193,7 +255,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#regular-expressions" id="toc-regular-expressions" class="nav-link active" data-scroll-target="#regular-expressions">Regular expressions</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -260,34 +330,9 @@ Note
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>        <span class="kw">WHERE</span> headquarters REGEXP <span class="st">'+or'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
-<script type="ojs-module-contents">
-eyJjb250ZW50cyI6W119
-</script>
-<div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
-<div id="exercise-loading-status" class="d-flex gap-2">
-
-</div>
-<div class="spinner-grow spinner-grow-sm">
-
-</div>
-</div>
-<script type="vfs-file">
-W10=
-</script>
 </section>
 
 </main> <!-- /main -->
-<script type="ojs-module-contents">
-eyJjb250ZW50cyI6W119
-</script>
-<script type="module">
-if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
-window._ojs.paths.runtimeToDoc = "../..";
-window._ojs.paths.runtimeToRoot = "../..";
-window._ojs.paths.docToRoot = "";
-window._ojs.selfContained = false;
-window._ojs.runtime.interpretFromScriptTags();
-</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
