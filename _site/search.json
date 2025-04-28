@@ -135,35 +135,35 @@
   {
     "objectID": "6-many-to-many-recursive.html",
     "href": "6-many-to-many-recursive.html",
-    "title": "One-to-One and Recursive relationship",
+    "title": "Many-to-Many Recursive relationship",
     "section": "",
     "text": "Warning\n\n\n\nTo try queries in this section, we will use Workbench.\nYou can also run them in your Python program."
   },
   {
     "objectID": "6-many-to-many-recursive.html#many-to-many-recursive-relationship",
     "href": "6-many-to-many-recursive.html#many-to-many-recursive-relationship",
-    "title": "One-to-One and Recursive relationship",
+    "title": "Many-to-Many Recursive relationship",
     "section": "Many-to-Many Recursive Relationship",
     "text": "Many-to-Many Recursive Relationship\nA many-to-many recursive relationship occurs when an entity in a table has a relationship with itself. In this type of relationship, each record in the table can be associated with multiple records of the same table. This recursive structure is common when modeling hierarchical data or relationships where entities are interlinked in a complex, self-referential way.\nFor example, consider a company with employees, where each employee can have multiple managers, and each manager can also manage multiple employees. In this case, the relationship is between the same entity (employees), but each record can be connected to many other records of the same type.\nIn a relational database, this is typically represented by a table with a foreign key that references the primary key of the same table. This creates the recursive relationship, where one row can link to another row within the same table.\nA common example of this is a Bill of Materials (BOM) in manufacturing. In a BOM, an item can be made up of multiple components, and those components can also be composed of other sub-components. This creates a recursive relationship where each part (or component) is related to other parts within the same table.\n\n\n\n\n\n\n\n\n\nBy Thorsten Hartmann - Own work, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=735359\n\n\n\n\n\n\n\n\nThis allows us to model complex structures, such as corporate hierarchies, family trees, or organizational charts."
   },
   {
     "objectID": "6-many-to-many-recursive.html#subordinate-entity",
     "href": "6-many-to-many-recursive.html#subordinate-entity",
-    "title": "One-to-One and Recursive relationship",
+    "title": "Many-to-Many Recursive relationship",
     "section": "Subordinate entity",
     "text": "Subordinate entity\nA subordinate entity refers to an entity in a database that depends on another entity (the primary entity) for its existence. The subordinate entity typically cannot exist without the primary entity and is linked by a one-to-one identifying relationship.\nFor example, imagine an animal entity that contains information about various animals like sheep and horses. The sheep and horse entities could both be considered subordinate to the animal entity, as they depend on it to define their shared characteristics (like species, ID, etc.).\n\nExample:\n\nA sheep entity might include attributes like fleeceweight (because a sheep is famous for its wool) to indicate how much wool it produces.\nA horse entity might include furlongspeed (the speed at which a horse can gallop a furlong — approximately 1/8th of a mile).\n\nNow, we typically do not collect fleece from horses. We are, most often, not interested in sheep’s speed (with some notable exceptions that are way baaayond the topic of this session…).\n\nIf we wanted to keep all these attributes in one table, we would have to deal with many NULL values.\n\nIn this case, the sheep and horse entities depend on the animal entity for classification and characteristics, but they also contain unique attributes like fleeceweight and furlongspeed to describe specific details about each species.\n\nBy modeling animals as subordinate entities, we ensure that every sheep and horse record has proper context and detailed attributes while keeping them organized under the broader animal category."
   },
   {
     "objectID": "6-many-to-many-recursive.html#regexp",
     "href": "6-many-to-many-recursive.html#regexp",
-    "title": "One-to-One and Recursive relationship",
+    "title": "Many-to-Many Recursive relationship",
     "section": "REGEXP",
     "text": "REGEXP\nIn SQL, REGEXP (short for regular expression) is used to match a string against a pattern. It allows you to search for complex patterns in text data. It is often used to perform advanced searches, such as matching substrings, validating formats, or finding specific patterns in a column.\nIn your syntax, you write REGEXP in the WHERE clause instead of =.\n\nExample:\nSELECT name\nFROM employees\nWHERE name REGEXP '^A';  -- Finds names starting with the letter 'A'\nCommon Regular Expression Syntax:\n^ : Matches the start of a string.\n\n$ : Matches the end of a string.\n\n. : Matches any single character.\n\n* : Matches 0 or more occurrences of the preceding element.\n\n+ : Matches 1 or more occurrences of the preceding element.\n\n[] : Matches any character within the brackets.\n\nExamples\nList all brands containing ‘Hotel’ in their name.\n\nReport chains with ‘resort’ or ‘resorts’ in the chain name"
   },
   {
     "objectID": "6-many-to-many-recursive.html#set-operations---union-and-union-all",
     "href": "6-many-to-many-recursive.html#set-operations---union-and-union-all",
-    "title": "One-to-One and Recursive relationship",
+    "title": "Many-to-Many Recursive relationship",
     "section": "Set operations - UNION and UNION ALL",
     "text": "Set operations - UNION and UNION ALL\nSet operations in SQL are used to combine the results of two or more SELECT queries into a single result set. These operations allow you to perform tasks like merging data, comparing results, or finding common elements between queries.\n\nUNION\nThe UNION operator combines the results of two or more SELECT queries into one result set, eliminating duplicates. It ensures that each row in the result set is unique, even if the same data appears in both queries.\nSELECT column1, column2, ...\nFROM table1\nUNION\nSELECT column1, column2, ...\nFROM table2;\n\nExample\nList all the hotel name, city and star rating of hotels in Dallas or hotels that have ‘Palace’ in their name.\n\nYou can do the same with OR. UNION very often will return similar results.\nSELECT DISTINCT hotelName, hotelStarRating, hotelCity\n FROM hotel\n WHERE hotelCity = 'Dallas'\n OR hotelName REGEXP 'Palace';\n\n\n\nUNION ALL\nUNION ALL is similar to UNION, but it does not eliminate duplicates. It will combine the results of both queries, including duplicates.\nSELECT column1, column2, ...\nFROM table1\nUNION ALL\nSELECT column1, column2, ...\nFROM table2;\n\nExample\nFor all reviews of the hotel Id = 73242 merge room and cleanliness ratings. Rename the field as ‘Merged Reviews’.\n\n\n\nChallenge\nCount the number of brands each lodging chain owns. Rename the count as Total Brands. DO NOT USE OUTER JOIN\nThis is how you could try to write this query with OUTER JOIN\nSELECT chainName, COUNT(brandId) AS `Total Brands`\n FROM lodgingchain LEFT JOIN brand USING(chainId)\n GROUP BY chainName\n ORDER BY COUNT(brandId);\nThis is the solution withou OUTER JOIN\n\n\n\n\nImages and GIFs Disclaimer: Some of the images and GIFs used on this website are not owned by me. They are used for educational and illustrative purposes only. All rights belong to their respective owners. If you believe any content violates copyright, please contact me for prompt removal.\n\n\n\n\n\n\n  \n  \n    © 2025. All Rights Reserved.\n  \n  \n\n  \n  \n    Enabled by Dr. Marcin Bartosiak"
   },
@@ -814,35 +814,35 @@
   {
     "objectID": "6-many-to-many-recursive-complete.html",
     "href": "6-many-to-many-recursive-complete.html",
-    "title": "One-to-One and Recursive relationship",
+    "title": "Many-to-Many Recursive relationship",
     "section": "",
     "text": "Warning\n\n\n\nTo try queries in this section, we will use Workbench.\nYou can also run them in your Python program."
   },
   {
     "objectID": "6-many-to-many-recursive-complete.html#many-to-many-recursive-relationship",
     "href": "6-many-to-many-recursive-complete.html#many-to-many-recursive-relationship",
-    "title": "One-to-One and Recursive relationship",
+    "title": "Many-to-Many Recursive relationship",
     "section": "Many-to-Many Recursive Relationship",
     "text": "Many-to-Many Recursive Relationship\nA many-to-many recursive relationship occurs when an entity in a table has a relationship with itself. In this type of relationship, each record in the table can be associated with multiple records of the same table. This recursive structure is common when modeling hierarchical data or relationships where entities are interlinked in a complex, self-referential way.\nFor example, consider a company with employees, where each employee can have multiple managers, and each manager can also manage multiple employees. In this case, the relationship is between the same entity (employees), but each record can be connected to many other records of the same type.\nIn a relational database, this is typically represented by a table with a foreign key that references the primary key of the same table. This creates the recursive relationship, where one row can link to another row within the same table.\nA common example of this is a Bill of Materials (BOM) in manufacturing. In a BOM, an item can be made up of multiple components, and those components can also be composed of other sub-components. This creates a recursive relationship where each part (or component) is related to other parts within the same table.\n\n\n\n\n\n\n\n\n\nBy Thorsten Hartmann - Own work, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=735359\n\n\n\n\n\n\n\n\nThis allows us to model complex structures, such as corporate hierarchies, family trees, or organizational charts."
   },
   {
     "objectID": "6-many-to-many-recursive-complete.html#subordinate-entity",
     "href": "6-many-to-many-recursive-complete.html#subordinate-entity",
-    "title": "One-to-One and Recursive relationship",
+    "title": "Many-to-Many Recursive relationship",
     "section": "Subordinate entity",
     "text": "Subordinate entity\nA subordinate entity refers to an entity in a database that depends on another entity (the primary entity) for its existence. The subordinate entity typically cannot exist without the primary entity and is linked by a one-to-one identifying relationship.\nFor example, imagine an animal entity that contains information about various animals like sheep and horses. The sheep and horse entities could both be considered subordinate to the animal entity, as they depend on it to define their shared characteristics (like species, ID, etc.).\n\nExample:\n\nA sheep entity might include attributes like fleeceweight (because a sheep is famous for its wool) to indicate how much wool it produces.\nA horse entity might include furlongspeed (the speed at which a horse can gallop a furlong — approximately 1/8th of a mile).\n\nNow, we typically do not collect fleece from horses. We are, most often, not interested in sheep’s speed (with some notable exceptions that are way baaayond the topic of this session…).\n\nIf we wanted to keep all these attributes in one table, we would have to deal with many NULL values.\n\nIn this case, the sheep and horse entities depend on the animal entity for classification and characteristics, but they also contain unique attributes like fleeceweight and furlongspeed to describe specific details about each species.\n\nBy modeling animals as subordinate entities, we ensure that every sheep and horse record has proper context and detailed attributes while keeping them organized under the broader animal category."
   },
   {
     "objectID": "6-many-to-many-recursive-complete.html#regexp",
     "href": "6-many-to-many-recursive-complete.html#regexp",
-    "title": "One-to-One and Recursive relationship",
+    "title": "Many-to-Many Recursive relationship",
     "section": "REGEXP",
     "text": "REGEXP\nIn SQL, REGEXP (short for regular expression) is used to match a string against a pattern. It allows you to search for complex patterns in text data. It is often used to perform advanced searches, such as matching substrings, validating formats, or finding specific patterns in a column.\nIn your syntax, you write REGEXP in the WHERE clause instead of =.\n\nExample:\nSELECT name\nFROM employees\nWHERE name REGEXP '^A';  -- Finds names starting with the letter 'A'\nCommon Regular Expression Syntax:\n^ : Matches the start of a string.\n\n$ : Matches the end of a string.\n\n. : Matches any single character.\n\n* : Matches 0 or more occurrences of the preceding element.\n\n+ : Matches 1 or more occurrences of the preceding element.\n\n[] : Matches any character within the brackets.\n\nExamples\nList all brands containing ‘Hotel’ in their name.\nSELECT brandName FROM brand\n        WHERE brandName REGEXP 'hotel';\nReport chains with ‘resort’ or ‘resorts’ in the chain name\nSELECT chainName FROM lodgingchain\n        WHERE chainName REGEXP 'resort';"
   },
   {
     "objectID": "6-many-to-many-recursive-complete.html#set-operations---union-and-union-all",
     "href": "6-many-to-many-recursive-complete.html#set-operations---union-and-union-all",
-    "title": "One-to-One and Recursive relationship",
+    "title": "Many-to-Many Recursive relationship",
     "section": "Set operations - UNION and UNION ALL",
     "text": "Set operations - UNION and UNION ALL\nSet operations in SQL are used to combine the results of two or more SELECT queries into a single result set. These operations allow you to perform tasks like merging data, comparing results, or finding common elements between queries.\n\nUNION\nThe UNION operator combines the results of two or more SELECT queries into one result set, eliminating duplicates. It ensures that each row in the result set is unique, even if the same data appears in both queries.\nSELECT column1, column2, ...\nFROM table1\nUNION\nSELECT column1, column2, ...\nFROM table2;\n\nExample\nList all the hotel name, city and star rating of hotels in Dallas or hotels that have ‘Palace’ in their name.\nSELECT hotelName, hotelState, hotelStarRating\n FROM hotel\n WHERE hotelCity = 'Dallas'\nUNION\nSELECT hotelName, hotelState, hotelStarRating\n FROM hotel\n WHERE hotelName REGEXP 'Palace';\nYou can do the same with OR. UNION very often will return similar results.\nSELECT DISTINCT hotelName, hotelStarRating, hotelCity\n FROM hotel\n WHERE hotelCity = 'Dallas'\n OR hotelName REGEXP 'Palace';\n\n\n\nUNION ALL\nUNION ALL is similar to UNION, but it does not eliminate duplicates. It will combine the results of both queries, including duplicates.\nSELECT column1, column2, ...\nFROM table1\nUNION ALL\nSELECT column1, column2, ...\nFROM table2;\n\nExample\nFor all reviews of the hotel Id = 73242 merge room and cleanliness ratings. Rename the field as ‘Merged Reviews’.\nSELECT reviewCleanliness AS 'Merged Reviews'\n FROM review\n WHERE hotelId = 73242\nUNION ALL\nSELECT reviewRooms \n FROM review\n WHERE hotelId = 73242;\n\n\nChallenge\nCount the number of brands each lodging chain owns. Rename the count as Total Brands. DO NOT USE OUTER JOIN\nThis is how you could try to write this query with OUTER JOIN\nSELECT chainName, COUNT(brandId) AS `Total Brands`\n FROM lodgingchain LEFT JOIN brand USING(chainId)\n GROUP BY chainName\n ORDER BY COUNT(brandId);\nThis is the solution withou OUTER JOIN\nSELECT chainName, COUNT(*) AS `Total Brands`\n FROM lodgingchain JOIN brand USING(chainId)\n GROUP BY chainName\nUNION\nSELECT chainName, 0\n FROM lodgingchain\n WHERE chainId NOT IN (SELECT chainId FROM brand)\n\n\n\nImages and GIFs Disclaimer: Some of the images and GIFs used on this website are not owned by me. They are used for educational and illustrative purposes only. All rights belong to their respective owners. If you believe any content violates copyright, please contact me for prompt removal.\n\n\n\n\n\n\n  \n  \n    © 2025. All Rights Reserved.\n  \n  \n\n  \n  \n    Enabled by Dr. Marcin Bartosiak"
   },

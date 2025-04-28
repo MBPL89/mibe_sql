@@ -1,5 +1,5 @@
 ---
-title: "One-to-One and Recursive relationship"
+title: "Many-to-Many Recursive relationship"
 author: "Dr. Bartosiak"
 format: 
   live-html:
