@@ -166,6 +166,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="./5-one-to-one-and-recursive.html">
  <span class="dropdown-text">One-to-One and Recursive relationship</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./6-many-to-many-recursive.html">
+ <span class="dropdown-text">One-to-One and Recursive relationship</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -193,6 +197,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="./5-one-to-one-and-recursive-complete.html">
  <span class="dropdown-text">One-to-One and Recursive relationship</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./6-many-to-many-recursive-complete.html">
+ <span class="dropdown-text">One-to-One and Recursive relationship</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -215,6 +223,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li>
     <a class="dropdown-item" href="./Homework4.html">
  <span class="dropdown-text">Homework4</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Homework5.html">
+ <span class="dropdown-text">Homework5</span></a>
   </li>  
     </ul>
   </li>
@@ -290,6 +302,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#querying-recursive-relationship" id="toc-querying-recursive-relationship" class="nav-link" data-scroll-target="#querying-recursive-relationship">Querying recursive relationship</a></li>
   </ul></li>
   <li><a href="#handling-null-values" id="toc-handling-null-values" class="nav-link" data-scroll-target="#handling-null-values">Handling NULL values</a></li>
+  <li><a href="#between-and-limit" id="toc-between-and-limit" class="nav-link" data-scroll-target="#between-and-limit">BETWEEN and LIMIT</a>
+  <ul class="collapse">
+  <li><a href="#between" id="toc-between" class="nav-link" data-scroll-target="#between">BETWEEN</a></li>
+  <li><a href="#limit" id="toc-limit" class="nav-link" data-scroll-target="#limit">LIMIT</a></li>
+  <li><a href="#limit-and-offset" id="toc-limit-and-offset" class="nav-link" data-scroll-target="#limit-and-offset">LIMIT and OFFSET</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -426,6 +445,58 @@ Caution
 <div class="sourceCode" id="cb10"><pre class="sourceCode sql interactive hr3 code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> hotelId, hotelName</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a> <span class="kw">FROM</span> hotel</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a> <span class="kw">WHERE</span> brandId <span class="kw">IS</span> <span class="kw">NULL</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="between-and-limit" class="level1">
+<h1>BETWEEN and LIMIT</h1>
+<p>In SQL, <code>BETWEEN</code>, <code>LIMIT</code>, and <code>OFFSET</code> are commonly used clauses that help control and filter the data returned from queries. They provide ways to work with ranges, limit the amount of data retrieved, and manage how data is presented, especially when dealing with large datasets.</p>
+<section id="between" class="level2">
+<h2 class="anchored" data-anchor-id="between">BETWEEN</h2>
+<p><code>BETWEEN</code> is used to filter query results within a specific range. It works with numbers, dates, and text.</p>
+<p>For example:</p>
+<ul>
+<li>Report all reviews between two dates</li>
+<li>Report all review and responses that occurred within one day of the review being posted</li>
+</ul>
+</section>
+<section id="limit" class="level2">
+<h2 class="anchored" data-anchor-id="limit">LIMIT</h2>
+<p><code>LIMIT</code> restricts the number of rows returned by a query.</p>
+<p>For example:</p>
+<ul>
+<li>For all the hotels that received at least 50 review. Report the first ten hotels ranked by overall rating.</li>
+</ul>
+</section>
+<section id="limit-and-offset" class="level2">
+<h2 class="anchored" data-anchor-id="limit-and-offset">LIMIT and OFFSET</h2>
+<p><code>OFFSET</code> skips a specified number of rows before starting to return rows.</p>
+<p>For example:</p>
+<ul>
+<li>Report the 10th hotel in the ranking above (not the first ten)</li>
+</ul>
+</section>
+<section id="examples" class="level2">
+<h2 class="anchored" data-anchor-id="examples">Examples</h2>
+<p>Report all review that occurred from 4.08.2011 to 24.08.2011. Order by review date</p>
+<div class="interactive-sql">
+<div class="sourceCode" id="cb11"><pre class="sourceCode sql interactive hr3 code-with-copy"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> review</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> reviewDate <span class="kw">BETWEEN</span> <span class="st">'2011-08-04'</span> <span class="kw">AND</span> <span class="st">'2011-08-24'</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> reviewDate <span class="kw">DESC</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Report all review that occurred from 4.08.2011 to 24.08.2011. Order by review date Show only 10 first rows.</p>
+<div class="interactive-sql">
+<div class="sourceCode" id="cb12"><pre class="sourceCode sql interactive hr3 code-with-copy"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> review </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> reviewDate <span class="kw">BETWEEN</span> <span class="st">'2011-08-04'</span> <span class="kw">AND</span> <span class="st">'2011-08-24'</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> reviewDate <span class="kw">DESC</span> </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="kw">LIMIT</span> <span class="dv">10</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Report all review that occurred from 4.08.2011 to 24.08.2011. Order by review date. Show only 10 rows. Make sure your results start from the 9th row.</p>
+<div class="interactive-sql">
+<div class="sourceCode" id="cb13"><pre class="sourceCode sql interactive hr3 code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> review </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> reviewDate <span class="kw">BETWEEN</span> <span class="st">'2011-08-04'</span> <span class="kw">AND</span> <span class="st">'2011-08-24'</span> </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> reviewDate <span class="kw">DESC</span> </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="kw">LIMIT</span> <span class="dv">10</span> OFFSET <span class="dv">8</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <hr>
 <div class="disclaimer">
@@ -943,7 +1014,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","descPosition":"bottom","selector":".lightbox","closeEffect":"zoom","loop":false});
+<script>var lightboxQuarto = GLightbox({"loop":false,"selector":".lightbox","closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

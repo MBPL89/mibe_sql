@@ -146,6 +146,62 @@ SELECT hotelId, hotelName
  WHERE brandId IS NULL;
 ```
 
+# BETWEEN and LIMIT
+
+In SQL, `BETWEEN`, `LIMIT`, and `OFFSET` are commonly used clauses that help control and filter the data returned from queries. They provide ways to work with ranges, limit the amount of data retrieved, and manage how data is presented, especially when dealing with large datasets.
+
+## BETWEEN
+`BETWEEN` is used to filter query results within a specific range. It works with numbers, dates, and text.
+
+For example:
+
+- Report all reviews between two dates
+- Report all review and responses that occurred within one day of the review being posted
+
+## LIMIT
+`LIMIT` restricts the number of rows returned by a query.
+
+For example:
+
+- For all the hotels that received at least 50 review. Report the first ten hotels ranked by overall rating.
+
+## LIMIT and OFFSET
+`OFFSET` skips a specified number of rows before starting to return rows.
+
+For example:
+
+- Report the 10th hotel in the ranking above (not the first ten)
+
+## Examples
+
+Report all review that occurred from 4.08.2011 to 24.08.2011. 
+Order by review date
+``` {.sql .interactive .hr3}
+SELECT * FROM review
+WHERE reviewDate BETWEEN '2011-08-04' AND '2011-08-24' 
+ORDER BY reviewDate DESC;
+```
+
+Report all review that occurred from 4.08.2011 to 24.08.2011.
+Order by review date
+Show only 10 first rows.
+``` {.sql .interactive .hr3}
+SELECT * FROM review 
+WHERE reviewDate BETWEEN '2011-08-04' AND '2011-08-24' 
+ORDER BY reviewDate DESC 
+LIMIT 10;
+```
+
+Report all review that occurred from 4.08.2011 to 24.08.2011.
+Order by review date.
+Show only 10 rows. Make sure your results start from the 9th row.
+``` {.sql .interactive .hr3}
+SELECT * FROM review 
+WHERE reviewDate BETWEEN '2011-08-04' AND '2011-08-24' 
+ORDER BY reviewDate DESC 
+LIMIT 10 OFFSET 8;
+```
+
 ------------------------------------------------------------------------
 
 ::: disclaimer
