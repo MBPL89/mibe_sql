@@ -101,6 +101,10 @@ Use matplotlib to create a pie chart or histogram.
 
 ![](images/output42.png){fig-align="center" width="550"}
 
+## Solution
+
+You can find both exercises solved in <a href="https://colab.research.google.com/drive/1teyr9cyNbVlcsCgfLCUfNu_4GX9Xrb6O?usp=sharing" target="_blank">Colab.</a> 
+
 ------------------------------------------------------------------------
 
 

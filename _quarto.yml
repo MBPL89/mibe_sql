@@ -34,8 +34,8 @@ website:
         menu:
         - Homework1-solution.qmd
         - Homework2-solution.qmd
-        #- Homework3-solution.qmd
-        #- Homework4-solution.qmd
+        - Homework3-solution.qmd
+        - Homework4-solution.qmd
       - text: "Challenges"
         menu:
         - 4-server-challenge.qmd
