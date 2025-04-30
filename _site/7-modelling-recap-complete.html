@@ -8,7 +8,7 @@
 
 <meta name="author" content="Dr.&nbsp;Bartosiak">
 
-<title>Homework4 – MIBE SQL Corner</title>
+<title>Modelling Recap – MIBE SQL Corner</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -43,9 +43,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/interactive-sql-1.0.0/interactive-sql.css" rel="stylesheet">
-<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -82,7 +79,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -264,13 +261,24 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#database-modelling" id="toc-database-modelling" class="nav-link active" data-scroll-target="#database-modelling">Database modelling</a>
+  <ul class="collapse">
+  <li><a href="#hints-for-database-modelling" id="toc-hints-for-database-modelling" class="nav-link" data-scroll-target="#hints-for-database-modelling">Hints for Database modelling</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Homework4</h1>
+<h1 class="title">Modelling Recap</h1>
 </div>
 
 
@@ -293,10 +301,25 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="coding-and-database-managment" class="level1">
-<h1>Coding and Database Managment</h1>
-<section id="sql---homework-4" class="level2">
-<h2 class="anchored" data-anchor-id="sql---homework-4">SQL - Homework 4</h2>
+<section id="database-modelling" class="level1">
+<h1>Database modelling</h1>
+<p>Consider the following scenario. We will model his database step by step.</p>
+<p><em>You are helping the head of an academic society (e.g., the Association for Information Systems) keep track of current data about members of the association (she does not care about historical data). She tells you that researchers are associated with one institution (university, research lab, etc.). Each researcher has one or more specific areas of research interests. Also, she tells you that she wants to know the team composition of research teams for teams funded by the Association. Team membership and collaboration is not mutually exclusive since academic research is best performed in teams and academics work on many projects at the same time.</em></p>
+<p>In this text, we need to identify each phrase that gives us hints on what is expected in our database and design that element. For example, here is the first one:</p>
+<p>You are helping the head of an academic society (e.g., the Association for Information Systems) keep track of current data about members of the association (she does not care about historical data). She tells you that <strong>researchers are associated with one institution (university, research lab, etc.)</strong>. Each researcher has one or more specific areas of research interests. Also, she tells you that she wants to know the team composition of research teams for teams funded by the Association. Team membership and collaboration is not mutually exclusive since academic research is best performed in teams and academics work on many projects at the same time.</p>
+<section id="researchers-are-associated-with-one-institution-university-research-lab-etc." class="level3">
+<h3 class="anchored" data-anchor-id="researchers-are-associated-with-one-institution-university-research-lab-etc.">researchers are associated with one institution (university, research lab, etc.)</h3>
+<p><img src="images/recap1.png" class="img-fluid"></p>
+<p>You are helping the head of an academic society (e.g., the Association for Information Systems) keep track of current data about members of the association (she does not care about historical data). She tells you that researchers are associated with one institution (university, research lab, etc.). <strong>Each researcher has one or more specific areas of research interests.</strong> Also, she tells you that she wants to know the team composition of research teams for teams funded by the Association. Team membership and collaboration is not mutually exclusive since academic research is best performed in teams and academics work on many projects at the same time.</p>
+</section>
+<section id="each-researcher-has-one-or-more-specific-areas-of-research-interests." class="level3">
+<h3 class="anchored" data-anchor-id="each-researcher-has-one-or-more-specific-areas-of-research-interests.">Each researcher has one or more specific areas of research interests.</h3>
+<p><img src="images/recap2.png" class="img-fluid"></p>
+<p>You are helping the head of an academic society (e.g., the Association for Information Systems) keep track of current data about members of the association (she does not care about historical data). She tells you that researchers are associated with one institution (university, research lab, etc.). Each researcher has one or more specific areas of research interests. Also, she tells you that she wants to know <strong>the team composition of research teams for teams funded by the Association</strong>. Team membership and collaboration is not mutually exclusive since academic research is best performed in teams and academics work on many projects at the same time.</p>
+</section>
+<section id="the-team-composition-of-research-teams-for-teams-funded-by-the-association" class="level3">
+<h3 class="anchored" data-anchor-id="the-team-composition-of-research-teams-for-teams-funded-by-the-association">the team composition of research teams for teams funded by the Association</h3>
+<p><img src="images/recap3.png" class="img-fluid"></p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -307,23 +330,52 @@ Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>You have to run these queries in Workbench (or Python program).</p>
+<p>You might be tempted to finish here, as your model already looks good. But let’s have a look at the scenario again. There is more info there.</p>
 </div>
 </div>
-<p>The following queries use the <strong>classicmodels</strong> schema.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/classic_models.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Source: https://www.richardtwatson.com/"><img src="images/classic_models.png" class="img-fluid figure-img" width="550" alt="Source: https://www.richardtwatson.com/"></a></p>
-<figcaption>Source: https://www.richardtwatson.com/</figcaption>
-</figure>
+<p>You are helping the head of an academic society (e.g., the Association for Information Systems) keep track of current data about members of the association (she does not care about historical data). She tells you that researchers are associated with one institution (university, research lab, etc.). Each researcher has one or more specific areas of research interests. Also, she tells you that she wants to know the team composition of research teams for teams funded by the Association. <strong>Team membership and collaboration is not mutually exclusive</strong> since academic research is best performed in teams and academics work on many projects at the same time.</p>
+</section>
+<section id="team-membership-and-collaboration-is-not-mutually-exclusive" class="level3">
+<h3 class="anchored" data-anchor-id="team-membership-and-collaboration-is-not-mutually-exclusive">Team membership and collaboration is not mutually exclusive</h3>
+<p><img src="images/recap4.png" class="img-fluid"></p>
+</section>
+<section id="hints-for-database-modelling" class="level2">
+<h2 class="anchored" data-anchor-id="hints-for-database-modelling">Hints for Database modelling</h2>
+<ul>
+<li><p>The model will expand and contract</p></li>
+<li><p>Invent identifiers where necessary</p></li>
+<li><p>Identifiers should have only one purpose – identification</p></li>
+<li><p>Single instance entities are OK</p></li>
+<li><p>Label relationships to avoid ambiguity</p></li>
+<li><p>Select names carefully</p></li>
+<li><p>Synonyms—different words have the same meaning</p>
+<ul>
+<li>Get clients to settle on a common word or use views</li>
+</ul></li>
+<li><p>Homonyms—same word has different meanings</p>
+<ul>
+<li>Clarify to avoid confusion</li>
+</ul></li>
+<li><p>Naming associative entities</p>
+<ul>
+<li>Concatenate entity names if there is no obvious real world name</li>
+</ul></li>
+</ul>
+<hr>
+<div class="disclaimer">
+<p>
+<strong>Images and GIFs Disclaimer:</strong> Some of the images and GIFs used on this website are not owned by me. They are used for educational and illustrative purposes only. All rights belong to their respective owners. If you believe any content violates copyright, please contact me for prompt removal.
+</p>
 </div>
-<ol type="1">
-<li><p>Who is at the top of organization?</p></li>
-<li><p>Who reports to directly to William Patterson?</p></li>
-<li><p>List the employees who report to those employees who report to Diane Murphy.</p></li>
-<li><p>How many employees report to the Sales Manager that is employee named ‘Bow Anthony’? Rename the column as “Mr.&nbsp;Bow’s Direct Reports”</p></li>
-<li><p>Find the pair of customer that have the same credit limit. Omit the customers having no credit limit (That is creditlimit = 0): Report the customer name and credit limit for each pair and be sure to avoid unnecessary duplication.</p></li>
-</ol>
+<style>
+.disclaimer {
+  font-size: 0.8em;
+  color: #666;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+  margin-top: 20px;
+}
+</style>
 <div>
 <!-- Footer Section -->
 <div style="
@@ -387,8 +439,8 @@ eyJjb250ZW50cyI6W119
 <script type="vfs-file">
 W10=
 </script>
-<sqlime-db name="cm" path="https://raw.githubusercontent.com/MBPL89/dbs/refs/heads/main/cm2.sql"></sqlime-db>
-<sqlime-examples db="cm" selector="div.interactive-sql pre.cm code" editable=""></sqlime-examples>
+<sqlime-db name="hr3" path="https://raw.githubusercontent.com/MBPL89/dbs/refs/heads/main/htlreviews3.sql"></sqlime-db>
+<sqlime-examples db="hr3" selector="div.interactive-sql pre.hr3 code" editable=""></sqlime-examples>
 </section>
 </section>
 
@@ -825,38 +877,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","descPosition":"bottom","loop":false,"closeEffect":"zoom"});
-(function() {
-  let previousOnload = window.onload;
-  window.onload = () => {
-    if (previousOnload) {
-      previousOnload();
-    }
-    lightboxQuarto.on('slide_before_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      const href = trigger.getAttribute('href');
-      if (href !== null) {
-        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
-        if (imgEl !== null) {
-          const srcAttr = imgEl.getAttribute("src");
-          if (srcAttr && srcAttr.startsWith("data:")) {
-            slideConfig.href = srcAttr;
-          }
-        }
-      } 
-    });
-  
-    lightboxQuarto.on('slide_after_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(slideNode);
-      }
-    });
-  
-  };
-  
-})();
-          </script>
 
 
 

@@ -8,7 +8,7 @@
 
 <meta name="author" content="Dr.&nbsp;Bartosiak">
 
-<title>Homework4 – MIBE SQL Corner</title>
+<title>Homework6 - Modelling – MIBE SQL Corner</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -43,9 +43,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/interactive-sql-1.0.0/interactive-sql.css" rel="stylesheet">
-<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -270,7 +267,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Homework4</h1>
+<h1 class="title">Homework6 - Modelling</h1>
 </div>
 
 
@@ -295,34 +292,17 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="coding-and-database-managment" class="level1">
 <h1>Coding and Database Managment</h1>
-<section id="sql---homework-4" class="level2">
-<h2 class="anchored" data-anchor-id="sql---homework-4">SQL - Homework 4</h2>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>You have to run these queries in Workbench (or Python program).</p>
-</div>
-</div>
-<p>The following queries use the <strong>classicmodels</strong> schema.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/classic_models.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Source: https://www.richardtwatson.com/"><img src="images/classic_models.png" class="img-fluid figure-img" width="550" alt="Source: https://www.richardtwatson.com/"></a></p>
-<figcaption>Source: https://www.richardtwatson.com/</figcaption>
-</figure>
-</div>
+<section id="homework6---modelling" class="level2">
+<h2 class="anchored" data-anchor-id="homework6---modelling">Homework6 - Modelling</h2>
 <ol type="1">
-<li><p>Who is at the top of organization?</p></li>
-<li><p>Who reports to directly to William Patterson?</p></li>
-<li><p>List the employees who report to those employees who report to Diane Murphy.</p></li>
-<li><p>How many employees report to the Sales Manager that is employee named ‘Bow Anthony’? Rename the column as “Mr.&nbsp;Bow’s Direct Reports”</p></li>
-<li><p>Find the pair of customer that have the same credit limit. Omit the customers having no credit limit (That is creditlimit = 0): Report the customer name and credit limit for each pair and be sure to avoid unnecessary duplication.</p></li>
+<li><p>Draw a data model of a STUDENT entity with proper attributes. The model should allow you to collect and retrieve data to answer questions like: how many students are in class, how many students of a certain age, how students differ according to their interests, education, skills.</p></li>
+<li><p>Draw a data model of a GRADUATE ASSISTANT entity. Add any attributes that you consider relevant and that would allow to distinguish graduate assistants from students (some will be similar to student table, some will be new).</p></li>
+<li><p>Draw a data model for the following situation. Make certain that you show the attributes and feasible identifiers: A farmer can have many cows, but a cow belongs to only one farmer.</p></li>
+<li><p>The university architect has asked you to develop a data model to record details of the campus buildings. A building can have many rooms, but a room can be in only one building. Buildings have names, and rooms have a size and purpose (e.g., lecture, laboratory, seminar etc.). Draw a data model for this situation and create the matching relational database.</p></li>
+<li><p>Farmers can own cows or share cows with other farmers.</p></li>
+<li><p>A student can attend more than one class, and the same class can have many students.</p></li>
+<li><p>A dairy farmer, who is also a part-time cartoonist, has several herds of cows. He has assigned each cow to a particular herd. In each herd, the farmer has one cow that is his favorite — often that cow is featured in a cartoon.</p></li>
+<li><p>The originator of a pyramid marketing scheme has a system for selling ethnic jewelry. The pyramid has three levels–gold, silver, and bronze. New associates join the pyramid at the bronze level. They contribute 30 percent of the revenue of their sales of jewelry to the silver chief in charge of their clan. In turn, silver chiefs contribute 30 percent of what they receive from bronze associates to the gold master in command of their tribe. Finally, gold masters pass on 30 percent of what they receive to the originator of the scheme.</p></li>
 </ol>
 <div>
 <!-- Footer Section -->
@@ -825,38 +805,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","descPosition":"bottom","loop":false,"closeEffect":"zoom"});
-(function() {
-  let previousOnload = window.onload;
-  window.onload = () => {
-    if (previousOnload) {
-      previousOnload();
-    }
-    lightboxQuarto.on('slide_before_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      const href = trigger.getAttribute('href');
-      if (href !== null) {
-        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
-        if (imgEl !== null) {
-          const srcAttr = imgEl.getAttribute("src");
-          if (srcAttr && srcAttr.startsWith("data:")) {
-            slideConfig.href = srcAttr;
-          }
-        }
-      } 
-    });
-  
-    lightboxQuarto.on('slide_after_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(slideNode);
-      }
-    });
-  
-  };
-  
-})();
-          </script>
 
 
 

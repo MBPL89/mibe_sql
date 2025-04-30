@@ -1,0 +1,99 @@
+---
+title: "Modelling Recap"
+author: "Dr. Bartosiak"
+format: 
+  live-html:
+    toc: true
+    toc-depth: 2
+filters:
+  - interactive-sql
+databases:
+  - name: hr3
+    path: "https://raw.githubusercontent.com/MBPL89/dbs/refs/heads/main/htlreviews3.sql"
+---
+
+# Database modelling
+
+Consider the following scenario. We will model his database step by step. 
+
+*You are helping the head of an academic society (e.g., the Association for Information Systems) keep track of current data about members of the association (she does not care about historical data). She tells you that researchers are associated with one institution (university, research lab, etc.). Each researcher has one or more specific areas of research interests. Also, she tells you that she wants to know the team composition of research teams for teams funded by the Association. Team membership and collaboration is not mutually exclusive since academic research is best performed in teams and academics work on many projects at the same time.*
+
+In this text, we need to identify each phrase that gives us hints on what is expected in our database and design that element. For example, here is the first one:
+
+You are helping the head of an academic society (e.g., the Association for Information Systems) keep track of current data about members of the association (she does not care about historical data). She tells you that **researchers are associated with one institution (university, research lab, etc.)**. Each researcher has one or more specific areas of research interests. Also, she tells you that she wants to know the team composition of research teams for teams funded by the Association. Team membership and collaboration is not mutually exclusive since academic research is best performed in teams and academics work on many projects at the same time.
+
+### researchers are associated with one institution (university, research lab, etc.)
+
+![](images/recap1.png)
+
+You are helping the head of an academic society (e.g., the Association for Information Systems) keep track of current data about members of the association (she does not care about historical data). She tells you that researchers are associated with one institution (university, research lab, etc.). **Each researcher has one or more specific areas of research interests.** Also, she tells you that she wants to know the team composition of research teams for teams funded by the Association. Team membership and collaboration is not mutually exclusive since academic research is best performed in teams and academics work on many projects at the same time.
+
+### Each researcher has one or more specific areas of research interests.
+
+![](images/recap2.png)
+
+You are helping the head of an academic society (e.g., the Association for Information Systems) keep track of current data about members of the association (she does not care about historical data). She tells you that researchers are associated with one institution (university, research lab, etc.). Each researcher has one or more specific areas of research interests. Also, she tells you that she wants to know **the team composition of research teams for teams funded by the Association**. Team membership and collaboration is not mutually exclusive since academic research is best performed in teams and academics work on many projects at the same time.
+
+### the team composition of research teams for teams funded by the Association
+
+![](images/recap3.png)
+
+::: {.callout-warning}
+You might be tempted to finish here, as your model already looks good. But let's have a look at the scenario again. There is more info there.
+:::
+
+You are helping the head of an academic society (e.g., the Association for Information Systems) keep track of current data about members of the association (she does not care about historical data). She tells you that researchers are associated with one institution (university, research lab, etc.). Each researcher has one or more specific areas of research interests. Also, she tells you that she wants to know the team composition of research teams for teams funded by the Association. **Team membership and collaboration is not mutually exclusive** since academic research is best performed in teams and academics work on many projects at the same time.
+
+### Team membership and collaboration is not mutually exclusive
+
+![](images/recap4.png)
+
+## Hints for Database modelling
+
+-   The model will expand and contract
+
+-   Invent identifiers where necessary
+
+-   Identifiers should have only one purpose – identification
+
+-   Single instance entities are OK
+
+-   Label relationships to avoid ambiguity
+
+-   Select names carefully
+
+-   Synonyms—different words have the same meaning
+
+    -   Get clients to settle on a common word or use views
+
+-   Homonyms—same word has different meanings
+
+    -   Clarify to avoid confusion
+
+-   Naming associative entities
+
+    -   Concatenate entity names if there is no obvious real world name
+
+------------------------------------------------------------------------
+
+::: disclaimer
+<p><strong>Images and GIFs Disclaimer:</strong> Some of the images and GIFs used on this website are not owned by me. They are used for educational and illustrative purposes only. All rights belong to their respective owners. If you believe any content violates copyright, please contact me for prompt removal.</p>
+:::
+
+```{=html}
+<style>
+.disclaimer {
+  font-size: 0.8em;
+  color: #666;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+  margin-top: 20px;
+}
+</style>
+```
+
+```{=html}
+<div>
+  {{< include footer.html >}}
+</div>
+```
