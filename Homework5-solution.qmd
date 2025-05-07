@@ -1,0 +1,146 @@
+---
+title: "Homework5"
+author: "Dr. Bartosiak"
+format: live-html
+filters:
+  - interactive-sql
+databases:
+  - name: cm
+    path: "https://raw.githubusercontent.com/MBPL89/dbs/refs/heads/main/cm2.sql"
+---
+
+# Coding and Database Managment
+
+## SQL - Homework 5
+
+::: callout-warning
+You have to run these queries in Workbench (or Python program).
+:::
+
+The following queries use the **classicmodels** schema.
+
+![Source: https://www.richardtwatson.com/](images/classic_models.png){.lightbox width="550"}
+
+1.  Report the contact names for the customers having no sales representative. Try it with and without IS NULL.
+
+``` {.sql}
+SELECT contactFirstName, contactLastName 
+ FROM customers
+ WHERE salesRepEmployeeNumber IS NULL;
+```
+
+``` {.sql}
+SELECT contactFirstName, contactLastName 
+ FROM customers
+ WHERE (SELECT COUNT(salesRepEmployeeNumber) FROM customers AS c2
+					WHERE customers.customerNumber = c2.customerNumber) = 0;
+```
+
+2.  Select the product code and name of all the products that have not been sold. \[Try with IS NULL\]
+
+``` {.sql .interactive .cm}
+SELECT productCode, productName
+ FROM products LEFT JOIN orderdetails USING(productCode)
+ WHERE orderNumber IS NULL;
+```
+
+3.  List the name, line and vendor of products in the 'Classic Cars' product line or from vendors that have ‘Gear’ in their name. \[Try it with the UNION set operator\]
+
+``` {.sql}
+SELECT productName, productLine, productVendor
+ FROM products
+ WHERE productLine = 'Classic Cars'
+UNION
+SELECT productName, productLine, productVendor
+ FROM products
+ WHERE productVendor REGEXP 'Gear';
+```
+
+4.  Count the total number of products in each product line. \[Do not use an outer join\]
+
+``` {.sql}
+SELECT productLine, COUNT(*) AS Tot
+ FROM products JOIN productlines USING(productLine)
+ GROUP BY productLine
+UNION
+SELECT productLine, 0
+ FROM products
+ WHERE productLine NOT IN (SELECT productLine FROM productlines)
+ ORDER BY Tot;
+```
+
+5.  Report the total number of orders that shipped between 2003-06-06 and 2004-07-07. Meaningfully rename the output.
+
+``` {.sql}
+SELECT count( distinct orderNumber) as 'Total orders shipped within this period'
+ FROM orderdetails JOIN orders USING (orderNumber)
+ WHERE orders.shippedDate BETWEEN '2003-06-06' AND '2004-06-06';
+```
+
+An alternative solution
+``` {.sql}
+SELECT count(orderNumber) as 'Total orders shipped within this period'
+ FROM orders 
+ WHERE shippedDate BETWEEN '2003-06-06' AND '2004-06-06';
+```
+
+6.  Identify all the products that were sold at a discount greater than 5% but less than 10%.
+
+<a href="https://www.w3schools.com/mysql/func_mysql_format.asp" target="_blank">FORMAT()</a> in the solution below is optional, but it helps to make the output more readable.
+
+``` {.sql}
+SELECT productName ,FORMAT(((MSRP-priceEach)/MSRP)*100, 3) AS 'DISCOUNT_percent'
+	FROM products join orderdetails USING (productCode)
+    WHERE FORMAT(((MSRP-priceEach)/MSRP)*100, 3) > 5
+	  and FORMAT(((MSRP-priceEach)/MSRP)*100, 3) < 10;
+```
+
+7.  Report name, cost, MSRP and margin (MSRP- buyPrice) for the 5 most expensive products (highest MSRP). Limit your reporting to the products that sold at least 300 units (cumulative in all orders). \[perform this query using LIMIT\]
+
+``` {.sql}
+SELECT productCode, productName, buyPrice, MSRP, (MSRP - buyPrice) as 'Margin', sum(quantityOrdered) as 'Total'
+	FROM products JOIN orderdetails USING (productCode)
+	GROUP BY productCode
+	HAVING (sum(quantityOrdered)) > 300
+	ORDER BY MSRP DESC 
+	LIMIT 5;
+```
+
+8.  Report the 10 most expensive products by MSRP \[use LIMIT\].
+
+``` {.sql}
+SELECT productName, MSRP FROM products 
+	ORDER BY MSRP DESC LIMIT 10;
+```
+
+9.  Report the 10th most expensive product by MSRP \[use LIMIT and OFFSET\].
+
+``` {.sql}
+SELECT productName, MSRP FROM products 
+	ORDER BY MSRP DESC LIMIT 1 OFFSET 9;
+```
+
+10. Report all product information about the products with the second highest MSRP.
+
+``` {.sql .interactive .cm}
+SELECT * FROM products 
+	ORDER BY MSRP DESC LIMIT 1 OFFSET 1;
+```
+
+Challenge: Can you complete query 7 without using LIMIT?
+
+``` {.sql .interactive .cm}
+SELECT productCode, productName, buyPrice, MSRP, (MSRP - buyPrice) as 'Margin', sum(quantityOrdered) as 'Total'
+	FROM products JOIN orderdetails USING (productCode)
+    WHERE 5 > (SELECT COUNT(*) FROM products as P1
+				WHERE products.MSRP < P1.MSRP)
+	GROUP BY productCode
+	HAVING (sum(quantityOrdered)) > 300
+    ORDER BY MSRP DESC;
+```
+
+```{=html}
+<div>
+  {{< include footer.html >}}
+</div>
+```

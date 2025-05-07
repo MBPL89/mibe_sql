@@ -42,15 +42,19 @@ website:
         - Homework2-solution.qmd
         - Homework3-solution.qmd
         - Homework4-solution.qmd
+        - Homework5-solution.qmd
+        - Homework6-solution.qmd
       - text: "Challenges"
         menu:
         - 4-server-challenge.qmd
+        - cdlibrary.qmd
+        - cdlibrary-solution.qmd
       - text: "Readings"
         menu:
         - Readings.qmd
-#  drafts:
-#    - Homework3-solution.qmd
-#  draft-mode: gone
+  drafts:
+    - cdlibrary-solution.qmd
+  draft-mode: gone
         
 format:
   html:

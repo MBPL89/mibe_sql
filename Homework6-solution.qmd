@@ -1,0 +1,52 @@
+---
+title: "Homework6 - Modelling"
+author: "Dr. Bartosiak"
+format: live-html
+filters:
+  - interactive-sql
+databases:
+  - name: cm
+    path: "https://raw.githubusercontent.com/MBPL89/dbs/refs/heads/main/cm2.sql"
+---
+
+# Coding and Database Managment
+
+## Homework6 - Modelling
+
+1.  Draw a data model of a STUDENT entity with proper attributes. The model should allow you to collect and retrieve data to answer questions like: how many students are in class, how many students of a certain age, how students differ according to their interests, education, skills.
+
+![](images/h61.png){.lightbox fig-align="center"}
+
+2.  Draw a data model of a GRADUATE ASSISTANT entity. Add any attributes that you consider relevant and that would allow to distinguish graduate assistants from students (some will be similar to student table, some will be new).
+
+![](images/h62.png){.lightbox fig-align="center"}
+
+3.  Draw a data model for the following situation. Make certain that you show the attributes and feasible identifiers: A farmer can have many cows, but a cow belongs to only one farmer.
+
+![](images/h63.png){.lightbox fig-align="center"}
+
+4.  The university architect has asked you to develop a data model to record details of the campus buildings. A building can have many rooms, but a room can be in only one building. Buildings have names, and rooms have a size and purpose (e.g., lecture, laboratory, seminar etc.). Draw a data model for this situation and create the matching relational database.
+
+![](images/h64.png){.lightbox fig-align="center"}
+
+5.  Farmers can own cows or share cows with other farmers.
+
+![](images/h65.png){.lightbox fig-align="center"}
+
+6.  A student can attend more than one class, and the same class can have many students.
+
+![](images/h66.png){.lightbox fig-align="center"}
+
+7.  A dairy farmer, who is also a part-time cartoonist, has several herds of cows. He has assigned each cow to a particular herd. In each herd, the farmer has one cow that is his favorite — often that cow is featured in a cartoon.
+
+![](images/h67.png){.lightbox fig-align="center"}
+
+8.  The originator of a pyramid marketing scheme has a system for selling ethnic jewelry. The pyramid has three levels--gold, silver, and bronze. New associates join the pyramid at the bronze level. They contribute 30 percent of the revenue of their sales of jewelry to the silver chief in charge of their clan. In turn, silver chiefs contribute 30 percent of what they receive from bronze associates to the gold master in command of their tribe. Finally, gold masters pass on 30 percent of what they receive to the originator of the scheme.
+
+![](images/h68.png){.lightbox fig-align="center"}
+
+```{=html}
+<div>
+  {{< include footer.html >}}
+</div>
+```

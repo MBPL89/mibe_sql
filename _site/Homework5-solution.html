@@ -8,7 +8,7 @@
 
 <meta name="author" content="Dr.&nbsp;Bartosiak">
 
-<title>Homework3 – MIBE SQL Corner</title>
+<title>Homework5 – MIBE SQL Corner</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -320,7 +320,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Homework3</h1>
+<h1 class="title">Homework5</h1>
 </div>
 
 
@@ -345,8 +345,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="coding-and-database-managment" class="level1">
 <h1>Coding and Database Managment</h1>
-<section id="sql---homework-3" class="level2">
-<h2 class="anchored" data-anchor-id="sql---homework-3">SQL - Homework 3</h2>
+<section id="sql---homework-5" class="level2">
+<h2 class="anchored" data-anchor-id="sql---homework-5">SQL - Homework 5</h2>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You have to run these queries in Workbench (or Python program).</p>
+</div>
+</div>
 <p>The following queries use the <strong>classicmodels</strong> schema.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -355,43 +368,98 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 <ol type="1">
-<li><p>Report product number, product name of products sold by order date. Order results by date (descending) and product code (ascending). Use both the USING and ON syntax for the join. Observe their different behavior.</p>
-<div class="interactive-sql">
-<div class="sourceCode" id="cb1"><pre class="sourceCode sql interactive cm code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div></li>
-<li><p>List all the order number and status for all the orders containing the 1940 Ford Pickup Truck.</p>
-<div class="interactive-sql">
-<div class="sourceCode" id="cb2"><pre class="sourceCode sql interactive cm code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div></li>
-<li><p>List the names of customers and the corresponding order numbers for those orders from that customer that have a total value greater than $25,000? Total value is obtained by adding the price times quantity sold of all products in the order.</p>
-<div class="interactive-sql">
-<div class="sourceCode" id="cb3"><pre class="sourceCode sql interactive cm code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div></li>
-<li><p>Are there any products that appear on all orders? If so, list their product code and the total number of orders they appear in. Rename the columns as ‘Total Orders’.</p>
-<div class="interactive-sql">
-<div class="sourceCode" id="cb4"><pre class="sourceCode sql interactive cm code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div></li>
-<li><p>Report those orders containing products sold at a discount (i.e., sold at a price less than the product’s MSRP). For these orders report the order number, the product code of the items sold at discount and both the price and the MSRP.</p>
-<div class="interactive-sql">
-<div class="sourceCode" id="cb5"><pre class="sourceCode sql interactive cm code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div></li>
-<li><p>Repeat the above query but only return the order number for the orders containing products sold at a discount.</p>
-<div class="interactive-sql">
-<div class="sourceCode" id="cb6"><pre class="sourceCode sql interactive cm code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div></li>
-<li><p>Report those products that have been sold with a markup of 100% or more (i.e., the priceEach is at least twice the buyPrice) on at least one sale. Provide the product code, the price at which it sold, the buy price and the MSRP. Be sure not to duplicate output unnecessarily.</p>
-<div class="interactive-sql">
-<div class="sourceCode" id="cb7"><pre class="sourceCode sql interactive cm code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div></li>
-<li><p>What is the total quantity on hand for products listed in orders with staus: ‘On Hold’? Rename the quantity ordered as ‘Total Ordered’ and the quantity in stock as ‘Total on Hand’. Use the ON syntax for the JOIN.</p>
-<div class="interactive-sql">
-<div class="sourceCode" id="cb8"><pre class="sourceCode sql interactive cm code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div></li>
-<li><p>Report product code, name and MSRP for all products that have not sold any units.</p>
-<div class="interactive-sql">
-<div class="sourceCode" id="cb9"><pre class="sourceCode sql interactive cm code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div></li>
+<li>Report the contact names for the customers having no sales representative. Try it with and without IS NULL.</li>
 </ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> contactFirstName, contactLastName </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a> <span class="kw">FROM</span> customers</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a> <span class="kw">WHERE</span> salesRepEmployeeNumber <span class="kw">IS</span> <span class="kw">NULL</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> contactFirstName, contactLastName </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a> <span class="kw">FROM</span> customers</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a> <span class="kw">WHERE</span> (<span class="kw">SELECT</span> <span class="fu">COUNT</span>(salesRepEmployeeNumber) <span class="kw">FROM</span> customers <span class="kw">AS</span> c2</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                    <span class="kw">WHERE</span> customers.customerNumber <span class="op">=</span> c2.customerNumber) <span class="op">=</span> <span class="dv">0</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="1">
+<li>Select the product code and name of all the products that have not been sold. [Try with IS NULL]</li>
+</ol>
+<div class="interactive-sql">
+<div class="sourceCode" id="cb3"><pre class="sourceCode sql interactive cm code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> productCode, productName</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a> <span class="kw">FROM</span> products <span class="kw">LEFT</span> <span class="kw">JOIN</span> orderdetails <span class="kw">USING</span>(productCode)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a> <span class="kw">WHERE</span> orderNumber <span class="kw">IS</span> <span class="kw">NULL</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="3" type="1">
+<li>List the name, line and vendor of products in the ‘Classic Cars’ product line or from vendors that have ‘Gear’ in their name. [Try it with the UNION set operator]</li>
+</ol>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> productName, productLine, productVendor</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a> <span class="kw">FROM</span> products</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a> <span class="kw">WHERE</span> productLine <span class="op">=</span> <span class="st">'Classic Cars'</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">UNION</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> productName, productLine, productVendor</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a> <span class="kw">FROM</span> products</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a> <span class="kw">WHERE</span> productVendor REGEXP <span class="st">'Gear'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="4" type="1">
+<li>Count the total number of products in each product line. [Do not use an outer join]</li>
+</ol>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> productLine, <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> Tot</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a> <span class="kw">FROM</span> products <span class="kw">JOIN</span> productlines <span class="kw">USING</span>(productLine)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a> <span class="kw">GROUP</span> <span class="kw">BY</span> productLine</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">UNION</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> productLine, <span class="dv">0</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a> <span class="kw">FROM</span> products</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a> <span class="kw">WHERE</span> productLine <span class="kw">NOT</span> <span class="kw">IN</span> (<span class="kw">SELECT</span> productLine <span class="kw">FROM</span> productlines)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a> <span class="kw">ORDER</span> <span class="kw">BY</span> Tot;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="5" type="1">
+<li>Report the total number of orders that shipped between 2003-06-06 and 2004-07-07. Meaningfully rename the output.</li>
+</ol>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="fu">count</span>( <span class="kw">distinct</span> orderNumber) <span class="kw">as</span> <span class="st">'Total orders shipped within this period'</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a> <span class="kw">FROM</span> orderdetails <span class="kw">JOIN</span> orders <span class="kw">USING</span> (orderNumber)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a> <span class="kw">WHERE</span> orders.shippedDate <span class="kw">BETWEEN</span> <span class="st">'2003-06-06'</span> <span class="kw">AND</span> <span class="st">'2004-06-06'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>An alternative solution</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="fu">count</span>(orderNumber) <span class="kw">as</span> <span class="st">'Total orders shipped within this period'</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a> <span class="kw">FROM</span> orders </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a> <span class="kw">WHERE</span> shippedDate <span class="kw">BETWEEN</span> <span class="st">'2003-06-06'</span> <span class="kw">AND</span> <span class="st">'2004-06-06'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="6" type="1">
+<li>Identify all the products that were sold at a discount greater than 5% but less than 10%.</li>
+</ol>
+<p><a href="https://www.w3schools.com/mysql/func_mysql_format.asp" target="_blank">FORMAT()</a> in the solution below is optional, but it helps to make the output more readable.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> productName ,FORMAT(((MSRP<span class="op">-</span>priceEach)<span class="op">/</span>MSRP)<span class="op">*</span><span class="dv">100</span>, <span class="dv">3</span>) <span class="kw">AS</span> <span class="st">'DISCOUNT_percent'</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FROM</span> products <span class="kw">join</span> orderdetails <span class="kw">USING</span> (productCode)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">WHERE</span> FORMAT(((MSRP<span class="op">-</span>priceEach)<span class="op">/</span>MSRP)<span class="op">*</span><span class="dv">100</span>, <span class="dv">3</span>) <span class="op">&gt;</span> <span class="dv">5</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>      <span class="kw">and</span> FORMAT(((MSRP<span class="op">-</span>priceEach)<span class="op">/</span>MSRP)<span class="op">*</span><span class="dv">100</span>, <span class="dv">3</span>) <span class="op">&lt;</span> <span class="dv">10</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="7" type="1">
+<li>Report name, cost, MSRP and margin (MSRP- buyPrice) for the 5 most expensive products (highest MSRP). Limit your reporting to the products that sold at least 300 units (cumulative in all orders). [perform this query using LIMIT]</li>
+</ol>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> productCode, productName, buyPrice, MSRP, (MSRP <span class="op">-</span> buyPrice) <span class="kw">as</span> <span class="st">'Margin'</span>, <span class="fu">sum</span>(quantityOrdered) <span class="kw">as</span> <span class="st">'Total'</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FROM</span> products <span class="kw">JOIN</span> orderdetails <span class="kw">USING</span> (productCode)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">GROUP</span> <span class="kw">BY</span> productCode</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">HAVING</span> (<span class="fu">sum</span>(quantityOrdered)) <span class="op">&gt;</span> <span class="dv">300</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ORDER</span> <span class="kw">BY</span> MSRP <span class="kw">DESC</span> </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">LIMIT</span> <span class="dv">5</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="8" type="1">
+<li>Report the 10 most expensive products by MSRP [use LIMIT].</li>
+</ol>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> productName, MSRP <span class="kw">FROM</span> products </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ORDER</span> <span class="kw">BY</span> MSRP <span class="kw">DESC</span> <span class="kw">LIMIT</span> <span class="dv">10</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="9" type="1">
+<li>Report the 10th most expensive product by MSRP [use LIMIT and OFFSET].</li>
+</ol>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> productName, MSRP <span class="kw">FROM</span> products </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ORDER</span> <span class="kw">BY</span> MSRP <span class="kw">DESC</span> <span class="kw">LIMIT</span> <span class="dv">1</span> OFFSET <span class="dv">9</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="10" type="1">
+<li>Report all product information about the products with the second highest MSRP.</li>
+</ol>
+<div class="interactive-sql">
+<div class="sourceCode" id="cb12"><pre class="sourceCode sql interactive cm code-with-copy"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> products </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ORDER</span> <span class="kw">BY</span> MSRP <span class="kw">DESC</span> <span class="kw">LIMIT</span> <span class="dv">1</span> OFFSET <span class="dv">1</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Challenge: Can you complete query 7 without using LIMIT?</p>
+<div class="interactive-sql">
+<div class="sourceCode" id="cb13"><pre class="sourceCode sql interactive cm code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> productCode, productName, buyPrice, MSRP, (MSRP <span class="op">-</span> buyPrice) <span class="kw">as</span> <span class="st">'Margin'</span>, <span class="fu">sum</span>(quantityOrdered) <span class="kw">as</span> <span class="st">'Total'</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FROM</span> products <span class="kw">JOIN</span> orderdetails <span class="kw">USING</span> (productCode)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">WHERE</span> <span class="dv">5</span> <span class="op">&gt;</span> (<span class="kw">SELECT</span> <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">FROM</span> products <span class="kw">as</span> P1</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                <span class="kw">WHERE</span> products.MSRP <span class="op">&lt;</span> P1.MSRP)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">GROUP</span> <span class="kw">BY</span> productCode</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">HAVING</span> (<span class="fu">sum</span>(quantityOrdered)) <span class="op">&gt;</span> <span class="dv">300</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ORDER</span> <span class="kw">BY</span> MSRP <span class="kw">DESC</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div>
 <!-- Footer Section -->
 <div style="
@@ -893,7 +961,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","openEffect":"zoom","loop":false,"descPosition":"bottom"});
+<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","openEffect":"zoom","loop":false,"closeEffect":"zoom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

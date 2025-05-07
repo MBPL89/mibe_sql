@@ -23,7 +23,7 @@ The following queries use the **classicmodels** schema.
 
 1.	Report the contact names for the customers having no sales representative. Try it with and without IS NULL.
 
-2.	Select the product code and name of all the products that have not been sold. [Try with IS NULL and without IS NULL]
+2.	Select the product code and name of all the products that have not been sold. [Try with IS NULL]
 
 3.	List the name, line and vendor of products in the 'Classic Cars' product line or from vendors that have ‘Gear’ in their name. [Try it with the UNION set operator]
 
@@ -41,7 +41,7 @@ The following queries use the **classicmodels** schema.
 
 10.	Report all product information about the products with the second highest MSRP.
 
-Challenge: Can you complete query 9 without using LIMIT?
+Challenge: Can you complete query 7 without using LIMIT?
 
 
 ```{=html}
