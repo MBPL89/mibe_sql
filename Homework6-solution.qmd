@@ -1,5 +1,5 @@
 ---
-title: "Homework6 - Modelling"
+title: "Homework6 solution"
 author: "Dr. Bartosiak"
 format: live-html
 filters:
