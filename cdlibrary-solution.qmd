@@ -1,6 +1,6 @@
 ---
 title: "CD Library solution"
-draft: true
+#draft: true
 author: "Dr. Bartosiak"
 format: live-html
 filters:

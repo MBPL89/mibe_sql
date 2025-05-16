@@ -52,9 +52,9 @@ website:
       - text: "Readings"
         menu:
         - Readings.qmd
-  drafts:
-    - cdlibrary-solution.qmd
-  draft-mode: gone
+#  drafts:
+#    - cdlibrary-solution.qmd
+#  draft-mode: gone
         
 format:
   html:
