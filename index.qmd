@@ -16,9 +16,7 @@ You will also use this website to query databases. It features interactive field
 ``` {.sql .interactive .hr1}
 
 
-
 ```
-
 
 ```{=html}
 <div>
