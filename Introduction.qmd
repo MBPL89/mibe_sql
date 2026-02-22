@@ -88,7 +88,7 @@ Organizational data are used by a variety of **information system**s.
 There are many types of Information Systems in organizations.
 
 | Type of IS | System's purpose |
-|-----------------------------|-------------------------------------------|
+|----|----|
 | TPS | Transaction processing system: Collects and stores data from routine transactions |
 | MIS | Management information system: Converts data from a TPS into information for planning, controlling, and managing an organization |
 | DSS | Decision support system: Supports managerial decision making by providing models for processing and analysing data |
@@ -106,7 +106,7 @@ All of them may require some sort of data to work.
 For the data to be effectively fed into all these systems, data management systems must meet specific requirements:
 
 | **Requirement** | **Description** |
-|---------------------|---------------------------------------------------|
+|----|----|
 | **Shareable** | Readily accessible to multiple users (at the same time). |
 | **Transportable** | Easily accessible by users in different locations (e.g., salesperson, decision-maker). |
 | **Secure** | Safe from destruction or unauthorized use. |
@@ -121,7 +121,7 @@ For the data to be effectively fed into all these systems, data management syste
 Similarly, there are challenges and problems that database management systems must overcome:
 
 | **Challenge** | **Description** |
-|---------------------|---------------------------------------------------|
+|----|----|
 | **Redundancy** | The same data is replicated in multiple locations. |
 | **Lack of Data Control** | Data is not secure or effectively organized and managed. |
 | **Poor Interface** | Data is not accessible. |
@@ -138,7 +138,7 @@ Before diving into databases, it's crucial to grasp the distinction between data
 **Data** consists of raw facts and figures without context, like individual numbers or words. **Information** emerges when data is organized and given context, making it meaningful and useful – for instance, when those numbers represent monthly sales figures. **Knowledge** goes further: it's the understanding gained from analyzing and applying information, allowing us to make informed decisions and recognize patterns.
 
 | Category | Characteristics | Example |
-|--------------------|--------------------------------|--------------------|
+|----|----|----|
 | **Data** | • Raw facts<br>• No context<br>• Just numbers and text | Temperature readings: 23, 25, 22, 24, 26 |
 | **Information** | • Data with context<br>• Processed data<br>• Value added to data<br>• Summarized<br>• Organized<br>• Analyzed | Daily temperature readings in Celsius for Pavia, week of June 1-5, 2024, showing an average of 24°C with an upward trend |
 | **Knowledge** | • Knowing what information is required<br>• Knowing what the information means | Understanding that the rising temperature trend in Pavia indicates the start of summer and knowing to adjust city services (like water supply) and public health advisories accordingly |
@@ -307,7 +307,7 @@ Overall, **a DBMS provides better data integration, making business operations m
 #### DBMS Functions:
 
 | Function | Description |
-|-------------------------------|----------------------------------------|
+|----|----|
 | **Data dictionary management** | Stores definitions of the data elements and their relationships |
 | **Data storage management** | Performance tuning: Ensures efficient performance of the database in terms of storage and access speed |
 | **Data transformation and presentation** | Transforms entered data to conform to required data structures |

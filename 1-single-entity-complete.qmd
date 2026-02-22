@@ -61,10 +61,7 @@ The relational model represents how data is stored in Relational Databases. A re
 
 ![Relational Model](images/Relational%20Model.jpg){fig-align="center" width="700"}
 
-Relation or table: 
-* Matrix of intersecting tuples and attributes 
-  + Tuples: Rows 
-  + Attributes: Columns
+Relation or table: \* Matrix of intersecting tuples and attributes + Tuples: Rows + Attributes: Columns
 
 ## Single Entity
 
@@ -361,7 +358,6 @@ SELECT DISTINCT brandSegment FROM brand;
 ## Extra practice cell
 
 ``` {.sql .interactive .hr1}
-
 ```
 
 ------------------------------------------------------------------------
