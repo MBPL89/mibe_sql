@@ -40,8 +40,8 @@ website:
         #- Homework6.qmd
       - text: "Homework solutions"
         menu:
-        - "Coming soon"
-        #- Homework1-solution.qmd
+        #- "Coming soon"
+        - Homework1-solution.qmd
         #- Homework2-solution.qmd
         #- Homework3-solution.qmd
         #- Homework4-solution.qmd
