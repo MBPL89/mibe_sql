@@ -54,7 +54,6 @@ Let's go back to our hotel database. So far it was a fairly simple database. How
 
 **How would you model the following scenario?** - An author can write reviews about many hotels. - A hotel can have reviews written by many authors.
 
-
 ## Database Manipulation
 
 So far, we’ve learned how to join tables using the `WHERE` clause—this is known as an implicit join.
@@ -110,25 +109,21 @@ Use all four methods
 implicit JOIN (WHERE)
 
 ``` {.sql .interactive .hr3}
-
 ```
 
 NATURAL JOIN
 
 ``` {.sql .interactive .hr3}
-
 ```
 
 JOIN ... USING
 
 ``` {.sql .interactive .hr3}
-
 ```
 
 JOIN ... ON
 
 ``` {.sql .interactive .hr3}
-
 ```
 
 #### Notes
@@ -205,13 +200,11 @@ Outer joins are especially useful for analyzing incomplete data, maintaining rec
 Provide a list of all chain names and their respective brands. Order the list by chain name.
 
 ``` {.sql .interactive .hr3}
-
 ```
 
 ## Extra practice cell
 
 ``` {.sql .interactive .hr3}
-
 ```
 
 ------------------------------------------------------------------------
