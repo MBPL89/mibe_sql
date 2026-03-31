@@ -17,24 +17,26 @@ editor_options:
 ## Exercise 1: Hotel Brand Performance Analysis
 
 ### Objective:
+
 Write a Python program that connects to the database, retrieves hotel ratings and brand information, and analyzes the average rating for each brand.
 
 ### Instructions:
 
-* Connect to the database using Python (mysql.connector or SQLAlchemy).
-* Retrieve the average hotelStarRating for each brand.
-* Display the results in a sorted table (highest-rated brands first).
+-   Connect to the database using Python (mysql.connector or SQLAlchemy).
+-   Retrieve the average hotelStarRating for each brand.
+-   Display the results in a sorted table (highest-rated brands first).
 
 ### Hints:
 
-* The hotel table contains the hotelStarRating and brandId.
-* The brand table contains brand details.
-* Use GROUP BY and AVG() in SQL.
+-   The hotel table contains the hotelStarRating and brandId.
+-   The brand table contains brand details.
+-   Use GROUP BY and AVG() in SQL.
 
 ### Expected Outcome:
+
 A dictionary of brands with their average star rating, sorted by star rating.
 
-```
+```         
 'Park Hyatt': 5.0,
  'Mandarin Oriental': 5.0,
  'Luxury Collection': 5.0,
@@ -47,7 +49,8 @@ A dictionary of brands with their average star rating, sorted by star rating.
  ...
 ```
 
-### Challenge 
+### Challenge
+
 Visualize the data for the top 30 hotels using matplotlib (bar chart).
 
 ![](images/output41.png){fig-align="center" width="550"}
@@ -55,32 +58,36 @@ Visualize the data for the top 30 hotels using matplotlib (bar chart).
 ## Exercise 2: Sentiment Analysis on Hotel Reviews
 
 ### Objective:
+
 Write a Python program that connects to a MySQL database, retrieves hotel reviews and their ratings, and classifies each review as Positive, Neutral, or Negative based on its rating.
 
 ### Classification Rules:
 
-* Negative Review: Rating < 3
-* Neutral Review: Rating = 3
-* Positive Review: Rating > 3
+-   Negative Review: Rating \< 3
+-   Neutral Review: Rating = 3
+-   Positive Review: Rating \> 3
 
 ### Tasks:
 
-1. Connect to the MySQL database
-* Use MySQL Connector (mysql.connector) to connect to the database.
-* Retrieve reviews and ratings
-* Query the database to get the hotel name, review text, and rating.
+1.  Connect to the MySQL database
 
-2. Classify reviews based on rating
-* Use the classification rules to assign a sentiment category (Positive, Neutral, Negative).
-* Count how many reviews fall into each category for each hotel.
+-   Use MySQL Connector (mysql.connector) to connect to the database.
+-   Retrieve reviews and ratings
+-   Query the database to get the hotel name, review text, and rating.
 
-3. Find and display:
-* The top 5 hotels with the most positive reviews.
-* The top 5 hotels with the most negative reviews.
+2.  Classify reviews based on rating
 
-### Expected output 
+-   Use the classification rules to assign a sentiment category (Positive, Neutral, Negative).
+-   Count how many reviews fall into each category for each hotel.
 
-```
+3.  Find and display:
+
+-   The top 5 hotels with the most positive reviews.
+-   The top 5 hotels with the most negative reviews.
+
+### Expected output
+
+```         
 Top 5 Hotels with Most Positive Reviews:
 The New Yorker Hotel: 584 positive reviews
 Distrikt Hotel: 580 positive reviews
@@ -96,17 +103,17 @@ Hotel Carter: 147 negative reviews
 Park Central: 122 negative reviews
 ```
 
-### Challenge 
+### Challenge
+
 Use matplotlib to create a pie chart or histogram.
 
 ![](images/output42.png){fig-align="center" width="550"}
 
 ## Solution
 
-You can find both exercises solved in <a href="https://colab.research.google.com/drive/1teyr9cyNbVlcsCgfLCUfNu_4GX9Xrb6O?usp=sharing" target="_blank">Colab.</a> 
+You can find both exercises solved in <a href="https://colab.research.google.com/drive/1teyr9cyNbVlcsCgfLCUfNu_4GX9Xrb6O?usp=sharing" target="_blank">Colab.</a>
 
 ------------------------------------------------------------------------
-
 
 ::: disclaimer
 <p><strong>Images and GIFs Disclaimer:</strong> Some of the images and GIFs used on this website are not owned by me. They are used for educational and illustrative purposes only. All rights belong to their respective owners. If you believe any content violates copyright, please contact me for prompt removal.</p>

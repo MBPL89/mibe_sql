@@ -235,7 +235,6 @@ SELECT chainName, brandName
 ## Extra practice cell
 
 ``` {.sql .interactive .hr3}
-
 ```
 
 ------------------------------------------------------------------------
