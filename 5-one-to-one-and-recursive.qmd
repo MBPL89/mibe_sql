@@ -45,13 +45,11 @@ We will use these new tables:
 List the hotel name, first name and title of each hotel’s contact employee.
 
 ``` sql
-
 ```
 
 For reviews with a response, find the total number of reviews posted and their average response time in days for all reviews posted on Valentine’s day (2011-02-14). (`(DATEDIFF(date2, date1)` – calculates the difference between two dates)
 
 ``` sql
-
 ```
 
 # Recursive Relationship
@@ -80,7 +78,6 @@ allows the query to distinguish between the employee acting as the manager and t
 Open your Workbench and find the name of Leo Lee’s boss.
 
 ``` sql
-
 ```
 
 # Handling NULL values
@@ -88,37 +85,34 @@ Open your Workbench and find the name of Leo Lee’s boss.
 ::: callout-caution
 **Don’t confuse with blank or zero**
 
-Multiple meanings:
-- Unknown data 
-- Inapplicable data 
-- No value supplied 
-- Value undefined
+Multiple meanings: - Unknown data - Inapplicable data - No value supplied - Value undefined
 
 `NULL` creates confusion because the user must make an inference
 :::
 
 Try the following and observe the difference:
-``` {.sql}
-	SELECT "a" IN ("a", "b", "");
+
+``` sql
+    SELECT "a" IN ("a", "b", "");
 ```
 
-``` {.sql}
-	SELECT "c" IN ("a", "b", "");
+``` sql
+    SELECT "c" IN ("a", "b", "");
 ```
 
-``` {.sql}
-	SELECT "" IN ("a", "b", "");
+``` sql
+    SELECT "" IN ("a", "b", "");
 ```
 
-``` {.sql}
-	SELECT NULL IN ("a", "b", "");
+``` sql
+    SELECT NULL IN ("a", "b", "");
 ```
 
 Handling `NULL` values in SQL requires special care, as they represent unknown or missing data.
 
 **Comparisons** with `NULL` always return `NULL`, not `TRUE` or `FALSE`, which can lead to unexpected results. For example, `NULL = NULL` is not `TRUE`, but `NULL`, making the query:
 
-``` {.sql}
+``` sql
 SELECT * FROM hotel WHERE hotelRooms = NULL;
 ```
 
@@ -126,15 +120,15 @@ SELECT * FROM hotel WHERE hotelRooms = NULL;
 
 Instead, the correct way to check for `NULL` values is with the **`IS NULL`** operator, like:
 
-``` {.sql}
+``` sql
 SELECT * FROM hotel WHERE hotelRooms IS NULL;
 ```
 
 ### Exercise
+
 List the independent hotels (independent hotels are those properties not affiliated with any brand).
 
 ``` {.sql .interactive .hr3}
-
 ```
 
 ------------------------------------------------------------------------

@@ -16,8 +16,8 @@ website:
         - 2-one-to-many.qmd
         - 3-many-to-many.qmd
         - 4-server-conn.qmd
-        #- 5-one-to-one-and-recursive.qmd
-        #- 6-many-to-many-recursive.qmd
+        - 5-one-to-one-and-recursive.qmd
+        - 6-many-to-many-recursive.qmd
         #- 7-modelling-recap.qmd
       - text: "Class materials - complete"
         menu:
@@ -26,8 +26,8 @@ website:
         - 2-one-to-many-complete.qmd
         - 3-many-to-many-complete.qmd
         - 4-server-conn.qmd
-        #- 5-one-to-one-and-recursive-complete.qmd
-        #- 6-many-to-many-recursive-complete.qmd
+        - 5-one-to-one-and-recursive-complete.qmd
+        - 6-many-to-many-recursive-complete.qmd
         #- 7-modelling-recap-complete.qmd
       - text: "Homeworks"
         menu:
@@ -35,8 +35,8 @@ website:
         - Homework1.qmd
         - Homework2.qmd
         - Homework3.qmd
-        #- Homework4.qmd
-        #- Homework5.qmd
+        - Homework4.qmd
+        - Homework5.qmd
         #- Homework6.qmd
       - text: "Homework solutions"
         menu:
@@ -51,7 +51,7 @@ website:
         menu:
         #- "Coming soon"
         - 4-server-challenge.qmd
-        #- cdlibrary.qmd
+        - cdlibrary.qmd
         #- cdlibrary-solution.qmd
       - text: "Readings"
         menu:

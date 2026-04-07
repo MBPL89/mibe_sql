@@ -21,28 +21,27 @@ The following queries use the **classicmodels** schema.
 
 ![Source: https://www.richardtwatson.com/](images/classic_models.png){.lightbox width="550"}
 
-1.	Report the contact names for the customers having no sales representative. Try it with and without IS NULL.
+1.  Report the contact names for the customers having no sales representative. Try it with and without IS NULL.
 
-2.	Select the product code and name of all the products that have not been sold. [Try with IS NULL]
+2.  Select the product code and name of all the products that have not been sold. \[Try with IS NULL\]
 
-3.	List the name, line and vendor of products in the 'Classic Cars' product line or from vendors that have ‘Gear’ in their name. [Try it with the UNION set operator]
+3.  List the name, line and vendor of products in the 'Classic Cars' product line or from vendors that have ‘Gear’ in their name. \[Try it with the UNION set operator\]
 
-4.	Count the total number of products in each product line. [Do not use an outer join]
+4.  Count the total number of products in each product line. \[Do not use an outer join\]
 
-5.	Report the total number of orders that shipped between 2003-06-06 and 2004-07-07. Meaningfully rename the output.
+5.  Report the total number of orders that shipped between 2003-06-06 and 2004-07-07. Meaningfully rename the output.
 
-6.	Identify all the products that were sold at a discount greater than 5% but less than 10%.
+6.  Identify all the products that were sold at a discount greater than 5% but less than 10%.
 
-7.	Report name, cost, MSRP and margin (MSRP- buyPrice) for the 5 most expensive products (highest MSRP). Limit your reporting to the products that sold at least 300 units (cumulative in all orders). [perform this query using LIMIT]
+7.  Report name, cost, MSRP and margin (MSRP- buyPrice) for the 5 most expensive products (highest MSRP). Limit your reporting to the products that sold at least 300 units (cumulative in all orders). \[perform this query using LIMIT\]
 
-8.	Report the 10 most expensive products by MSRP [use LIMIT].
+8.  Report the 10 most expensive products by MSRP \[use LIMIT\].
 
-9.	Report the 10th most expensive product by MSRP [use LIMIT and OFFSET].
+9.  Report the 10th most expensive product by MSRP \[use LIMIT and OFFSET\].
 
-10.	Report all product information about the products with the second highest MSRP.
+10. Report all product information about the products with the second highest MSRP.
 
 Challenge: Can you complete query 7 without using LIMIT?
-
 
 ```{=html}
 <div>

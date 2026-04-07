@@ -103,17 +103,18 @@ $ : Matches the end of a string.
 #### Examples
 
 List all brands containing 'Hotel' in their name.
+
 ```{sql}
 SELECT brandName FROM brand
 		WHERE brandName REGEXP 'hotel';
 ```
 
 Report chains with ‘resort’ or ‘resorts’ in the chain name
+
 ```{sql}
 SELECT chainName FROM lodgingchain
 		WHERE chainName REGEXP 'resort';
 ```
-
 
 ## Set operations - UNION and UNION ALL
 
