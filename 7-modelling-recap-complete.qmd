@@ -14,7 +14,7 @@ databases:
 
 # Database modelling
 
-Consider the following scenario. We will model his database step by step. 
+Consider the following scenario. We will model his database step by step.
 
 *You are helping the head of an academic society (e.g., the Association for Information Systems) keep track of current data about members of the association (she does not care about historical data). She tells you that researchers are associated with one institution (university, research lab, etc.). Each researcher has one or more specific areas of research interests. Also, she tells you that she wants to know the team composition of research teams for teams funded by the Association. Team membership and collaboration is not mutually exclusive since academic research is best performed in teams and academics work on many projects at the same time.*
 
@@ -38,7 +38,7 @@ You are helping the head of an academic society (e.g., the Association for Infor
 
 ![](images/recap3.png)
 
-::: {.callout-warning}
+::: callout-warning
 You might be tempted to finish here, as your model already looks good. But let's have a look at the scenario again. There is more info there.
 :::
 

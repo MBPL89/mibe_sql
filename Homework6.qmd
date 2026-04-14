@@ -13,7 +13,6 @@ databases:
 
 ## Homework6 - Modelling
 
-
 1.  Draw a data model of a STUDENT entity with proper attributes. The model should allow you to collect and retrieve data to answer questions like: how many students are in class, how many students of a certain age, how students differ according to their interests, education, skills.
 
 2.  Draw a data model of a GRADUATE ASSISTANT entity. Add any attributes that you consider relevant and that would allow to distinguish graduate assistants from students (some will be similar to student table, some will be new).
@@ -29,7 +28,6 @@ databases:
 7.  A dairy farmer, who is also a part-time cartoonist, has several herds of cows. He has assigned each cow to a particular herd. In each herd, the farmer has one cow that is his favorite — often that cow is featured in a cartoon.
 
 8.  The originator of a pyramid marketing scheme has a system for selling ethnic jewelry. The pyramid has three levels--gold, silver, and bronze. New associates join the pyramid at the bronze level. They contribute 30 percent of the revenue of their sales of jewelry to the silver chief in charge of their clan. In turn, silver chiefs contribute 30 percent of what they receive from bronze associates to the gold master in command of their tribe. Finally, gold masters pass on 30 percent of what they receive to the originator of the scheme.
-
 
 ```{=html}
 <div>
